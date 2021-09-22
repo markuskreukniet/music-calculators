@@ -16,12 +16,34 @@
 			style="margin-bottom: 2rem;">
 			
 		<strong>pre-delay duration:</strong>
-		<div style="margin-bottom: 2rem;">1/64 note</div>
+		<select name="preDelayNoteLength" id="preDelayNoteLength" style="margin-bottom: 2rem;">
+			<!-- TODO: add 0 ms, 0.1 ms, 1 ms -->
+		
+			<option value="512thtriplet">1/512 note triplet</option>
+			<option value="512th">1/512 note</option>
+			<option value="512thdotted">1/512 note dotted</option>
+		
+			<option value="256thtriplet">1/256 note triplet</option>
+			<option value="256th">1/256 note</option>
+			<option value="256thdotted">1/256 note dotted</option>
+		
+			<option value="128thtriplet">1/128 note triplet</option>
+			<option value="128th">1/128 note</option>
+			<option value="128thdotted">1/128 note dotted</option>
+		
+			<option value="64thtriplet">1/64 note triplet</option>
+			<option value="64th" selected="selected">1/64 note</option>
+			<option value="64thdotted">1/64 note dotted</option>
+			
+			<option value="32thtriplet">1/32 note triplet</option>
+			<option value="32th">1/32 note</option>
+			<option value="32thdotted">1/32 note dotted</option>
+		</select>
 
 		<label for="reverbNoteLength">
 			<strong>duration of pre-delay + decay:</strong>
 		</label>
-		<select name="reverbNoteLength" id="reverbNoteLength" value="1" style="margin-bottom: 2rem;">
+		<select name="reverbNoteLength" id="reverbNoteLength" style="margin-bottom: 2rem;">
 			<option value="32th">1/32 note</option>
 			<option value="32thdotted">1/32 note dotted</option>
 			
@@ -65,6 +87,7 @@
 	<script>
 		// add event listeners
 		document.getElementById("bpm").addEventListener('change', determineAndShowAnswer);
+		document.getElementById("preDelayNoteLength").addEventListener('change', determineAndShowAnswer);
 		document.getElementById("reverbNoteLength").addEventListener('change', determineAndShowAnswer);
 		
 		// constants
@@ -81,18 +104,21 @@
 			// constants
 			const beat = minInMs / bpm;
 			const note = beat * 4;
+			const preDelayNoteLength = document.getElementById("preDelayNoteLength").value;
 			const reverbNoteLength = document.getElementById("reverbNoteLength").value;
 			
-			// determine pre-delay and decay
-			let preDelay = note / 64;
-			let decay = calculateDuration(reverbNoteLength, note) - preDelay;
+			// determine numbers to show
+			let preDelay = calculateDuration(preDelayNoteLength, note);
+			const decay = calculateDuration(reverbNoteLength, note);
+			let decayMinusPreDelay = decay - preDelay;
 			
-			// round pre-delay and decay
+			// round numbers to show
 			preDelay = preDelay.toFixed(2);
-			decay = decay.toFixed(2);
+			decayMinusPreDelay = decayMinusPreDelay.toFixed(2);
 		   
 			// show
-			document.getElementById("answer").innerHTML = "pre-delay: " + preDelay + " ms<br/>decay: " + decay + " ms";
+			const showHtml = `pre-delay: ${preDelay} ms<br/>decay - pre-delay: ${decayMinusPreDelay} ms`;
+			document.getElementById("answer").innerHTML = showHtml;
 		}
 		
 		function calculateDuration(noteLength, note){

@@ -80,20 +80,20 @@
 			<option value="8dotted">8 notes dotted</option>
 		</select>
 
-		<strong>answer:</strong>
-		<div id="answer"></div>
+		<strong>result:</strong>
+		<div id="result"></div>
 	</div>
 	
 	<script>
 		// add event listeners
-		document.getElementById("bpm").addEventListener('change', determineAndShowAnswer);
-		document.getElementById("preDelayNoteLength").addEventListener('change', determineAndShowAnswer);
-		document.getElementById("reverbNoteLength").addEventListener('change', determineAndShowAnswer);
+		document.getElementById("bpm").addEventListener('change', determineAndShowResult);
+		document.getElementById("preDelayNoteLength").addEventListener('change', determineAndShowResult);
+		document.getElementById("reverbNoteLength").addEventListener('change', determineAndShowResult);
 		
 		// constants
 		const minInMs = 60000; // 1 minute = 60000 milliseconds
 		
-		function determineAndShowAnswer(){
+		function determineAndShowResult(){
 			// get BPM or set default BPM
 			let bpm = document.getElementById("bpm").value;
 			if (!bpm || bpm <= 0) {
@@ -105,7 +105,10 @@
 			const beat = minInMs / bpm;
 			const note = beat * 4;
 			const preDelayNoteLength = document.getElementById("preDelayNoteLength").value;
-			const reverbNoteLength = document.getElementById("reverbNoteLength").value;
+			
+			const select = document.getElementById("reverbNoteLength");
+			const reverbNoteLengthText = select[select.selectedIndex].text;
+			const reverbNoteLength = select.value;
 			
 			// determine numbers to show
 			let preDelay = calculateDuration(preDelayNoteLength, note);
@@ -117,8 +120,8 @@
 			decayMinusPreDelay = decayMinusPreDelay.toFixed(2);
 		   
 			// show
-			const showHtml = `pre-delay: ${preDelay} ms<br/>decay - pre-delay: ${decayMinusPreDelay} ms`;
-			document.getElementById("answer").innerHTML = showHtml;
+			const showHtml = `pre-delay: ${preDelay} ms<br/>decay (${reverbNoteLengthText} - pre-delay): ${decayMinusPreDelay} ms`;
+			document.getElementById("result").innerHTML = showHtml;
 		}
 		
 		function calculateDuration(noteLength, note){
@@ -154,6 +157,6 @@
 			return duration;
 		}
 		
-		determineAndShowAnswer();
+		determineAndShowResult();
 	</script>
 </div>

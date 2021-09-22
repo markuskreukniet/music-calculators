@@ -1,0 +1,133 @@
+<div>
+	<div style="display: flex; flex-direction: column; width: 14rem;">
+		<label for="bpm">
+			<strong>BPM:</strong>
+		</label>
+		<input
+			type="number"
+			id="bpm"
+			name="bpm"
+			required
+			minlength="1"
+			maxlength="5"
+			size="7"
+			min="1"
+			max="99999"
+			style="margin-bottom: 1rem;">
+			
+		<strong>pre-delay duration:</strong>
+		<div style="margin-bottom: 1rem;">1/64 note</div>
+
+		<label for="reverbNoteLength">
+			<strong>duration of pre-delay + decay:</strong>
+		</label>
+		<select name="reverbNoteLength" id="reverbNoteLength" value="1" style="margin-bottom: 1rem;">
+			<option value="32th">1/32 note</option>
+			<option value="32thdotted">1/32 note dotted</option>
+			
+			<option value="16thtriplet">1/16 note triplet</option>
+			<option value="16th">1/16 note</option>
+			<option value="16thdotted">1/16 note dotted</option>
+			
+			<option value="8thtriplet">1/8 note triplet</option>
+			<option value="8th">1/8 note</option>
+			<option value="8thdotted">1/8 note dotted</option>
+			
+			<option value="4thtriplet">1/4 note triplet</option>
+			<option value="4th">1/4 note</option>
+			<option value="4thdotted">1/4 note dotted</option>
+						
+			<option value="2thtriplet">1/2 note triplet</option>
+			<option value="2th">1/2 note</option>
+			<option value="2thdotted">1/2 note dotted</option>
+			
+			<option value="1triplet">1 note triplet</option>
+			<option value="1" selected="selected">1 note</option>
+			<option value="1dotted">1 note dotted</option>
+			
+			<option value="2triplet">2 notes triplet</option>
+			<option value="2">2 notes</option>
+			<option value="2dotted">2 notes dotted</option>
+			
+			<option value="4triplet">4 notes triplet</option>
+			<option value="4">4 notes</option>
+			<option value="4dotted">4 notes dotted</option>
+			
+			<option value="8triplet">8 notes triplet</option>
+			<option value="8">8 notes</option>
+			<option value="8dotted">8 notes dotted</option>
+		</select>
+
+		<strong>answer:</strong>
+		<div id="answer"></div>
+	</div>
+	
+	<script>
+		// add event listeners
+		document.getElementById("bpm").addEventListener('change', determineAndShowAnswer);
+		document.getElementById("reverbNoteLength").addEventListener('change', determineAndShowAnswer);
+		
+		// constants
+		const minInMs = 60000; // 1 minute = 60000 milliseconds
+		
+		function determineAndShowAnswer(){
+			// get BPM or set default BPM
+			let bpm = document.getElementById("bpm").value;
+			if (!bpm || bpm <= 0) {
+				bpm = 128;
+				document.getElementById("bpm").value = bpm;
+			}
+			
+			// constants
+			const beat = minInMs / bpm;
+			const note = beat * 4;
+			const reverbNoteLength = document.getElementById("reverbNoteLength").value;
+			
+			// determine pre-delay and decay
+			let preDelay = note / 64;
+			let decay = calculateDuration(reverbNoteLength, note) - preDelay;
+			
+			// round pre-delay and decay
+			preDelay = preDelay.toFixed(2);
+			decay = decay.toFixed(2);
+		   
+			// show
+			document.getElementById("answer").innerHTML = "pre-delay: " + preDelay + " ms<br/>decay: " + decay + " ms";
+		}
+		
+		function calculateDuration(noteLength, note){
+			let duration = -1;
+			
+			let isDotted = false;
+			let isTriplet = false;
+			let isDivision = false;
+			
+			if (noteLength.includes("dotted")) {
+				isDotted = true;
+				noteLength = noteLength.replace("dotted", "");
+			} else if (noteLength.includes("triplet")) {
+				isTriplet = true;
+				noteLength = noteLength.replace("triplet", "");
+			}
+			if (noteLength.includes("th")) {
+				isDivision = true;
+				noteLength = noteLength.replace("th", "");
+			}
+			
+			if (isDivision) {
+				duration = note / noteLength;
+			} else {
+				duration = note * noteLength;
+			}
+			if (isDotted) {
+				duration *= 1.5;
+			} else if (isTriplet) {
+				duration = (duration / 3) * 2;
+			}
+			
+			return duration;
+		}
+		
+		determineAndShowAnswer();
+	</script>
+</div>

@@ -16,8 +16,10 @@
 			style="margin-bottom: 2rem;">
 			
 		<strong>pre-delay duration:</strong>
-		<select name="preDelayNoteLength" id="preDelayNoteLength" style="margin-bottom: 2rem;">
-			<!-- TODO: add 0 ms, 0.1 ms, 1 ms -->
+		<select name="preDelayDuration" id="preDelayDuration" style="margin-bottom: 2rem;">
+			<option value="0ms">0 ms</option>
+			<option value="0.1ms">0.1 ms</option>
+			<option value="1ms">1 ms</option>
 		
 			<option value="512thtriplet">1/512 note triplet</option>
 			<option value="512th">1/512 note</option>
@@ -40,10 +42,10 @@
 			<option value="32thdotted">1/32 note dotted</option>
 		</select>
 
-		<label for="reverbNoteLength">
+		<label for="reverbdurationValue">
 			<strong>duration of pre-delay + decay:</strong>
 		</label>
-		<select name="reverbNoteLength" id="reverbNoteLength" style="margin-bottom: 2rem;">
+		<select name="reverbdurationValue" id="reverbdurationValue" style="margin-bottom: 2rem;">
 			<option value="32th">1/32 note</option>
 			<option value="32thdotted">1/32 note dotted</option>
 			
@@ -87,8 +89,8 @@
 	<script>
 		// add event listeners
 		document.getElementById("bpm").addEventListener('change', determineAndShowResult);
-		document.getElementById("preDelayNoteLength").addEventListener('change', determineAndShowResult);
-		document.getElementById("reverbNoteLength").addEventListener('change', determineAndShowResult);
+		document.getElementById("preDelayDuration").addEventListener('change', determineAndShowResult);
+		document.getElementById("reverbdurationValue").addEventListener('change', determineAndShowResult);
 		
 		// constants
 		const minInMs = 60000; // 1 minute = 60000 milliseconds
@@ -104,56 +106,66 @@
 			// constants
 			const beat = minInMs / bpm;
 			const note = beat * 4;
-			const preDelayNoteLength = document.getElementById("preDelayNoteLength").value;
+			const preDelayDuration = document.getElementById("preDelayDuration").value;
 			
-			const select = document.getElementById("reverbNoteLength");
-			const reverbNoteLengthText = select[select.selectedIndex].text;
-			const reverbNoteLength = select.value;
+			const select = document.getElementById("reverbdurationValue");
+			const reverbdurationValueText = select[select.selectedIndex].text;
+			const reverbdurationValue = select.value;
 			
 			// determine numbers to show
-			let preDelay = calculateDuration(preDelayNoteLength, note);
-			const decay = calculateDuration(reverbNoteLength, note);
+			let preDelay = determineDuration(preDelayDuration, note);
+			const decay = determineDuration(reverbdurationValue, note);
 			let decayMinusPreDelay = decay - preDelay;
 			
 			// default result
 			let showHtml = "The duration of the delay is shorter than the pre-delay.";
 			
-			if (decayMinusPreDelay >= 0) {
-				// round numbers to show
-				preDelay = preDelay.toFixed(2);
-				decayMinusPreDelay = decayMinusPreDelay.toFixed(2);
+			if (decayMinusPreDelay >= 0) {			
+				// possibly round numbers for result
+				if (atLeastTwoDecimals(preDelay)) {
+					preDelay = preDelay.toFixed(2);
+				}
+				if (atLeastTwoDecimals(decayMinusPreDelay)) {
+					decayMinusPreDelay = decayMinusPreDelay.toFixed(2);
+				}
 				
 				// result
-				showHtml = `pre-delay: ${preDelay} ms<br/>decay (${reverbNoteLengthText} - pre-delay): ${decayMinusPreDelay} ms`;
+				showHtml = `pre-delay: ${preDelay} ms<br/>decay (${reverbdurationValueText} - pre-delay): ${decayMinusPreDelay} ms`;
 			}
 			
 			// show result
 			document.getElementById("result").innerHTML = showHtml;
 		}
 		
-		function calculateDuration(noteLength, note){
+		function determineDuration(durationValue, note){		
+			// if it contains an ms value, return it
+			if (durationValue.includes("ms")) {
+				return durationValue.replace("ms", "");
+			}
+		
+			// determine duration
 			let duration = -1;
 			
 			let isDotted = false;
 			let isTriplet = false;
 			let isDivision = false;
 			
-			if (noteLength.includes("dotted")) {
+			if (durationValue.includes("dotted")) {
 				isDotted = true;
-				noteLength = noteLength.replace("dotted", "");
-			} else if (noteLength.includes("triplet")) {
+				durationValue = durationValue.replace("dotted", "");
+			} else if (durationValue.includes("triplet")) {
 				isTriplet = true;
-				noteLength = noteLength.replace("triplet", "");
+				durationValue = durationValue.replace("triplet", "");
 			}
-			if (noteLength.includes("th")) {
+			if (durationValue.includes("th")) {
 				isDivision = true;
-				noteLength = noteLength.replace("th", "");
+				durationValue = durationValue.replace("th", "");
 			}
 			
 			if (isDivision) {
-				duration = note / noteLength;
+				duration = note / durationValue;
 			} else {
-				duration = note * noteLength;
+				duration = note * durationValue;
 			}
 			if (isDotted) {
 				duration *= 1.5;
@@ -162,6 +174,17 @@
 			}
 			
 			return duration;
+		}
+		
+		function atLeastTwoDecimals(value) {
+			const string = String(value);
+			if (string.includes(".")) {
+				if (string.split(".")[1].length > 2) {
+					return true;
+				} else {
+					return false;
+				}
+			}
 		}
 		
 		determineAndShowResult();

@@ -115,12 +115,19 @@
 			const decay = calculateDuration(reverbNoteLength, note);
 			let decayMinusPreDelay = decay - preDelay;
 			
-			// round numbers to show
-			preDelay = preDelay.toFixed(2);
-			decayMinusPreDelay = decayMinusPreDelay.toFixed(2);
-		   
-			// show
-			const showHtml = `pre-delay: ${preDelay} ms<br/>decay (${reverbNoteLengthText} - pre-delay): ${decayMinusPreDelay} ms`;
+			// default result
+			let showHtml = "The duration of the delay is shorter than the pre-delay.";
+			
+			if (decayMinusPreDelay >= 0) {
+				// round numbers to show
+				preDelay = preDelay.toFixed(2);
+				decayMinusPreDelay = decayMinusPreDelay.toFixed(2);
+				
+				// result
+				showHtml = `pre-delay: ${preDelay} ms<br/>decay (${reverbNoteLengthText} - pre-delay): ${decayMinusPreDelay} ms`;
+			}
+			
+			// show result
 			document.getElementById("result").innerHTML = showHtml;
 		}
 		

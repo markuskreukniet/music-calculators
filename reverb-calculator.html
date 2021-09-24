@@ -50,10 +50,10 @@
 			<option value="32thdotted">1/32 note dotted</option>
 		</select>
 
-		<label for="reverbdurationValue">
+		<label for="reverbDurationValue">
 			<strong>pre-delay + decay duration:</strong>
 		</label>
-		<select name="reverbdurationValue" id="reverbdurationValue" style="margin-bottom: 2rem;">
+		<select name="reverbDurationValue" id="reverbDurationValue" style="margin-bottom: 2rem;">
 			<option value="32th">1/32 note</option>
 			<option value="32thdotted">1/32 note dotted</option>
 			
@@ -98,7 +98,7 @@
 		// add event listeners
 		document.getElementById("bpm").addEventListener('change', determineAndShowResult);
 		document.getElementById("preDelayDuration").addEventListener('change', determineAndShowResult);
-		document.getElementById("reverbdurationValue").addEventListener('change', determineAndShowResult);
+		document.getElementById("reverbDurationValue").addEventListener('change', determineAndShowResult);
 		
 		// constants
 		const minInMs = 60000; // 1 minute = 60000 milliseconds
@@ -116,14 +116,14 @@
 			const note = beat * 4;
 			const preDelayDuration = document.getElementById("preDelayDuration").value;
 			
-			const select = document.getElementById("reverbdurationValue");
-			const reverbdurationValueText = select[select.selectedIndex].text;
-			const reverbdurationValue = select.value;
+			const select = document.getElementById("reverbDurationValue");
+			const reverbDurationValueText = select[select.selectedIndex].text;
+			const reverbDurationValue = select.value;
 			
 			// determine numbers to show
 			let preDelay = determineDuration(preDelayDuration, note);
-			const decay = determineDuration(reverbdurationValue, note);
-			let decayMinusPreDelay = decay - preDelay;
+			let reverbDuration = determineDuration(reverbDurationValue, note);
+			let decayMinusPreDelay = reverbDuration - preDelay;
 			
 			// default result
 			let showHtml = "The duration of the delay is shorter than the pre-delay.";
@@ -133,12 +133,15 @@
 				if (atLeastTwoDecimals(preDelay)) {
 					preDelay = preDelay.toFixed(2);
 				}
+				if (atLeastTwoDecimals(reverbDuration)) {
+					reverbDuration = reverbDuration.toFixed(2);
+				}
 				if (atLeastTwoDecimals(decayMinusPreDelay)) {
 					decayMinusPreDelay = decayMinusPreDelay.toFixed(2);
 				}
 				
 				// result
-				showHtml = `pre-delay: ${preDelay} ms<br/>decay (${reverbdurationValueText} - pre-delay): ${decayMinusPreDelay} ms`;
+				showHtml = `pre-delay: ${preDelay} ms<br/>${reverbDurationValueText}: ${reverbDuration} ms<br/>decay (${reverbDurationValueText} - pre-delay): ${decayMinusPreDelay} ms`;
 			}
 			
 			// show result

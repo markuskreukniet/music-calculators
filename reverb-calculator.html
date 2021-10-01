@@ -28,8 +28,8 @@
 			<option value="0ms">0 ms</option>
 			<option value="0.1ms">0.1 ms</option>
 			<option value="1ms">1 ms</option>
-			<option value="1ms">10 ms</option>
-			<option value="1ms">30 ms</option>
+			<option value="10ms">10 ms</option>
+			<option value="30ms">30 ms</option>
 		
 			<option value="512thtriplet">1/512 note triplet</option>
 			<option value="512th">1/512 note</option>
@@ -70,7 +70,7 @@
 			<option value="4thtriplet">1/4 note triplet</option>
 			<option value="4th">1/4 note</option>
 			<option value="4thdotted">1/4 note dotted</option>
-						
+			
 			<option value="2thtriplet">1/2 note triplet</option>
 			<option value="2th">1/2 note</option>
 			<option value="2thdotted">1/2 note dotted</option>
@@ -130,7 +130,7 @@
 			// default result
 			let showHtml = "The duration of the delay is shorter than the pre-delay.";
 			
-			if (decayMinusPreDelay >= 0) {			
+			if (decayMinusPreDelay >= 0) {
 				// possibly round numbers for result
 				if (atLeastTwoDecimals(preDelay)) {
 					preDelay = preDelay.toFixed(2);
@@ -150,7 +150,7 @@
 			document.getElementById("result").innerHTML = showHtml;
 		}
 		
-		function determineDuration(durationValue, note){		
+		function determineDuration(durationValue, note){
 			// if it contains an ms value, return it
 			if (durationValue.includes("ms")) {
 				return durationValue.replace("ms", "");

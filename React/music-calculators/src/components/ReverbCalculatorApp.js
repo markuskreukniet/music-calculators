@@ -61,6 +61,8 @@ class ReverbCalculatorApp extends React.Component {
             defaultValue={p.defaultValue}
             name={p.name}
             onChange={(e) => this.handleChange(p.name, e)}/>);
+        default:
+          return null;
       }
     });
     

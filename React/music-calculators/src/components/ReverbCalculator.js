@@ -1,10 +1,6 @@
 import React from 'react';
 
 class ReverbCalculator extends React.Component { // TODO: should be specialization a of Calculator
-  constructor(props) {
-    super(props);
-  }
-
   determineResult() {
     if (!this.props.tempo || !this.props.preDelay || !this.props.decay) {
       return;

@@ -1,9 +1,7 @@
-import ReverbCalculatorApp from './components/ReverbCalculatorApp.js';
+import ReverbCalculatorApp from "./components/ReverbCalculatorApp.js";
 
 function App() {
-  return (
-    <ReverbCalculatorApp />
-  );
+  return <ReverbCalculatorApp />;
 }
 
 export default App;

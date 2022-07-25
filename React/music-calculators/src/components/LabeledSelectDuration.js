@@ -1,5 +1,5 @@
-import React from 'react';
-import SelectDuration from './SelectDuration.js';
+import React from "react";
+import SelectDuration from "./SelectDuration.js";
 
 class LabeledSelectDuration extends React.Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class LabeledSelectDuration extends React.Component {
 
   handleChange(value) {
     this.props.onChange(value);
-  };
+  }
 
   render() {
     return (
@@ -19,7 +19,8 @@ class LabeledSelectDuration extends React.Component {
         <SelectDuration
           name={this.props.name}
           defaultValue={this.props.defaultValue}
-          onChange={this.handleChange} />
+          onChange={this.handleChange}
+        />
       </label>
     );
   }

@@ -1,7 +1,7 @@
-import React from 'react';
-import LabeledInputTempo from './LabeledInputTempo.js';
-import LabeledSelectDuration from './LabeledSelectDuration.js';
-import ReverbCalculator from './ReverbCalculator.js';
+import React from "react";
+import LabeledInputTempo from "./LabeledInputTempo.js";
+import LabeledSelectDuration from "./LabeledSelectDuration.js";
+import ReverbCalculator from "./ReverbCalculator.js";
 
 class ReverbCalculatorApp extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class ReverbCalculatorApp extends React.Component {
 
     for (let p of this.properties) {
       this.state = {
-        [p.name]: ''
+        [p.name]: "",
       };
     }
 
@@ -20,15 +20,23 @@ class ReverbCalculatorApp extends React.Component {
 
   handleChange(name, value) {
     this.setState({
-      [name]: value
+      [name]: value,
     });
-  };
+  }
 
   determineProperties() {
     let properties = [
-      {labelText: "tempo in BPM:", element: "input", defaultValue: "128"},
-      {labelText: "pre-delay duration:", element: "select", defaultValue: "1/64 note"},
-      {labelText: "decay duration:", element: "select", defaultValue: "1/64 note"}
+      { labelText: "tempo in BPM:", element: "input", defaultValue: "128" },
+      {
+        labelText: "pre-delay duration:",
+        element: "select",
+        defaultValue: "1/64 note",
+      },
+      {
+        labelText: "decay duration:",
+        element: "select",
+        defaultValue: "1/64 note",
+      },
     ];
 
     for (let p of properties) {
@@ -46,33 +54,40 @@ class ReverbCalculatorApp extends React.Component {
 
   render() {
     const childs = this.properties.map((p) => {
-      switch(p.element) {
+      switch (p.element) {
         case "input":
-          return (<LabeledInputTempo
-            key={p.name}
-            labelText={p.labelText}
-            defaultValue={p.defaultValue}
-            name={p.name}
-            onChange={(e) => this.handleChange(p.name, e)}/>);
+          return (
+            <LabeledInputTempo
+              key={p.name}
+              labelText={p.labelText}
+              defaultValue={p.defaultValue}
+              name={p.name}
+              onChange={(e) => this.handleChange(p.name, e)}
+            />
+          );
         case "select":
-          return (<LabeledSelectDuration
-            key={p.name}
-            labelText={p.labelText}
-            defaultValue={p.defaultValue}
-            name={p.name}
-            onChange={(e) => this.handleChange(p.name, e)}/>);
+          return (
+            <LabeledSelectDuration
+              key={p.name}
+              labelText={p.labelText}
+              defaultValue={p.defaultValue}
+              name={p.name}
+              onChange={(e) => this.handleChange(p.name, e)}
+            />
+          );
         default:
           return null;
       }
     });
-    
+
     return (
       <div>
         {childs}
         <ReverbCalculator
-          tempo={this.state['tempo in BPM']}
-          preDelay={this.state['pre-delay']}
-          decay={this.state.decay} />
+          tempo={this.state["tempo in BPM"]}
+          preDelay={this.state["pre-delay"]}
+          decay={this.state.decay}
+        />
       </div>
     );
   }

@@ -1,5 +1,5 @@
-import React from 'react';
-import Calculator from './Calculator.js';
+import React from "react";
+import Calculator from "./Calculator.js";
 
 class ReverbCalculator extends React.Component {
   render() {
@@ -9,7 +9,8 @@ class ReverbCalculator extends React.Component {
           tempo={this.props.tempo}
           valueOne={this.props.preDelay}
           valueTwo={this.props.decay}
-          arithmeticOperation={"addition"} />
+          arithmeticOperation={"addition"}
+        />
       );
     } else {
       return;

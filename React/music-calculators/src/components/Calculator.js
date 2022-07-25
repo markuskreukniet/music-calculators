@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 class Calculator extends React.Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class Calculator extends React.Component {
 
     // determine ms value
     let result = -1;
-    
+
     const tripletString = " triplet";
     const dottedString = " dotted";
     const fractionString = "1/";
@@ -51,7 +51,7 @@ class Calculator extends React.Component {
     } else {
       result = note * value;
     }
-    
+
     if (isTriplet) {
       result = (value / 3) * 2;
     } else if (isDotted) {
@@ -67,8 +67,8 @@ class Calculator extends React.Component {
     if (
       valueString.includes(dotString) &&
       valueString.split(dotString)[1].length > 2
-      ) {
-        return true;
+    ) {
+      return true;
     } else {
       return false;
     }
@@ -91,11 +91,17 @@ class Calculator extends React.Component {
   determineResult() {
     const noteInMs = this.determineNoteInMs(this.props.tempo);
 
-    const valueOneInMs = this.valueToMsWithMaxTwoDecimals(this.props.valueOne, noteInMs);
-    const valueTwoInMs = this.valueToMsWithMaxTwoDecimals(this.props.valueTwo, noteInMs);
+    const valueOneInMs = this.valueToMsWithMaxTwoDecimals(
+      this.props.valueOne,
+      noteInMs
+    );
+    const valueTwoInMs = this.valueToMsWithMaxTwoDecimals(
+      this.props.valueTwo,
+      noteInMs
+    );
 
     let result = -1;
-    switch(this.props.arithmeticOperation) {
+    switch (this.props.arithmeticOperation) {
       case "addition":
         result = valueOneInMs + valueTwoInMs;
         break;
@@ -110,9 +116,7 @@ class Calculator extends React.Component {
   }
 
   render() {
-    return (
-      <div>{this.determineResult()}</div>
-    );
+    return <div>{this.determineResult()}</div>;
   }
 }
 

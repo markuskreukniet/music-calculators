@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 class SelectDuration extends React.Component {
   constructor(props) {
@@ -6,7 +6,7 @@ class SelectDuration extends React.Component {
 
     this.durations = this.determineDurations();
 
-    this.value = '';
+    this.value = "";
     if (this.props.defaultValue) {
       this.value = this.props.defaultValue;
     }
@@ -20,12 +20,12 @@ class SelectDuration extends React.Component {
     }
   }
 
-  handleChange(e){
+  handleChange(e) {
     e.preventDefault();
 
     this.value = e.target.value;
     this.onChange();
-  };
+  }
 
   onChange() {
     this.props.onChange(this.value);
@@ -42,19 +42,19 @@ class SelectDuration extends React.Component {
       "1/512 note triplet",
       "1/512 note",
       "1/512 note dotted",
-      
+
       "1/256 note triplet",
       "1/256 note",
       "1/256 note dotted",
-      
+
       "1/128 note triplet",
       "1/128 note",
       "1/128 note dotted",
-      
+
       "1/64 note triplet",
       "1/64 note",
       "1/64 note dotted",
-        
+
       "1/32 note triplet",
       "1/32 note",
       "1/32 note dotted",
@@ -62,12 +62,18 @@ class SelectDuration extends React.Component {
   }
 
   render() {
-    const childs = this.durations.map((d) =>
-      <option key={d} value={d}>{d}</option>
-    );
+    const childs = this.durations.map((d) => (
+      <option key={d} value={d}>
+        {d}
+      </option>
+    ));
 
     return (
-      <select name={this.props.name} value={this.value} onChange={this.handleChange}>
+      <select
+        name={this.props.name}
+        value={this.value}
+        onChange={this.handleChange}
+      >
         {childs}
       </select>
     );

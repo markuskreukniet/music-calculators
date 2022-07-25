@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
 class InputTempo extends React.Component {
   constructor(props) {
     super(props);
 
-    this.value = '';
+    this.value = "";
     if (this.props.defaultValue) {
       this.value = this.props.defaultValue;
     }
@@ -23,7 +23,7 @@ class InputTempo extends React.Component {
 
     this.value = e.target.value;
     this.onChange();
-  };
+  }
 
   onChange() {
     this.props.onChange(this.value);
@@ -31,7 +31,11 @@ class InputTempo extends React.Component {
 
   render() {
     return (
-      <input name={this.props.name} value={this.value} onChange={this.handleChange} />
+      <input
+        name={this.props.name}
+        value={this.value}
+        onChange={this.handleChange}
+      />
     );
   }
 }

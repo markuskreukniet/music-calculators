@@ -1,5 +1,5 @@
-import React from 'react';
-import InputTempo from './InputTempo.js';
+import React from "react";
+import InputTempo from "./InputTempo.js";
 
 class LabeledInputTempo extends React.Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class LabeledInputTempo extends React.Component {
 
   handleChange(value) {
     this.props.onChange(value);
-  };
+  }
 
   render() {
     return (
@@ -19,7 +19,8 @@ class LabeledInputTempo extends React.Component {
         <InputTempo
           name={this.props.name}
           defaultValue={this.props.defaultValue}
-          onChange={this.handleChange} />
+          onChange={this.handleChange}
+        />
       </label>
     );
   }

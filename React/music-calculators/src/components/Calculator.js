@@ -1,15 +1,10 @@
 import React from 'react';
-import ReverbCalculator from './ReverbCalculator.js';
 
 class Calculator extends React.Component {
   constructor(props) {
     super(props);
 
     this.minInMs = 60000; // 1 minute = 60000 milliseconds
-
-    this.determineNoteInMs = this.determineNoteInMs.bind(this);
-    this.toMaxTwoDecimals = this.toMaxTwoDecimals.bind(this);
-    this.valueToMsWithMaxTwoDecimals = this.valueToMsWithMaxTwoDecimals.bind(this);
   }
 
   determineNoteInMs(tempo) {
@@ -93,16 +88,30 @@ class Calculator extends React.Component {
     return this.toMaxTwoDecimals(ms);
   }
 
+  determineResult() {
+    const noteInMs = this.determineNoteInMs(this.props.tempo);
+
+    const valueOneInMs = this.valueToMsWithMaxTwoDecimals(this.props.valueOne, noteInMs);
+    const valueTwoInMs = this.valueToMsWithMaxTwoDecimals(this.props.valueTwo, noteInMs);
+
+    let result = -1;
+    switch(this.props.arithmeticOperation) {
+      case "addition":
+        result = valueOneInMs + valueTwoInMs;
+        break;
+      case "subtraction":
+        result = valueOneInMs - valueTwoInMs;
+        break;
+      default:
+        return null;
+    }
+
+    return this.toMaxTwoDecimals(result);
+  }
+
   render() {
     return (
-      <ReverbCalculator
-        tempo={this.props.tempo}
-        preDelay={this.props.preDelay}
-        decay={this.props.decay}
-
-        determineNoteInMs={this.determineNoteInMs}
-        toMaxTwoDecimals={this.toMaxTwoDecimals}
-        valueToMsWithMaxTwoDecimals={this.valueToMsWithMaxTwoDecimals} />
+      <div>{this.determineResult()}</div>
     );
   }
 }

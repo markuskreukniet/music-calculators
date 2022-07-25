@@ -1,7 +1,7 @@
 import React from 'react';
-import Calculator from './Calculator.js';
 import LabeledInputTempo from './LabeledInputTempo.js';
 import LabeledSelectDuration from './LabeledSelectDuration.js';
+import ReverbCalculator from './ReverbCalculator.js';
 
 class ReverbCalculatorApp extends React.Component {
   constructor(props) {
@@ -69,7 +69,7 @@ class ReverbCalculatorApp extends React.Component {
     return (
       <div>
         {childs}
-        <Calculator
+        <ReverbCalculator
           tempo={this.state['tempo in BPM']}
           preDelay={this.state['pre-delay']}
           decay={this.state.decay} />

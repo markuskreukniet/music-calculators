@@ -1,23 +1,19 @@
 import React from 'react';
+import Calculator from './Calculator.js';
 
-class ReverbCalculator extends React.Component { // TODO: should be specialization a of Calculator
-  determineResult() {
-    if (!this.props.tempo || !this.props.preDelay || !this.props.decay) {
+class ReverbCalculator extends React.Component {
+  render() {
+    if (this.props.tempo && this.props.preDelay && this.props.decay) {
+      return (
+        <Calculator
+          tempo={this.props.tempo}
+          valueOne={this.props.preDelay}
+          valueTwo={this.props.decay}
+          arithmeticOperation={"addition"} />
+      );
+    } else {
       return;
     }
-
-    const noteInMs = this.props.determineNoteInMs(this.props.tempo);
-
-    const valueToMsWithMaxTwoDecimals = this.props.valueToMsWithMaxTwoDecimals;
-    const preDelay = valueToMsWithMaxTwoDecimals(this.props.preDelay, noteInMs);
-    const decay = valueToMsWithMaxTwoDecimals(this.props.decay, noteInMs);
-
-    const result = preDelay + decay;
-    return this.props.toMaxTwoDecimals(result);
-  }
-
-  render() {
-    return <div>{this.determineResult()}</div>;
   }
 }
 

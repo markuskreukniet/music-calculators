@@ -1,0 +1,202 @@
+<div style="display: flex; justify-content: center; width: 100%;">
+	<!-- width: 18rem; looks good in a specific WordPress theme -->
+	<div style="display: flex;
+		flex-direction: column;
+		width: 18rem;
+		border: solid black 1px;
+		padding: 1rem;
+		background-color: white;">
+		<div style="margin-bottom: 2rem;"><strong>A Reverb Calculator</strong></div>
+	
+		<label for="bpm">
+			<strong>BPM:</strong>
+		</label>
+		<input
+			type="number"
+			id="bpm"
+			name="bpm"
+			required
+			min="1"
+			max="99999"
+			style="margin-bottom: 2rem;">
+			
+		<strong>pre-delay duration:</strong>
+		<select name="preDelayDuration" id="preDelayDuration" style="margin-bottom: 2rem;">
+			<option value="0ms">0 ms</option>
+			<option value="0.1ms">0.1 ms</option>
+			<option value="1ms">1 ms</option>
+			<option value="10ms">10 ms</option>
+			<option value="30ms">30 ms</option>
+		
+			<option value="512thtriplet">1/512 note triplet</option>
+			<option value="512th">1/512 note</option>
+			<option value="512thdotted">1/512 note dotted</option>
+		
+			<option value="256thtriplet">1/256 note triplet</option>
+			<option value="256th">1/256 note</option>
+			<option value="256thdotted">1/256 note dotted</option>
+		
+			<option value="128thtriplet">1/128 note triplet</option>
+			<option value="128th">1/128 note</option>
+			<option value="128thdotted">1/128 note dotted</option>
+		
+			<option value="64thtriplet">1/64 note triplet</option>
+			<option value="64th" selected="selected">1/64 note</option>
+			<option value="64thdotted">1/64 note dotted</option>
+			
+			<option value="32thtriplet">1/32 note triplet</option>
+			<option value="32th">1/32 note</option>
+			<option value="32thdotted">1/32 note dotted</option>
+		</select>
+
+		<label for="reverbDurationValue">
+			<strong>pre-delay + decay duration:</strong>
+		</label>
+		<select name="reverbDurationValue" id="reverbDurationValue" style="margin-bottom: 2rem;">
+			<option value="32th">1/32 note</option>
+			<option value="32thdotted">1/32 note dotted</option>
+			
+			<option value="16thtriplet">1/16 note triplet</option>
+			<option value="16th">1/16 note</option>
+			<option value="16thdotted">1/16 note dotted</option>
+			
+			<option value="8thtriplet">1/8 note triplet</option>
+			<option value="8th">1/8 note</option>
+			<option value="8thdotted">1/8 note dotted</option>
+			
+			<option value="4thtriplet">1/4 note triplet</option>
+			<option value="4th">1/4 note</option>
+			<option value="4thdotted">1/4 note dotted</option>
+			
+			<option value="2thtriplet">1/2 note triplet</option>
+			<option value="2th">1/2 note</option>
+			<option value="2thdotted">1/2 note dotted</option>
+			
+			<option value="1triplet">1 note triplet</option>
+			<option value="1" selected="selected">1 note</option>
+			<option value="1dotted">1 note dotted</option>
+			
+			<option value="2triplet">2 notes triplet</option>
+			<option value="2">2 notes</option>
+			<option value="2dotted">2 notes dotted</option>
+			
+			<option value="4triplet">4 notes triplet</option>
+			<option value="4">4 notes</option>
+			<option value="4dotted">4 notes dotted</option>
+			
+			<option value="8triplet">8 notes triplet</option>
+			<option value="8">8 notes</option>
+			<option value="8dotted">8 notes dotted</option>
+		</select>
+
+		<strong>results:</strong>
+		<div id="result"></div>
+	</div>
+	
+	<script>
+		// add event listeners
+		document.getElementById("bpm").addEventListener('input', determineAndShowResult);
+		document.getElementById("preDelayDuration").addEventListener('change', determineAndShowResult);
+		document.getElementById("reverbDurationValue").addEventListener('change', determineAndShowResult);
+		
+		// constants
+		const minInMs = 60000; // 1 minute = 60000 milliseconds
+		
+		function determineAndShowResult(){
+			// get BPM or set default BPM
+			let bpm = document.getElementById("bpm").value;
+			if (!bpm || bpm <= 0) {
+				bpm = 128;
+				document.getElementById("bpm").value = bpm;
+			}
+			
+			// constants
+			const beat = minInMs / bpm;
+			const note = beat * 4;
+			const preDelayDuration = document.getElementById("preDelayDuration").value;
+			
+			const select = document.getElementById("reverbDurationValue");
+			const reverbDurationValueText = select[select.selectedIndex].text;
+			const reverbDurationValue = select.value;
+			
+			// determine numbers to show
+			let preDelay = determineDuration(preDelayDuration, note);
+			let reverbDuration = determineDuration(reverbDurationValue, note);
+			let decayMinusPreDelay = reverbDuration - preDelay;
+			
+			// default result
+			let showHtml = "The duration of the delay is shorter than the pre-delay.";
+			
+			if (decayMinusPreDelay >= 0) {
+				// possibly round numbers for result
+				if (atLeastTwoDecimals(preDelay)) {
+					preDelay = preDelay.toFixed(2);
+				}
+				if (atLeastTwoDecimals(reverbDuration)) {
+					reverbDuration = reverbDuration.toFixed(2);
+				}
+				if (atLeastTwoDecimals(decayMinusPreDelay)) {
+					decayMinusPreDelay = decayMinusPreDelay.toFixed(2);
+				}
+				
+				// result
+				showHtml = `pre-delay: ${preDelay} ms<br/>${reverbDurationValueText}: ${reverbDuration} ms<br/>decay (${reverbDurationValueText} - pre-delay): ${decayMinusPreDelay} ms`;
+			}
+			
+			// show result
+			document.getElementById("result").innerHTML = showHtml;
+		}
+		
+		function determineDuration(durationValue, note){
+			// if it contains an ms value, return it
+			if (durationValue.includes("ms")) {
+				return durationValue.replace("ms", "");
+			}
+		
+			// determine duration
+			let duration = -1;
+			
+			let isDotted = false;
+			let isTriplet = false;
+			let isDivision = false;
+			
+			if (durationValue.includes("dotted")) {
+				isDotted = true;
+				durationValue = durationValue.replace("dotted", "");
+			} else if (durationValue.includes("triplet")) {
+				isTriplet = true;
+				durationValue = durationValue.replace("triplet", "");
+			}
+			if (durationValue.includes("th")) {
+				isDivision = true;
+				durationValue = durationValue.replace("th", "");
+			}
+			
+			if (isDivision) {
+				duration = note / durationValue;
+			} else {
+				duration = note * durationValue;
+			}
+			if (isDotted) {
+				duration *= 1.5;
+			} else if (isTriplet) {
+				duration = (duration / 3) * 2;
+			}
+			
+			return duration;
+		}
+		
+		function atLeastTwoDecimals(value) {
+			const string = String(value);
+			if (string.includes(".")) {
+				if (string.split(".")[1].length > 2) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		}
+		
+		determineAndShowResult();
+	</script>
+</div>

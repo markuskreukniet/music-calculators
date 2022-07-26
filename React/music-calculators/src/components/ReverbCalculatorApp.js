@@ -1,5 +1,5 @@
 import React from "react";
-import LabeledInputTempo from "./LabeledInputTempo.js";
+import LabeledNumberInput from "./LabeledNumberInput.js";
 import LabeledSelectDuration from "./LabeledSelectDuration.js";
 import ReverbCalculator from "./ReverbCalculator.js";
 
@@ -42,11 +42,9 @@ class ReverbCalculatorApp extends React.Component {
     for (let p of properties) {
       const s = " duration:";
 
-      if (p.labelText.includes(s)) {
-        p.name = p.labelText.replace(s, "");
-      } else {
-        p.name = p.labelText.replace(":", "");
-      }
+      p.name = p.labelText.includes(s)
+        ? p.labelText.replace(s, "")
+        : p.labelText.replace(":", "");
     }
 
     return properties;
@@ -57,7 +55,7 @@ class ReverbCalculatorApp extends React.Component {
       switch (p.element) {
         case "input":
           return (
-            <LabeledInputTempo
+            <LabeledNumberInput
               key={p.name}
               labelText={p.labelText}
               defaultValue={p.defaultValue}

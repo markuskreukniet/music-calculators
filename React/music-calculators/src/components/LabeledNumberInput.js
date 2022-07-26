@@ -1,7 +1,7 @@
 import React from "react";
-import InputTempo from "./InputTempo.js";
+import NumberInput from "./NumberInput.js";
 
-class LabeledInputTempo extends React.Component {
+class LabeledNumberInput extends React.Component {
   constructor(props) {
     super(props);
 
@@ -16,7 +16,7 @@ class LabeledInputTempo extends React.Component {
     return (
       <label>
         {this.props.labelText}
-        <InputTempo
+        <NumberInput
           name={this.props.name}
           defaultValue={this.props.defaultValue}
           onChange={this.handleChange}
@@ -26,4 +26,4 @@ class LabeledInputTempo extends React.Component {
   }
 }
 
-export default LabeledInputTempo;
+export default LabeledNumberInput;

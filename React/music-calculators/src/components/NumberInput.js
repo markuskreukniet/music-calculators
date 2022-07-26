@@ -1,13 +1,10 @@
 import React from "react";
 
-class InputTempo extends React.Component {
+class NumberInput extends React.Component {
   constructor(props) {
     super(props);
 
-    this.value = "";
-    if (this.props.defaultValue) {
-      this.value = this.props.defaultValue;
-    }
+    this.value = this.props.defaultValue ? this.props.defaultValue : "";
 
     this.handleChange = this.handleChange.bind(this);
   }
@@ -32,6 +29,7 @@ class InputTempo extends React.Component {
   render() {
     return (
       <input
+        type="number"
         name={this.props.name}
         value={this.value}
         onChange={this.handleChange}
@@ -40,4 +38,4 @@ class InputTempo extends React.Component {
   }
 }
 
-export default InputTempo;
+export default NumberInput;

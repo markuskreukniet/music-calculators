@@ -46,11 +46,7 @@ class Calculator extends React.Component {
       value = value.replace(fractionString, "");
     }
 
-    if (isFraction) {
-      result = note / value;
-    } else {
-      result = note * value;
-    }
+    result = isFraction ? note / value : note * value;
 
     if (isTriplet) {
       result = (value / 3) * 2;

@@ -6,10 +6,7 @@ class SelectDuration extends React.Component {
 
     this.durations = this.determineDurations();
 
-    this.value = "";
-    if (this.props.defaultValue) {
-      this.value = this.props.defaultValue;
-    }
+    this.value = this.props.defaultValue ? this.props.defaultValue : "";
 
     this.handleChange = this.handleChange.bind(this);
   }

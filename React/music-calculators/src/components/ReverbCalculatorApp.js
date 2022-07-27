@@ -1,4 +1,5 @@
 import React from "react";
+import DurationResultChoice from "./DurationResultChoice.js";
 import LabeledNumberInput from "./LabeledNumberInput.js";
 import LabeledSelectDuration from "./LabeledSelectDuration.js";
 import ReverbCalculator from "./ReverbCalculator.js";
@@ -80,8 +81,12 @@ class ReverbCalculatorApp extends React.Component {
 
     return (
       <div>
+        <DurationResultChoice
+          onChange={(e) => this.handleChange("durationResult", e)}
+        />
         {childs}
         <ReverbCalculator
+          arithmeticOperation={this.state.durationResult}
           tempo={this.state["tempo in BPM"]}
           preDelay={this.state["pre-delay"]}
           decay={this.state.decay}

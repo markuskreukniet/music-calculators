@@ -28,11 +28,12 @@ class DurationResultChoice extends React.Component {
   render() {
     const radio = "radio";
     const name = "group";
+    const displayBlock = "display-block";
 
     return (
-      <div>
-        <p>Calculate in ms:</p>
-        <label>
+      <div className={"display-block padding border-bottom"}>
+        <p className={"text-before-list"}>Calculate in ms:</p>
+        <label className={displayBlock}>
           <input
             type={radio}
             name={name}
@@ -42,7 +43,7 @@ class DurationResultChoice extends React.Component {
           />
           The total reverb duration by choosing a decay duration.
         </label>
-        <label>
+        <label className={displayBlock}>
           <input
             type={radio}
             name={name}

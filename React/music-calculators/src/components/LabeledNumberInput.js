@@ -14,7 +14,7 @@ class LabeledNumberInput extends React.Component {
 
   render() {
     return (
-      <label className={"rowWithPaddingAndBorder"}>
+      <label className={"display-block padding border-bottom"}>
         {this.props.labelText}
         <NumberInput
           name={this.props.name}

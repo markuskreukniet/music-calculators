@@ -29,9 +29,9 @@ class ReverbCalculatorApp extends React.Component {
   }
 
   render() {
-    const tempoLabelText = "tempo in BPM:";
-    const preDelayLabelText = "pre-delay:";
-    const secondValueLabelText = "decay:";
+    const tempoLabelText = "Tempo in BPM:";
+    const preDelayLabelText = "Pre-delay:";
+    const secondValueLabelText = "Decay:";
 
     const defaultValueTempo = "128";
     const defaultValueSelect = "1/64 note";
@@ -47,12 +47,12 @@ class ReverbCalculatorApp extends React.Component {
         <DurationResultChoice
           onChange={(e) => this.handleChange("durationResult", e)}
         />
-        <div className={"rowWithPaddingAndBorder"}>
+        <div className={"display-block padding border-bottom"}>
           <LabeledSelectDuration
             labelText={preDelayLabelText}
             defaultValue={defaultValueSelect}
             name={this.preDelay}
-            class={"margin-right"}
+            class={"margin-right-2"}
             onChange={(e) => this.handleChange(this.preDelay, e)}
           />
           <LabeledSelectDuration

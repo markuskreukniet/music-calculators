@@ -59,7 +59,7 @@ class SelectDuration extends React.Component {
   }
 
   render() {
-    const childs = this.durations.map((d) => (
+    const options = this.durations.map((d) => (
       <option key={d} value={d}>
         {d}
       </option>
@@ -71,7 +71,7 @@ class SelectDuration extends React.Component {
         value={this.value}
         onChange={this.handleChange}
       >
-        {childs}
+        {options}
       </select>
     );
   }

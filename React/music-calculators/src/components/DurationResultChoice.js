@@ -28,12 +28,11 @@ class DurationResultChoice extends React.Component {
   render() {
     const radio = "radio";
     const name = "group";
-    const subtraction = "subtraction";
 
     return (
       <div>
+        <p>Calculate in ms:</p>
         <label>
-          {this.addition}
           <input
             type={radio}
             name={name}
@@ -41,15 +40,16 @@ class DurationResultChoice extends React.Component {
             onChange={this.handleChange}
             defaultChecked // should be defaultChecked not checked
           />
+          The total reverb duration by choosing a decay duration.
         </label>
         <label>
-          {subtraction}
           <input
             type={radio}
             name={name}
-            value={subtraction}
+            value="subtraction"
             onChange={this.handleChange}
           />
+          The decay duration by choosing a total reverb duration.
         </label>
       </div>
     );

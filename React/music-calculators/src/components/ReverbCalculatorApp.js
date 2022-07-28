@@ -8,13 +8,17 @@ class ReverbCalculatorApp extends React.Component {
   constructor(props) {
     super(props);
 
-    this.properties = this.determineProperties();
+    this.tempo = "tempo";
+    this.preDelay = "preDelay";
+    this.secondValue = "decay";
 
-    for (let p of this.properties) {
-      this.state = {
-        [p.name]: "",
-      };
-    }
+    const emptyString = "";
+
+    this.state = {
+      [this.tempo]: emptyString,
+      [this.preDelay]: emptyString,
+      [this.secondValue]: emptyString,
+    };
 
     this.handleChange = this.handleChange.bind(this);
   }
@@ -25,71 +29,45 @@ class ReverbCalculatorApp extends React.Component {
     });
   }
 
-  determineProperties() {
-    let properties = [
-      { labelText: "tempo in BPM:", element: "input", defaultValue: "128" },
-      {
-        labelText: "pre-delay duration:",
-        element: "select",
-        defaultValue: "1/64 note",
-      },
-      {
-        labelText: "decay duration:",
-        element: "select",
-        defaultValue: "1/64 note",
-      },
-    ];
-
-    for (let p of properties) {
-      const s = " duration:";
-
-      p.name = p.labelText.includes(s)
-        ? p.labelText.replace(s, "")
-        : p.labelText.replace(":", "");
-    }
-
-    return properties;
-  }
-
   render() {
-    const childs = this.properties.map((p) => {
-      switch (p.element) {
-        case "input":
-          return (
-            <LabeledNumberInput
-              key={p.name}
-              labelText={p.labelText}
-              defaultValue={p.defaultValue}
-              name={p.name}
-              onChange={(e) => this.handleChange(p.name, e)}
-            />
-          );
-        case "select":
-          return (
-            <LabeledSelectDuration
-              key={p.name}
-              labelText={p.labelText}
-              defaultValue={p.defaultValue}
-              name={p.name}
-              onChange={(e) => this.handleChange(p.name, e)}
-            />
-          );
-        default:
-          return null;
-      }
-    });
+    const tempoLabelText = "tempo in BPM:";
+    const preDelayLabelText = "pre-delay:";
+    const secondValueLabelText = "decay:";
+
+    const defaultValueTempo = "128";
+    const defaultValueSelect = "1/64 note";
 
     return (
       <div>
+        <LabeledNumberInput
+          labelText={tempoLabelText}
+          defaultValue={defaultValueTempo}
+          name={this.tempo}
+          onChange={(e) => this.handleChange(this.tempo, e)}
+        />
         <DurationResultChoice
           onChange={(e) => this.handleChange("durationResult", e)}
         />
-        {childs}
+        <div className={"rowWithPaddingAndBorder"}>
+          <LabeledSelectDuration
+            labelText={preDelayLabelText}
+            defaultValue={defaultValueSelect}
+            name={this.preDelay}
+            class={"margin-right"}
+            onChange={(e) => this.handleChange(this.preDelay, e)}
+          />
+          <LabeledSelectDuration
+            labelText={secondValueLabelText}
+            defaultValue={defaultValueSelect}
+            name={this.secondValue}
+            onChange={(e) => this.handleChange(this.secondValue, e)}
+          />
+        </div>
         <ReverbCalculator
           arithmeticOperation={this.state.durationResult}
-          tempo={this.state["tempo in BPM"]}
-          preDelay={this.state["pre-delay"]}
-          decay={this.state.decay}
+          tempo={this.state[this.tempo]}
+          preDelay={this.state[this.preDelay]}
+          decay={this.state[this.secondValue]}
         />
       </div>
     );

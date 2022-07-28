@@ -14,7 +14,7 @@ class LabeledSelectDuration extends React.Component {
 
   render() {
     return (
-      <label>
+      <label className={this.props.class}>
         {this.props.labelText}
         <SelectDuration
           name={this.props.name}

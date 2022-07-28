@@ -13,7 +13,6 @@ class ReverbCalculatorApp extends React.Component {
     this.secondValue = "decay";
 
     const emptyString = "";
-
     this.state = {
       [this.tempo]: emptyString,
       [this.preDelay]: emptyString,

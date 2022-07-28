@@ -28,6 +28,7 @@ class SelectDuration extends React.Component {
     this.props.onChange(this.value);
   }
 
+  // TODO: determine if this function should be a constant
   determineDurations() {
     return [
       "0 ms",

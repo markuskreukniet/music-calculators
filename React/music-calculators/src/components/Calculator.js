@@ -96,6 +96,7 @@ class Calculator extends React.Component {
       noteInMs
     );
 
+    // TODO: arithmeticOperation cases should come from more global constants
     let result = -1;
     switch (this.props.arithmeticOperation) {
       case "addition":

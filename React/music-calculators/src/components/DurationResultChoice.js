@@ -4,7 +4,7 @@ class DurationResultChoice extends React.Component {
   constructor(props) {
     super(props);
 
-    this.addition = "addition";
+    this.addition = "addition"; // TODO: addition should be a more global constant
     this.value = this.addition;
 
     this.handleChange = this.handleChange.bind(this);
@@ -46,7 +46,7 @@ class DurationResultChoice extends React.Component {
           <input
             type={radio}
             name={name}
-            value="subtraction"
+            value="subtraction" // TODO: subtraction should be a more global constant
             onChange={this.handleChange}
           />
           The decay duration by choosing a total reverb duration.

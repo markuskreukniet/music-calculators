@@ -103,7 +103,7 @@ class Calculator extends React.Component {
         result = valueOneInMs + valueTwoInMs;
         break;
       case "subtraction":
-        result = valueOneInMs - valueTwoInMs;
+        result = valueTwoInMs - valueOneInMs;
         break;
       default:
         return null;

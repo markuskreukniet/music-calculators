@@ -7,13 +7,13 @@ class ReverbCalculator extends React.Component {
       this.props.arithmeticOperation &&
       this.props.tempo &&
       this.props.preDelay &&
-      this.props.decay
+      this.props.valueTwo
     ) {
       return (
         <Calculator
           tempo={this.props.tempo}
           valueOne={this.props.preDelay}
-          valueTwo={this.props.decay}
+          valueTwo={this.props.valueTwo}
           arithmeticOperation={this.props.arithmeticOperation}
         />
       );

@@ -11,14 +11,14 @@ class ReverbCalculatorApp extends React.Component {
     this.tempo = "tempo";
     this.durationResult = "durationResult";
     this.preDelay = "preDelay";
-    this.secondValue = "decay";
+    this.valueTwo = "decay";
 
     const emptyString = "";
     this.state = {
       [this.tempo]: emptyString,
       [this.durationResult]: emptyString,
       [this.preDelay]: emptyString,
-      [this.secondValue]: emptyString,
+      [this.valueTwo]: emptyString,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -33,7 +33,7 @@ class ReverbCalculatorApp extends React.Component {
   render() {
     const tempoLabelText = "Tempo in BPM:";
     const preDelayLabelText = "Pre-delay:";
-    const secondValueLabelText =
+    const valueTwoLabelText =
       this.state.durationResult === "addition" ? "Decay" : "Total reverb:"; // TODO: addition should be a constant // TODO: check if this.state.durationResult is true
 
     const defaultValueTempo = "128";
@@ -59,17 +59,17 @@ class ReverbCalculatorApp extends React.Component {
             onChange={(e) => this.handleChange(this.preDelay, e)}
           />
           <LabeledSelectDuration
-            labelText={secondValueLabelText}
+            labelText={valueTwoLabelText}
             defaultValue={defaultValueSelect}
-            name={this.secondValue}
-            onChange={(e) => this.handleChange(this.secondValue, e)}
+            name={this.valueTwo}
+            onChange={(e) => this.handleChange(this.valueTwo, e)}
           />
         </div>
         <ReverbCalculator
           arithmeticOperation={this.state[this.durationResult]}
           tempo={this.state[this.tempo]}
           preDelay={this.state[this.preDelay]}
-          decay={this.state[this.secondValue]}
+          valueTwo={this.state[this.valueTwo]}
         />
       </div>
     );

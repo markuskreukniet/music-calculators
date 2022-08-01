@@ -14,6 +14,12 @@ class ReverbCalculator extends React.Component {
           tempo={this.props.tempo}
           valueOne={this.props.preDelay}
           valueTwo={this.props.valueTwo}
+          valueOneText={"pre-delay"} // TODO: determine if this string should be a global constant
+          valueTwoText={
+            this.props.arithmeticOperation === "addition" // TODO: addition should be a constant
+              ? "delay"
+              : "total reverb"
+          } // TODO: determine if these strings should be global constants
           arithmeticOperation={this.props.arithmeticOperation}
         />
       );

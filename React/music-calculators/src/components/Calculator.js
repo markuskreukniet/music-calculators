@@ -84,7 +84,7 @@ class Calculator extends React.Component {
     return this.toMaxTwoDecimals(ms);
   }
 
-  determineResult() {
+  determineResultText() {
     const noteInMs = this.determineNoteInMs(this.props.tempo);
 
     const valueOneInMs = this.valueToMsWithMaxTwoDecimals(
@@ -96,27 +96,32 @@ class Calculator extends React.Component {
       noteInMs
     );
 
+    const ms = "ms";
+    const equals = "=";
     // TODO: arithmeticOperation cases should come from more global constants
-    let result = -1;
     switch (this.props.arithmeticOperation) {
       case "addition":
-        result = valueOneInMs + valueTwoInMs;
-        break;
+        return `${valueOneInMs} ${ms} ${
+          this.props.valueOneText
+        } + ${valueTwoInMs} ${ms} ${this.props.valueTwoText} ${equals} ${
+          valueOneInMs + valueTwoInMs
+        } ${ms} total reverb`; // TODO: determine if 'total reverb' should be a global constant
       case "subtraction":
-        result = valueTwoInMs - valueOneInMs;
-        break;
+        return `${valueTwoInMs} ${ms} ${
+          this.props.valueTwoText
+        } - ${valueOneInMs} ${ms} ${this.props.valueOneText} ${equals} ${
+          valueTwoInMs - valueOneInMs
+        } ${ms} decay`; // TODO: determine if 'decay' should be a global constant
       default:
         return null;
     }
-
-    return this.toMaxTwoDecimals(result);
   }
 
   render() {
     return (
       <div className={"display-flex padding"}>
         <p className={"margin-right-1"}>Result:</p>
-        <p>{this.determineResult()}</p>
+        <p>{this.determineResultText()}</p>
       </div>
     );
   }

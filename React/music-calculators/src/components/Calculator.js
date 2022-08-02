@@ -15,7 +15,7 @@ class Calculator extends React.Component {
 
   valueToMs(value, note) {
     // if ms value, return its number
-    let msString = " ms";
+    let msString = " ms"; // has whitespace
     if (value.includes(msString)) {
       msString = value.replace(msString, "");
       return parseFloat(msString); // return float
@@ -85,6 +85,24 @@ class Calculator extends React.Component {
     return this.toMaxTwoDecimals(ms);
   }
 
+  determineText(
+    firstValue,
+    firstValueText,
+    secondValue,
+    secondValueText,
+    resultValue,
+    resultValueText,
+    arithmeticOperationSign
+  ) {
+    const ms = "ms";
+    return `
+      ${firstValue} ${ms} ${firstValueText}
+      ${arithmeticOperationSign}
+      ${secondValue} ${ms} ${secondValueText}
+      =
+      ${resultValue} ${ms} ${resultValueText}`;
+  }
+
   determineResultText() {
     const noteInMs = this.determineNoteInMs(this.props.tempo);
 
@@ -97,21 +115,27 @@ class Calculator extends React.Component {
       noteInMs
     );
 
-    const ms = "ms"; // TODO: duplicate
-    const equals = "=";
     switch (this.props.arithmeticOperation) {
       case arithmeticOperation.addition:
-        return `${valueOneInMs} ${ms} ${
-          this.props.valueOneText
-        } + ${valueTwoInMs} ${ms} ${this.props.valueTwoText} ${equals} ${
-          valueOneInMs + valueTwoInMs
-        } ${ms} total reverb`; // TODO: determine if 'total reverb' should be a global constant
+        return this.determineText(
+          valueOneInMs,
+          this.props.valueOneText,
+          valueTwoInMs,
+          this.props.valueTwoText,
+          valueOneInMs + valueTwoInMs,
+          "total reverb", // TODO: determine if 'total reverb' should be a global constant
+          "+"
+        );
       case arithmeticOperation.subtraction:
-        return `${valueTwoInMs} ${ms} ${
-          this.props.valueTwoText
-        } - ${valueOneInMs} ${ms} ${this.props.valueOneText} ${equals} ${
-          valueTwoInMs - valueOneInMs
-        } ${ms} decay`; // TODO: determine if 'decay' should be a global constant
+        return this.determineText(
+          valueTwoInMs,
+          this.props.valueTwoText,
+          valueOneInMs,
+          this.props.valueOneText,
+          valueTwoInMs - valueOneInMs,
+          "decay", // TODO: determine if 'decay' should be a global constant
+          "-"
+        );
       default:
         return null;
     }

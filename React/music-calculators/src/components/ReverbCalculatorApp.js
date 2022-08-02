@@ -1,4 +1,5 @@
 import React from "react";
+import arithmeticOperation from "../constants/arithmeticOperation.constants.js";
 import DurationResultChoice from "./DurationResultChoice.js";
 import LabeledNumberInput from "./LabeledNumberInput.js";
 import LabeledSelectDuration from "./LabeledSelectDuration.js";
@@ -34,7 +35,9 @@ class ReverbCalculatorApp extends React.Component {
     const tempoLabelText = "Tempo in BPM:";
     const preDelayLabelText = "Pre-delay:";
     const valueTwoLabelText =
-      this.state.durationResult === "addition" ? "Decay" : "Total reverb:"; // TODO: addition should be a constant // TODO: check if this.state.durationResult is true
+      this.state.durationResult === arithmeticOperation.addition
+        ? "Decay"
+        : "Total reverb:"; // TODO: check if this.state.durationResult is true
 
     const defaultValueTempo = "128";
     const defaultValueSelect = "1/64 note";

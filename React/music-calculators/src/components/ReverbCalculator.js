@@ -1,4 +1,5 @@
 import React from "react";
+import arithmeticOperation from "../constants/arithmeticOperation.constants.js";
 import Calculator from "./Calculator.js";
 
 class ReverbCalculator extends React.Component {
@@ -16,7 +17,7 @@ class ReverbCalculator extends React.Component {
           valueTwo={this.props.valueTwo}
           valueOneText={"pre-delay"} // TODO: determine if this string should be a global constant
           valueTwoText={
-            this.props.arithmeticOperation === "addition" // TODO: addition should be a constant
+            this.props.arithmeticOperation === arithmeticOperation.addition
               ? "delay"
               : "total reverb"
           } // TODO: determine if these strings should be global constants

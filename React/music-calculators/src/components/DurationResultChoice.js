@@ -1,11 +1,11 @@
 import React from "react";
+import arithmeticOperation from "../constants/arithmeticOperation.constants.js";
 
 class DurationResultChoice extends React.Component {
   constructor(props) {
     super(props);
 
-    this.addition = "addition"; // TODO: addition should be a more global constant
-    this.value = this.addition;
+    this.value = arithmeticOperation.addition;
 
     this.handleChange = this.handleChange.bind(this);
   }
@@ -37,7 +37,7 @@ class DurationResultChoice extends React.Component {
           <input
             type={radio}
             name={name}
-            value={this.addition}
+            value={arithmeticOperation.addition}
             onChange={this.handleChange}
             defaultChecked // should be defaultChecked not checked
           />
@@ -47,7 +47,7 @@ class DurationResultChoice extends React.Component {
           <input
             type={radio}
             name={name}
-            value="subtraction" // TODO: subtraction should be a more global constant
+            value={arithmeticOperation.subtraction}
             onChange={this.handleChange}
           />
           The decay duration by choosing a total reverb duration.

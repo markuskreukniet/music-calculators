@@ -1,4 +1,5 @@
 import React from "react";
+import arithmeticOperation from "../constants/arithmeticOperation.constants.js";
 
 class Calculator extends React.Component {
   constructor(props) {
@@ -96,17 +97,16 @@ class Calculator extends React.Component {
       noteInMs
     );
 
-    const ms = "ms";
+    const ms = "ms"; // TODO: duplicate
     const equals = "=";
-    // TODO: arithmeticOperation cases should come from more global constants
     switch (this.props.arithmeticOperation) {
-      case "addition":
+      case arithmeticOperation.addition:
         return `${valueOneInMs} ${ms} ${
           this.props.valueOneText
         } + ${valueTwoInMs} ${ms} ${this.props.valueTwoText} ${equals} ${
           valueOneInMs + valueTwoInMs
         } ${ms} total reverb`; // TODO: determine if 'total reverb' should be a global constant
-      case "subtraction":
+      case arithmeticOperation.subtraction:
         return `${valueTwoInMs} ${ms} ${
           this.props.valueTwoText
         } - ${valueOneInMs} ${ms} ${this.props.valueOneText} ${equals} ${

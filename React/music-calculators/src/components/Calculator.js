@@ -95,8 +95,8 @@ class Calculator extends React.Component {
     arithmeticOperationSign
   ) {
     const ms = "ms";
-    return `
-      ${firstValue} ${ms} ${firstValueText}
+    // TODO: 3 times the same substring
+    return `${firstValue} ${ms} ${firstValueText}
       ${arithmeticOperationSign}
       ${secondValue} ${ms} ${secondValueText}
       =

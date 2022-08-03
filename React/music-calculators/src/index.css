@@ -1,6 +1,5 @@
 :root {
   --size1: 1rem;
-  --size2: 2rem;
 }
 
 body {
@@ -40,10 +39,6 @@ p {
 
 .margin-right-1 {
   margin-right: var(--size1);
-}
-
-.margin-right-2 {
-  margin-right: var(--size2);
 }
 
 .padding {

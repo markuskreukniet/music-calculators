@@ -123,7 +123,7 @@ class Calculator extends React.Component {
           valueTwoInMs,
           this.props.valueTwoText,
           valueOneInMs + valueTwoInMs,
-          "total reverb", // TODO: determine if 'total reverb' should be a global constant
+          "(total reverb)", // TODO: determine if 'total reverb' should be a global constant
           "+"
         );
       case arithmeticOperation.subtraction:
@@ -133,7 +133,7 @@ class Calculator extends React.Component {
           valueOneInMs,
           this.props.valueOneText,
           valueTwoInMs - valueOneInMs,
-          "decay", // TODO: determine if 'decay' should be a global constant
+          "(decay)", // TODO: determine if 'decay' should be a global constant
           "-"
         );
       default:

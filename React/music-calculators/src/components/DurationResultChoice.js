@@ -41,7 +41,8 @@ class DurationResultChoice extends React.Component {
             onChange={this.handleChange}
             defaultChecked // should be defaultChecked not checked
           />
-          The total reverb duration by choosing a decay duration.
+          The total reverb duration by choosing a duration for the pre-delay and
+          decay
         </label>
         <label className={displayBlock}>
           <input
@@ -50,7 +51,8 @@ class DurationResultChoice extends React.Component {
             value={arithmeticOperation.subtraction}
             onChange={this.handleChange}
           />
-          The decay duration by choosing a total reverb duration.
+          The pre-delay or decay duration by choosing a duration for the total
+          reverb, and pre-delay or decay
         </label>
       </div>
     );

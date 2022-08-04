@@ -1,7 +1,7 @@
 import React from "react";
-import SelectDuration from "./SelectDuration.js";
+import TextSelect from "./TextSelect.js";
 
-class LabeledSelectDuration extends React.Component {
+class LabeledTextSelect extends React.Component {
   constructor(props) {
     super(props);
 
@@ -16,8 +16,9 @@ class LabeledSelectDuration extends React.Component {
     return (
       <label className={this.props.class}>
         {this.props.labelText}
-        <SelectDuration
+        <TextSelect
           name={this.props.name}
+          values={this.props.values}
           defaultValue={this.props.defaultValue}
           onChange={this.handleChange}
         />
@@ -26,4 +27,4 @@ class LabeledSelectDuration extends React.Component {
   }
 }
 
-export default LabeledSelectDuration;
+export default LabeledTextSelect;

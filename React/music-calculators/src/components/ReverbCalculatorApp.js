@@ -1,8 +1,9 @@
 import React from "react";
 import arithmeticOperation from "../constants/arithmeticOperation.constants.js";
+import durations from "../constants/durations.constants.js";
 import DurationResultChoice from "./DurationResultChoice.js";
 import LabeledNumberInput from "./LabeledNumberInput.js";
-import LabeledSelectDuration from "./LabeledSelectDuration.js";
+import LabeledTextSelect from "./LabeledTextSelect.js";
 import ReverbCalculator from "./ReverbCalculator.js";
 
 class ReverbCalculatorApp extends React.Component {
@@ -54,8 +55,9 @@ class ReverbCalculatorApp extends React.Component {
           onChange={(e) => this.handleChange(this.durationResult, e)}
         />
         <div className={"display-flex padding border-bottom"}>
-          <LabeledSelectDuration
+          <LabeledTextSelect
             labelText={preDelayLabelText}
+            values={durations}
             defaultValue={defaultValueSelect}
             name={this.preDelay}
             class={"margin-right-1"}
@@ -66,8 +68,9 @@ class ReverbCalculatorApp extends React.Component {
               ? "+"
               : "-"}
           </p>
-          <LabeledSelectDuration
+          <LabeledTextSelect
             labelText={valueTwoLabelText}
+            values={durations}
             defaultValue={defaultValueSelect}
             name={this.valueTwo}
             onChange={(e) => this.handleChange(this.valueTwo, e)}

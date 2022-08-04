@@ -32,6 +32,26 @@ class ReverbCalculatorApp extends React.Component {
     });
   }
 
+  elementLabeledTextSelect(
+    labelText,
+    values,
+    defaultValue,
+    elementName,
+    className
+  ) {
+    // TODO: className null and "" check. After this check works, the call to this function can remove the "" argument
+    return (
+      <LabeledTextSelect
+        labelText={labelText}
+        values={values}
+        defaultValue={defaultValue}
+        name={elementName}
+        class={className}
+        onChange={(e) => this.handleChange(elementName, e)}
+      />
+    );
+  }
+
   render() {
     const tempoLabelText = "Tempo in BPM:";
     const preDelayLabelText = "pre-delay:";
@@ -55,26 +75,25 @@ class ReverbCalculatorApp extends React.Component {
           onChange={(e) => this.handleChange(this.durationResult, e)}
         />
         <div className={"display-flex padding border-bottom"}>
-          <LabeledTextSelect
-            labelText={preDelayLabelText}
-            values={durations}
-            defaultValue={defaultValueSelect}
-            name={this.preDelay}
-            class={"margin-right-1"}
-            onChange={(e) => this.handleChange(this.preDelay, e)}
-          />
+          {this.elementLabeledTextSelect(
+            preDelayLabelText,
+            durations,
+            defaultValueSelect,
+            this.preDelay,
+            "margin-right-1"
+          )}
           <p className={"margin-right-1"}>
             {this.state.durationResult === arithmeticOperation.addition
               ? "+"
               : "-"}
           </p>
-          <LabeledTextSelect
-            labelText={valueTwoLabelText}
-            values={durations}
-            defaultValue={defaultValueSelect}
-            name={this.valueTwo}
-            onChange={(e) => this.handleChange(this.valueTwo, e)}
-          />
+          {this.elementLabeledTextSelect(
+            valueTwoLabelText,
+            durations,
+            defaultValueSelect,
+            this.valueTwo,
+            ""
+          )}
         </div>
         <ReverbCalculator
           arithmeticOperation={this.state[this.durationResult]}

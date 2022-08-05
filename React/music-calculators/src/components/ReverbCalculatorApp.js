@@ -5,6 +5,7 @@ import DurationResultChoice from "./DurationResultChoice.js";
 import LabeledNumberInput from "./LabeledNumberInput.js";
 import LabeledTextSelect from "./LabeledTextSelect.js";
 import ReverbCalculator from "./ReverbCalculator.js";
+import TextSelect from "./TextSelect.js";
 
 class ReverbCalculatorApp extends React.Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class ReverbCalculatorApp extends React.Component {
     this.durationResult = "durationResult";
     this.valueOne = "valueOne";
     this.valueTwo = "valueTwo";
+    this.valueThree = "valueThree";
 
     this.className = "margin-right-1";
 
@@ -58,9 +60,21 @@ class ReverbCalculatorApp extends React.Component {
     return <p className={this.className}>{arithmeticOperationSign}</p>;
   }
 
+  elementTextSelect(values, defaultValue, elementName) {
+    return (
+      <TextSelect
+        values={values}
+        defaultValue={defaultValue}
+        name={elementName}
+        onChange={(e) => this.handleChange(elementName, e)}
+      />
+    );
+  }
+
   // This function aims to skip an array. In React, the HTML elements in an array need a 'key' attribute.
   render() {
     const defaultValueSelect = "1/64 note";
+    let calculatorValueTwo = this.state[this.valueTwo];
 
     let elementOne = null;
     let elementTwo = null;
@@ -84,6 +98,8 @@ class ReverbCalculatorApp extends React.Component {
         ""
       );
     } else {
+      calculatorValueTwo = this.state[this.valueThree];
+
       elementOne = this.elementLabeledTextSelect(
         "total reverb:",
         durations,
@@ -92,12 +108,18 @@ class ReverbCalculatorApp extends React.Component {
         this.className
       );
       elementTwo = this.elementP("-");
-      elementThree = this.elementLabeledTextSelect(
-        "pre-delay:", // TODO: duplicate
+
+      const values = ["pre-delay:", "decay:"];
+      elementThree = this.elementTextSelect(
+        values,
+        "pre-delay:",
+        this.valueTwo
+      );
+
+      elementFour = this.elementTextSelect(
         durations,
         defaultValueSelect,
-        this.valueTwo,
-        this.className
+        this.valueThree
       );
     }
 
@@ -122,7 +144,7 @@ class ReverbCalculatorApp extends React.Component {
           arithmeticOperation={this.state[this.durationResult]}
           tempo={this.state[this.tempo]}
           valueOne={this.state[this.valueOne]}
-          valueTwo={this.state[this.valueTwo]}
+          valueTwo={calculatorValueTwo}
         />
       </div>
     );

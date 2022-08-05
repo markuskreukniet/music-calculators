@@ -17,8 +17,6 @@ class ReverbCalculatorApp extends React.Component {
     this.valueTwo = "valueTwo";
     this.valueThree = "valueThree";
 
-    this.className = "margin-right-1";
-
     const emptyString = "";
     this.state = {
       [this.tempo]: emptyString,
@@ -56,8 +54,8 @@ class ReverbCalculatorApp extends React.Component {
     );
   }
 
-  elementP(arithmeticOperationSign) {
-    return <p className={this.className}>{arithmeticOperationSign}</p>;
+  elementP(arithmeticOperationSign, className) {
+    return <p className={className}>{arithmeticOperationSign}</p>;
   }
 
   elementTextSelect(values, defaultValue, elementName) {
@@ -74,6 +72,7 @@ class ReverbCalculatorApp extends React.Component {
   // This function aims to skip an array. In React, the HTML elements in an array need a 'key' attribute.
   render() {
     const defaultValueSelect = "1/64 note";
+    const className = "margin-right-1";
     let calculatorValueTwo = this.state[this.valueTwo];
 
     let elementOne = null;
@@ -87,9 +86,9 @@ class ReverbCalculatorApp extends React.Component {
         durations,
         defaultValueSelect,
         this.valueOne,
-        this.className
+        className
       );
-      elementTwo = this.elementP("+");
+      elementTwo = this.elementP("+", className);
       elementThree = this.elementLabeledTextSelect(
         "decay:",
         durations,
@@ -105,7 +104,7 @@ class ReverbCalculatorApp extends React.Component {
         durations,
         defaultValueSelect,
         this.valueOne,
-        this.className
+        className
       );
       elementTwo = this.elementP("-");
 

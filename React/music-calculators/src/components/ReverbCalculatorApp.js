@@ -12,8 +12,8 @@ class ReverbCalculatorApp extends React.Component {
 
     this.tempo = "tempo";
     this.durationResult = "durationResult";
-    this.valueOne = "preDelay";
-    this.valueTwo = "decay";
+    this.valueOne = "valueOne";
+    this.valueTwo = "valueTwo";
 
     this.className = "margin-right-1";
 
@@ -85,7 +85,7 @@ class ReverbCalculatorApp extends React.Component {
       );
     } else {
       elementOne = this.elementLabeledTextSelect(
-        "pre-delay:", // TODO: duplicate
+        "total reverb:",
         durations,
         defaultValueSelect,
         this.valueOne,
@@ -93,11 +93,11 @@ class ReverbCalculatorApp extends React.Component {
       );
       elementTwo = this.elementP("-");
       elementThree = this.elementLabeledTextSelect(
-        "total reverb:",
+        "pre-delay:", // TODO: duplicate
         durations,
         defaultValueSelect,
         this.valueTwo,
-        ""
+        this.className
       );
     }
 

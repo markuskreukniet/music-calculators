@@ -53,21 +53,19 @@ class ReverbCalculatorApp extends React.Component {
   }
 
   render() {
-    const tempoLabelText = "Tempo in BPM:";
-    const preDelayLabelText = "pre-delay:";
     const valueTwoLabelText =
       this.state.durationResult === arithmeticOperation.addition
         ? "decay:"
         : "total reverb:"; // TODO: check if this.state.durationResult is true
 
-    const defaultValueTempo = "128";
     const defaultValueSelect = "1/64 note";
+    const className = "margin-right-1";
 
     return (
       <div>
         <LabeledNumberInput
-          labelText={tempoLabelText}
-          defaultValue={defaultValueTempo}
+          labelText={"Tempo in BPM:"}
+          defaultValue={"128"}
           name={this.tempo}
           onChange={(e) => this.handleChange(this.tempo, e)}
         />
@@ -76,13 +74,13 @@ class ReverbCalculatorApp extends React.Component {
         />
         <div className={"display-flex padding border-bottom"}>
           {this.elementLabeledTextSelect(
-            preDelayLabelText,
+            "pre-delay:",
             durations,
             defaultValueSelect,
             this.preDelay,
-            "margin-right-1"
+            className
           )}
-          <p className={"margin-right-1"}>
+          <p className={className}>
             {this.state.durationResult === arithmeticOperation.addition
               ? "+"
               : "-"}

@@ -7,13 +7,13 @@ class ReverbCalculator extends React.Component {
     if (
       this.props.arithmeticOperation &&
       this.props.tempo &&
-      this.props.preDelay &&
+      this.props.valueOne &&
       this.props.valueTwo
     ) {
       return (
         <Calculator
           tempo={this.props.tempo}
-          valueOne={this.props.preDelay}
+          valueOne={this.props.valueOne}
           valueTwo={this.props.valueTwo}
           valueOneText={"(pre-delay)"} // TODO: determine if this string should be a global constant
           valueTwoText={

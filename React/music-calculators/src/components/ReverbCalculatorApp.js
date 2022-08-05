@@ -12,7 +12,7 @@ class ReverbCalculatorApp extends React.Component {
 
     this.tempo = "tempo";
     this.durationResult = "durationResult";
-    this.preDelay = "preDelay";
+    this.valueOne = "preDelay";
     this.valueTwo = "decay";
 
     this.className = "margin-right-1";
@@ -21,7 +21,7 @@ class ReverbCalculatorApp extends React.Component {
     this.state = {
       [this.tempo]: emptyString,
       [this.durationResult]: emptyString,
-      [this.preDelay]: emptyString,
+      [this.valueOne]: emptyString,
       [this.valueTwo]: emptyString,
     };
 
@@ -60,11 +60,6 @@ class ReverbCalculatorApp extends React.Component {
 
   // This function aims to skip an array. In React, the HTML elements in an array need a 'key' attribute.
   render() {
-    const valueTwoLabelText =
-      this.state.durationResult === arithmeticOperation.addition
-        ? "decay:"
-        : "total reverb:"; // TODO: check if this.state.durationResult is true
-
     const defaultValueSelect = "1/64 note";
 
     let elementOne = null;
@@ -77,12 +72,12 @@ class ReverbCalculatorApp extends React.Component {
         "pre-delay:",
         durations,
         defaultValueSelect,
-        this.preDelay,
+        this.valueOne,
         this.className
       );
       elementTwo = this.elementP("+");
       elementThree = this.elementLabeledTextSelect(
-        valueTwoLabelText,
+        "decay:",
         durations,
         defaultValueSelect,
         this.valueTwo,
@@ -93,12 +88,12 @@ class ReverbCalculatorApp extends React.Component {
         "pre-delay:", // TODO: duplicate
         durations,
         defaultValueSelect,
-        this.preDelay,
+        this.valueOne,
         this.className
       );
       elementTwo = this.elementP("-");
       elementThree = this.elementLabeledTextSelect(
-        valueTwoLabelText,
+        "total reverb:",
         durations,
         defaultValueSelect,
         this.valueTwo,
@@ -126,7 +121,7 @@ class ReverbCalculatorApp extends React.Component {
         <ReverbCalculator
           arithmeticOperation={this.state[this.durationResult]}
           tempo={this.state[this.tempo]}
-          preDelay={this.state[this.preDelay]}
+          valueOne={this.state[this.valueOne]}
           valueTwo={this.state[this.valueTwo]}
         />
       </div>

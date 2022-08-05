@@ -52,6 +52,7 @@ class ReverbCalculatorApp extends React.Component {
     );
   }
 
+  // This function aims to skip an array. In React, the HTML elements in an array need a 'key' attribute.
   render() {
     const valueTwoLabelText =
       this.state.durationResult === arithmeticOperation.addition
@@ -60,6 +61,45 @@ class ReverbCalculatorApp extends React.Component {
 
     const defaultValueSelect = "1/64 note";
     const className = "margin-right-1";
+
+    let elementOne = null;
+    let elementTwo = null;
+    let elementThree = null;
+    let elementFour = null;
+
+    if (this.state.durationResult === arithmeticOperation.addition) {
+      elementOne = this.elementLabeledTextSelect(
+        "pre-delay:",
+        durations,
+        defaultValueSelect,
+        this.preDelay,
+        className
+      );
+      elementTwo = <p className={className}>+</p>;
+      elementThree = this.elementLabeledTextSelect(
+        valueTwoLabelText,
+        durations,
+        defaultValueSelect,
+        this.valueTwo,
+        ""
+      );
+    } else {
+      elementOne = this.elementLabeledTextSelect(
+        "pre-delay:", // TODO: duplicate
+        durations,
+        defaultValueSelect,
+        this.preDelay,
+        className
+      );
+      elementTwo = <p className={className}>-</p>; // TODO: almost duplicate
+      elementThree = this.elementLabeledTextSelect(
+        valueTwoLabelText,
+        durations,
+        defaultValueSelect,
+        this.valueTwo,
+        ""
+      );
+    }
 
     return (
       <div>
@@ -73,25 +113,10 @@ class ReverbCalculatorApp extends React.Component {
           onChange={(e) => this.handleChange(this.durationResult, e)}
         />
         <div className={"display-flex padding border-bottom"}>
-          {this.elementLabeledTextSelect(
-            "pre-delay:",
-            durations,
-            defaultValueSelect,
-            this.preDelay,
-            className
-          )}
-          <p className={className}>
-            {this.state.durationResult === arithmeticOperation.addition
-              ? "+"
-              : "-"}
-          </p>
-          {this.elementLabeledTextSelect(
-            valueTwoLabelText,
-            durations,
-            defaultValueSelect,
-            this.valueTwo,
-            ""
-          )}
+          {elementOne}
+          {elementTwo}
+          {elementThree}
+          {elementFour}
         </div>
         <ReverbCalculator
           arithmeticOperation={this.state[this.durationResult]}

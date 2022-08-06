@@ -1,5 +1,14 @@
 :root {
-  --size1: 1rem;
+  /* golden ratio */
+  --g-ratio-p: 1.618;
+  --g-ratio-n: 0.618;
+
+  --size-1: 1rem;
+  --size-1-s: calc(var(--size-1) * var(--g-ratio-n));
+
+  --gray: #D3D3D3; /* color: LightGray */
+
+  --border: solid 1px var(--gray);
 }
 
 body {
@@ -10,15 +19,22 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  line-height: 1.618; /* golden ratio */
+  line-height: var(--g-ratio-p);
 }
 
 input[type=radio] {
-  margin: 0 var(--size1) 0 0;
+  margin: 0 var(--size-1) 0 0;
 }
 
 input[type=number], select {
-  margin-left: var(--size1);
+  height: 2rem;
+  padding: 0 var(--size-1-s);
+  border: var(--border);
+  margin-left: var(--size-1);
+}
+
+input[type=number]:focus-visible, select:focus-visible {
+  outline: solid 2px var(--gray);
 }
 
 p {
@@ -26,7 +42,7 @@ p {
 }
 
 .border-bottom {
-  border-bottom: solid 1px #D3D3D3; /* color: LightGray */
+  border-bottom: var(--border);
 }
 
 .display-block {
@@ -38,13 +54,13 @@ p {
 }
 
 .margin-right-1 {
-  margin-right: var(--size1);
+  margin-right: var(--size-1);
 }
 
 .padding {
-  padding: var(--size1);
+  padding: var(--size-1);
 }
 
 .text-before-list {
-  margin: 0 0 var(--size1) 0;
+  margin: 0 0 var(--size-1) 0;
 }

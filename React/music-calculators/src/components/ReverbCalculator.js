@@ -18,11 +18,15 @@ class ReverbCalculator extends React.Component {
           valueOne={this.props.valueOne}
           valueTwo={this.props.valueTwo}
           valueOneText={
-            this.props.arithmeticOperation === arithmeticOperation.addition
+            this.props.arithmeticOperation === arithmeticOperation.addition // TODO: duplicate conditional (ternary) operator
               ? preDelay
               : "(total reverb)"
           }
-          valueTwoText={preDelay}
+          valueTwoText={
+            this.props.arithmeticOperation === arithmeticOperation.addition
+              ? "(decay)"
+              : preDelay
+          }
           arithmeticOperation={this.props.arithmeticOperation}
         />
       );

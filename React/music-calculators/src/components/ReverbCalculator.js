@@ -20,35 +20,35 @@ class ReverbCalculator extends React.Component {
 
   render() {
     if (
-      this.props.arithmeticOperation &&
-      this.props.tempo &&
-      this.props.valueOne &&
-      this.props.valueTwo
+      !this.props.arithmeticOperation ||
+      !this.props.tempo ||
+      !this.props.valueOne ||
+      !this.props.valueTwo
     ) {
-      let valueOneText = this.preDelay;
-      let valueTwoText = this.decay;
-      let resultTextPart = this.totalReverb;
-
-      if (this.props.arithmeticOperation === arithmeticOperation.subtraction) {
-        valueOneText = this.totalReverb;
-        valueTwoText = this.preDelay;
-        resultTextPart = this.decay;
-      }
-
-      return (
-        <Calculator
-          tempo={this.props.tempo}
-          valueOne={this.props.valueOne}
-          valueTwo={this.props.valueTwo}
-          valueOneText={valueOneText}
-          valueTwoText={valueTwoText}
-          resultTextPart={resultTextPart}
-          arithmeticOperation={this.props.arithmeticOperation}
-        />
-      );
-    } else {
       return;
     }
+
+    let valueOneText = this.preDelay;
+    let valueTwoText = this.decay;
+    let resultTextPart = this.totalReverb;
+
+    if (this.props.arithmeticOperation === arithmeticOperation.subtraction) {
+      valueOneText = this.totalReverb;
+      valueTwoText = this.preDelay;
+      resultTextPart = this.decay;
+    }
+
+    return (
+      <Calculator
+        tempo={this.props.tempo}
+        valueOne={this.props.valueOne}
+        valueTwo={this.props.valueTwo}
+        valueOneText={valueOneText}
+        valueTwoText={valueTwoText}
+        resultTextPart={resultTextPart}
+        arithmeticOperation={this.props.arithmeticOperation}
+      />
+    );
   }
 }
 

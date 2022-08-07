@@ -18,7 +18,7 @@ class Calculator extends React.Component {
     // if ms value, return its number
     let msString = " ms"; // has whitespace
     if (value.includes(msString)) {
-      msString = value.replace(msString, "");
+      msString = value.replace(msString, ""); // TODO: empty string duplicate and used in other files
       return parseFloat(msString); // return float
     }
 

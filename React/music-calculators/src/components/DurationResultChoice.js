@@ -1,4 +1,5 @@
 import React from "react";
+
 import arithmeticOperation from "../constants/arithmeticOperation.constants.js";
 
 class DurationResultChoice extends React.Component {

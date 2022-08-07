@@ -1,4 +1,5 @@
 import React from "react";
+
 import arithmeticOperation from "../constants/arithmeticOperation.constants.js";
 
 class Calculator extends React.Component {
@@ -123,7 +124,7 @@ class Calculator extends React.Component {
           valueTwoInMs,
           this.props.valueTwoText,
           valueOneInMs + valueTwoInMs,
-          "(total reverb)",
+          "(total reverb)", // TODO: should come from props
           "+"
         );
       case arithmeticOperation.subtraction:
@@ -133,7 +134,7 @@ class Calculator extends React.Component {
           valueTwoInMs,
           this.props.valueTwoText,
           valueOneInMs - valueTwoInMs,
-          "(decay)",
+          "(decay)", // TODO: should come from props
           "-"
         );
       default:

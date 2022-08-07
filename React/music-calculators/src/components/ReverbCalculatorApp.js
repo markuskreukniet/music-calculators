@@ -1,6 +1,9 @@
 import React from "react";
+
 import arithmeticOperation from "../constants/arithmeticOperation.constants.js";
 import durations from "../constants/durations.constants.js";
+import reverb from "../constants/reverb.constants.js";
+
 import DurationResultChoice from "./DurationResultChoice.js";
 import LabeledNumberInput from "./LabeledNumberInput.js";
 import LabeledTextSelect from "./LabeledTextSelect.js";
@@ -69,10 +72,18 @@ class ReverbCalculatorApp extends React.Component {
     );
   }
 
+  addColon(string) {
+    return `${string}:`;
+  }
+
   // This function aims to skip an array. In React, the HTML elements in an array need a 'key' attribute.
   render() {
     const defaultValueSelect = "1/64 note";
     const className = "margin-right-1";
+
+    const preDelayWithColon = this.addColon(reverb.preDelay);
+    const decayWithColon = this.addColon(reverb.decay);
+
     let calculatorValueTwo = this.state[this.valueTwo];
 
     let elementOne = null;
@@ -82,7 +93,7 @@ class ReverbCalculatorApp extends React.Component {
 
     if (this.state.durationResult === arithmeticOperation.addition) {
       elementOne = this.elementLabeledTextSelect(
-        "pre-delay:",
+        preDelayWithColon,
         durations,
         defaultValueSelect,
         this.valueOne,
@@ -90,17 +101,19 @@ class ReverbCalculatorApp extends React.Component {
       );
       elementTwo = this.elementP("+", className);
       elementThree = this.elementLabeledTextSelect(
-        "decay:",
+        decayWithColon,
         durations,
         defaultValueSelect,
         this.valueTwo,
         ""
       );
     } else {
+      const totalReverbWithColon = this.addColon(reverb.totalReverb);
+
       calculatorValueTwo = this.state[this.valueThree];
 
       elementOne = this.elementLabeledTextSelect(
-        "total reverb:",
+        totalReverbWithColon,
         durations,
         defaultValueSelect,
         this.valueOne,
@@ -108,10 +121,10 @@ class ReverbCalculatorApp extends React.Component {
       );
       elementTwo = this.elementP("-");
 
-      const values = ["pre-delay:", "decay:"];
+      const values = [preDelayWithColon, decayWithColon];
       elementThree = this.elementTextSelect(
         values,
-        "pre-delay:",
+        preDelayWithColon,
         this.valueTwo
       );
 

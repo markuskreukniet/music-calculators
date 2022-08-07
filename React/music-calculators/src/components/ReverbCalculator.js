@@ -1,8 +1,15 @@
 import React from "react";
+
 import arithmeticOperation from "../constants/arithmeticOperation.constants.js";
+import reverb from "../constants/reverb.constants.js";
+
 import Calculator from "./Calculator.js";
 
 class ReverbCalculator extends React.Component {
+  addParentheses(string) {
+    return `(${string})`;
+  }
+
   render() {
     if (
       this.props.arithmeticOperation &&
@@ -10,23 +17,21 @@ class ReverbCalculator extends React.Component {
       this.props.valueOne &&
       this.props.valueTwo
     ) {
-      const preDelay = "(pre-delay)";
+      let valueOneText = this.addParentheses(reverb.preDelay);
+      let valueTwoText = this.addParentheses(reverb.decay);
+
+      if (arithmeticOperation.subtraction) {
+        valueTwoText = valueOneText;
+        valueOneText = this.addParentheses(reverb.totalReverb);
+      }
 
       return (
         <Calculator
           tempo={this.props.tempo}
           valueOne={this.props.valueOne}
           valueTwo={this.props.valueTwo}
-          valueOneText={
-            this.props.arithmeticOperation === arithmeticOperation.addition // TODO: duplicate conditional (ternary) operator
-              ? preDelay
-              : "(total reverb)"
-          }
-          valueTwoText={
-            this.props.arithmeticOperation === arithmeticOperation.addition
-              ? "(decay)"
-              : preDelay
-          }
+          valueOneText={valueOneText}
+          valueTwoText={valueTwoText}
           arithmeticOperation={this.props.arithmeticOperation}
         />
       );

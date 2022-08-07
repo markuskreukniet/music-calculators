@@ -14,6 +14,10 @@ class ReverbCalculatorApp extends React.Component {
   constructor(props) {
     super(props);
 
+    this.preDelay = this.addColon(reverb.preDelay);
+    this.decay = this.addColon(reverb.decay);
+    this.totalReverb = this.addColon(reverb.totalReverb);
+
     this.tempo = "tempo";
     this.durationResult = "durationResult";
     this.valueOne = "valueOne";
@@ -81,9 +85,6 @@ class ReverbCalculatorApp extends React.Component {
     const defaultValueSelect = "1/64 note";
     const className = "margin-right-1";
 
-    const preDelayWithColon = this.addColon(reverb.preDelay);
-    const decayWithColon = this.addColon(reverb.decay);
-
     let calculatorValueTwo = this.state[this.valueTwo];
 
     let elementOne = null;
@@ -93,7 +94,7 @@ class ReverbCalculatorApp extends React.Component {
 
     if (this.state.durationResult === arithmeticOperation.addition) {
       elementOne = this.elementLabeledTextSelect(
-        preDelayWithColon,
+        this.preDelay,
         durations,
         defaultValueSelect,
         this.valueOne,
@@ -101,19 +102,17 @@ class ReverbCalculatorApp extends React.Component {
       );
       elementTwo = this.elementP("+", className);
       elementThree = this.elementLabeledTextSelect(
-        decayWithColon,
+        this.decay,
         durations,
         defaultValueSelect,
         this.valueTwo,
         ""
       );
     } else {
-      const totalReverbWithColon = this.addColon(reverb.totalReverb);
-
       calculatorValueTwo = this.state[this.valueThree];
 
       elementOne = this.elementLabeledTextSelect(
-        totalReverbWithColon,
+        this.totalReverb,
         durations,
         defaultValueSelect,
         this.valueOne,
@@ -121,10 +120,10 @@ class ReverbCalculatorApp extends React.Component {
       );
       elementTwo = this.elementP("-");
 
-      const values = [preDelayWithColon, decayWithColon];
+      const values = [this.preDelay, this.decay];
       elementThree = this.elementTextSelect(
         values,
-        preDelayWithColon,
+        this.preDelay,
         this.valueTwo
       );
 

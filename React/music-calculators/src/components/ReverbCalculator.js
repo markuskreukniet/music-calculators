@@ -6,6 +6,14 @@ import reverb from "../constants/reverb.constants.js";
 import Calculator from "./Calculator.js";
 
 class ReverbCalculator extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.preDelay = this.addParentheses(reverb.preDelay);
+    this.decay = this.addParentheses(reverb.decay);
+    this.totalReverb = this.addParentheses(reverb.totalReverb);
+  }
+
   addParentheses(string) {
     return `(${string})`;
   }
@@ -17,12 +25,14 @@ class ReverbCalculator extends React.Component {
       this.props.valueOne &&
       this.props.valueTwo
     ) {
-      let valueOneText = this.addParentheses(reverb.preDelay);
-      let valueTwoText = this.addParentheses(reverb.decay);
+      let valueOneText = this.preDelay;
+      let valueTwoText = this.decay;
+      let resultTextPart = this.totalReverb;
 
-      if (arithmeticOperation.subtraction) {
-        valueTwoText = valueOneText;
-        valueOneText = this.addParentheses(reverb.totalReverb);
+      if (this.props.arithmeticOperation === arithmeticOperation.subtraction) {
+        valueOneText = this.totalReverb;
+        valueTwoText = this.preDelay;
+        resultTextPart = this.decay;
       }
 
       return (
@@ -32,6 +42,7 @@ class ReverbCalculator extends React.Component {
           valueTwo={this.props.valueTwo}
           valueOneText={valueOneText}
           valueTwoText={valueTwoText}
+          resultTextPart={resultTextPart}
           arithmeticOperation={this.props.arithmeticOperation}
         />
       );

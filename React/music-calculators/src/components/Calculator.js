@@ -116,30 +116,33 @@ class Calculator extends React.Component {
       noteInMs
     );
 
+    let resultValue = -1;
+    let arithmeticOperationSign = "";
+
     switch (this.props.arithmeticOperation) {
       case arithmeticOperation.addition:
-        return this.determineText(
-          valueOneInMs,
-          this.props.valueOneText,
-          valueTwoInMs,
-          this.props.valueTwoText,
-          valueOneInMs + valueTwoInMs,
-          "(total reverb)", // TODO: should come from props
-          "+"
-        );
+        resultValue = valueOneInMs + valueTwoInMs;
+        arithmeticOperationSign = "+";
+
+        break;
       case arithmeticOperation.subtraction:
-        return this.determineText(
-          valueOneInMs,
-          this.props.valueOneText,
-          valueTwoInMs,
-          this.props.valueTwoText,
-          valueOneInMs - valueTwoInMs,
-          "(decay)", // TODO: should come from props
-          "-"
-        );
+        resultValue = valueOneInMs - valueTwoInMs;
+        arithmeticOperationSign = "-";
+
+        break;
       default:
         return null;
     }
+
+    return this.determineText(
+      valueOneInMs,
+      this.props.valueOneText,
+      valueTwoInMs,
+      this.props.valueTwoText,
+      resultValue,
+      this.props.resultTextPart,
+      arithmeticOperationSign
+    );
   }
 
   render() {

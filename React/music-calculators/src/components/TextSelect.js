@@ -1,11 +1,15 @@
 import React from "react";
 
+import app from "../constants/app.constants.js";
+
 class SelectDuration extends React.Component {
   constructor(props) {
     super(props);
 
     this.values = this.props.values;
-    this.value = this.props.defaultValue ? this.props.defaultValue : "";
+    this.value = this.props.defaultValue
+      ? this.props.defaultValue
+      : app.emptyString;
 
     this.handleChange = this.handleChange.bind(this);
   }

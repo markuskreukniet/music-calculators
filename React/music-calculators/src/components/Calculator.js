@@ -1,5 +1,6 @@
 import React from "react";
 
+import app from "../constants/app.constants.js";
 import arithmeticOperation from "../constants/arithmeticOperation.constants.js";
 
 class Calculator extends React.Component {
@@ -18,7 +19,7 @@ class Calculator extends React.Component {
     // if ms value, return its number
     let msString = " ms"; // has whitespace
     if (value.includes(msString)) {
-      msString = value.replace(msString, ""); // TODO: empty string duplicate and used in other files
+      msString = value.replace(msString, app.emptyString);
       return parseFloat(msString); // return float
     }
 
@@ -33,19 +34,19 @@ class Calculator extends React.Component {
     let isDotted = false;
     let isFraction = false;
 
-    value = value.replace(" note", "");
+    value = value.replace(" note", app.emptyString);
 
     if (value.includes(tripletString)) {
       isTriplet = true;
-      value = value.replace(tripletString, "");
+      value = value.replace(tripletString, app.emptyString);
     } else if (value.includes(dottedString)) {
       isDotted = true;
-      value = value.replace(dottedString, "");
+      value = value.replace(dottedString, app.emptyString);
     }
 
     if (value.includes(fractionString)) {
       isFraction = true;
-      value = value.replace(fractionString, "");
+      value = value.replace(fractionString, app.emptyString);
     }
 
     result = isFraction ? note / value : note * value;
@@ -86,6 +87,10 @@ class Calculator extends React.Component {
     return this.toMaxTwoDecimals(ms);
   }
 
+  concatThreeStringsWithSpacesBetweenThem(string1, string2, string3) {
+    return `${string1} ${string2} ${string3}`;
+  }
+
   determineText(
     firstValue,
     firstValueText,
@@ -96,12 +101,24 @@ class Calculator extends React.Component {
     arithmeticOperationSign
   ) {
     const ms = "ms";
-    // TODO: 3 times the same substring
-    return `${firstValue} ${ms} ${firstValueText}
+
+    return `${this.concatThreeStringsWithSpacesBetweenThem(
+      firstValue,
+      ms,
+      firstValueText
+    )}
       ${arithmeticOperationSign}
-      ${secondValue} ${ms} ${secondValueText}
+      ${this.concatThreeStringsWithSpacesBetweenThem(
+        secondValue,
+        ms,
+        secondValueText
+      )}
       =
-      ${resultValue} ${ms} ${resultValueText}`;
+      ${this.concatThreeStringsWithSpacesBetweenThem(
+        resultValue,
+        ms,
+        resultValueText
+      )}`;
   }
 
   determineResultText() {
@@ -117,7 +134,7 @@ class Calculator extends React.Component {
     );
 
     let resultValue = -1;
-    let arithmeticOperationSign = "";
+    let arithmeticOperationSign = app.emptyString;
 
     switch (this.props.arithmeticOperation) {
       case arithmeticOperation.addition:

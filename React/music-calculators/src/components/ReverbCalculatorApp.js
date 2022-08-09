@@ -1,5 +1,6 @@
 import React from "react";
 
+import app from "../constants/app.constants.js";
 import arithmeticOperation from "../constants/arithmeticOperation.constants.js";
 import durations from "../constants/durations.constants.js";
 import reverb from "../constants/reverb.constants.js";
@@ -24,12 +25,11 @@ class ReverbCalculatorApp extends React.Component {
     this.valueTwo = "valueTwo";
     this.valueThree = "valueThree";
 
-    const emptyString = "";
     this.state = {
-      [this.tempo]: emptyString,
-      [this.durationResult]: emptyString,
-      [this.valueOne]: emptyString,
-      [this.valueTwo]: emptyString,
+      [this.tempo]: app.emptyString,
+      [this.durationResult]: app.emptyString,
+      [this.valueOne]: app.emptyString,
+      [this.valueTwo]: app.emptyString,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -48,7 +48,6 @@ class ReverbCalculatorApp extends React.Component {
     elementName,
     className
   ) {
-    // TODO: className null and "" check. After this check works, the call to this function can remove the "" argument
     return (
       <LabeledTextSelect
         labelText={labelText}
@@ -85,7 +84,7 @@ class ReverbCalculatorApp extends React.Component {
     const defaultValueSelect = "1/64 note";
     const className = "margin-right-1";
 
-    let subtractionText = "";
+    let subtractionText = app.emptyString;
     let calculatorValueTwo = this.state[this.valueTwo];
 
     let elementOne = null;
@@ -106,8 +105,7 @@ class ReverbCalculatorApp extends React.Component {
         this.decay,
         durations,
         defaultValueSelect,
-        this.valueTwo,
-        ""
+        this.valueTwo
       );
     } else {
       subtractionText =

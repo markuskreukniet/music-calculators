@@ -23,7 +23,9 @@ class ReverbCalculator extends React.Component {
       !this.props.arithmeticOperation ||
       !this.props.tempo ||
       !this.props.valueOne ||
-      !this.props.valueTwo
+      !this.props.valueTwo ||
+      (this.props.arithmeticOperation === arithmeticOperation.subtraction &&
+        !this.props.subtractionText)
     ) {
       return;
     }
@@ -34,8 +36,14 @@ class ReverbCalculator extends React.Component {
 
     if (this.props.arithmeticOperation === arithmeticOperation.subtraction) {
       valueOneText = this.totalReverb;
-      valueTwoText = this.preDelay;
-      resultTextPart = this.decay;
+
+      if (this.props.subtractionText === reverb.preDelay) {
+        valueTwoText = this.preDelay;
+        resultTextPart = this.decay;
+      } else {
+        valueTwoText = this.decay;
+        resultTextPart = this.preDelay;
+      }
     }
 
     return (

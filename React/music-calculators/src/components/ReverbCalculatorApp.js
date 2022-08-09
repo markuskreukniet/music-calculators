@@ -85,6 +85,7 @@ class ReverbCalculatorApp extends React.Component {
     const defaultValueSelect = "1/64 note";
     const className = "margin-right-1";
 
+    let subtractionText = "";
     let calculatorValueTwo = this.state[this.valueTwo];
 
     let elementOne = null;
@@ -109,6 +110,10 @@ class ReverbCalculatorApp extends React.Component {
         ""
       );
     } else {
+      subtractionText =
+        this.state[this.valueTwo] === this.preDelay
+          ? reverb.preDelay
+          : reverb.decay;
       calculatorValueTwo = this.state[this.valueThree];
 
       elementOne = this.elementLabeledTextSelect(
@@ -156,6 +161,7 @@ class ReverbCalculatorApp extends React.Component {
           tempo={this.state[this.tempo]}
           valueOne={this.state[this.valueOne]}
           valueTwo={calculatorValueTwo}
+          subtractionText={subtractionText}
         />
       </div>
     );

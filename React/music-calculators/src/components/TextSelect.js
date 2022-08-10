@@ -14,20 +14,10 @@ class SelectDuration extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentDidMount() {
-    if (this.props.defaultValue) {
-      this.onChange();
-    }
-  }
-
   handleChange(e) {
     e.preventDefault();
 
     this.value = e.target.value;
-    this.onChange();
-  }
-
-  onChange() {
     this.props.onChange(this.value);
   }
 

@@ -1,6 +1,5 @@
 import React from "react";
 
-import app from "../constants/app.constants.js";
 import arithmeticOperation from "../constants/arithmeticOperation.constants.js";
 import durations from "../constants/durations.constants.js";
 import reverb from "../constants/reverb.constants.js";
@@ -23,18 +22,17 @@ class ReverbCalculatorApp extends React.Component {
     this.durationResult = "durationResult";
     this.valueOne = "valueOne";
     this.valueTwo = "valueTwo";
-    this.valueThree = "valueThree";
+    this.subtractionText = "subtractionText";
 
-    this.defaultValueTempo = "128";
-    this.defaultDurationResult = "addition";
-    this.defaultValueSelect = "1/64 note";
+    const defaultValueSelect = "1/64 note";
 
     // TODO: not all elements can get a default value in the render function
     this.state = {
-      [this.tempo]: this.defaultValueTempo,
-      [this.durationResult]: this.defaultDurationResult,
-      [this.valueOne]: this.defaultValueSelect,
-      [this.valueTwo]: this.defaultValueSelect,
+      [this.tempo]: "128",
+      [this.durationResult]: "addition",
+      [this.valueOne]: defaultValueSelect,
+      [this.valueTwo]: defaultValueSelect,
+      [this.subtractionText]: this.preDelayColon,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -93,9 +91,6 @@ class ReverbCalculatorApp extends React.Component {
   render() {
     const className = "margin-right-1";
 
-    let subtractionText = app.emptyString;
-    let calculatorValueTwo = this.state[this.valueTwo];
-
     let elementOne = null;
     let elementTwo = null;
     let elementThree = null;
@@ -105,7 +100,7 @@ class ReverbCalculatorApp extends React.Component {
       elementOne = this.elementLabeledTextSelect(
         this.preDelayColon,
         durations,
-        this.defaultValueSelect,
+        this.state[this.valueOne],
         this.valueOne,
         className
       );
@@ -113,20 +108,14 @@ class ReverbCalculatorApp extends React.Component {
       elementThree = this.elementLabeledTextSelect(
         this.decayColon,
         durations,
-        this.defaultValueSelect,
+        this.state[this.valueTwo],
         this.valueTwo
       );
     } else {
-      subtractionText =
-        this.state[this.valueTwo] === this.preDelayColon
-          ? reverb.preDelay
-          : reverb.decay;
-      calculatorValueTwo = this.state[this.valueThree];
-
       elementOne = this.elementLabeledTextSelect(
         this.totalReverbColon,
         durations,
-        this.defaultValueSelect,
+        this.state[this.valueOne],
         this.valueOne,
         className
       );
@@ -135,14 +124,14 @@ class ReverbCalculatorApp extends React.Component {
       const values = [this.preDelayColon, this.decayColon];
       elementThree = this.elementTextSelect(
         values,
-        this.preDelayColon,
-        this.valueTwo
+        this.state[this.subtractionText],
+        this.subtractionText
       );
 
       elementFour = this.elementTextSelect(
         durations,
-        this.defaultValueSelect,
-        this.valueThree
+        this.state[this.valueTwo],
+        this.valueTwo
       );
     }
 
@@ -150,7 +139,7 @@ class ReverbCalculatorApp extends React.Component {
       <div>
         <LabeledNumberInput
           labelText={"Tempo in BPM:"}
-          defaultValue={this.defaultValueTempo}
+          defaultValue={this.state[this.tempo]}
           name={this.tempo}
           onChange={(e) => this.handleChange(this.tempo, e)}
         />
@@ -167,8 +156,8 @@ class ReverbCalculatorApp extends React.Component {
           arithmeticOperation={this.state[this.durationResult]}
           tempo={this.state[this.tempo]}
           valueOne={this.state[this.valueOne]}
-          valueTwo={calculatorValueTwo}
-          subtractionText={subtractionText}
+          valueTwo={this.state[this.valueTwo]}
+          subtractionText={this.state[this.subtractionText]}
         />
       </div>
     );

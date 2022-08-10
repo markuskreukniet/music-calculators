@@ -15,9 +15,9 @@ class ReverbCalculatorApp extends React.Component {
   constructor(props) {
     super(props);
 
-    this.preDelay = this.addColon(reverb.preDelay);
-    this.decay = this.addColon(reverb.decay);
-    this.totalReverb = this.addColon(reverb.totalReverb);
+    this.preDelayColon = this.addColon(reverb.preDelay);
+    this.decayColon = this.addColon(reverb.decay);
+    this.totalReverbColon = this.addColon(reverb.totalReverb);
 
     this.tempo = "tempo";
     this.durationResult = "durationResult";
@@ -25,17 +25,27 @@ class ReverbCalculatorApp extends React.Component {
     this.valueTwo = "valueTwo";
     this.valueThree = "valueThree";
 
+    this.defaultValueTempo = "128";
+    this.defaultDurationResult = "addition";
+    this.defaultValueSelect = "1/64 note";
+
+    // TODO: not all elements can get a default value in the render function
     this.state = {
-      [this.tempo]: app.emptyString,
-      [this.durationResult]: app.emptyString,
-      [this.valueOne]: app.emptyString,
-      [this.valueTwo]: app.emptyString,
+      [this.tempo]: this.defaultValueTempo,
+      [this.durationResult]: this.defaultDurationResult,
+      [this.valueOne]: this.defaultValueSelect,
+      [this.valueTwo]: this.defaultValueSelect,
     };
 
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(name, value) {
+    // TODO: determine if it is possible to remove this check
+    if (this.state[name] === value) {
+      return;
+    }
+
     this.setState({
       [name]: value,
     });
@@ -81,7 +91,6 @@ class ReverbCalculatorApp extends React.Component {
 
   // This function aims to skip an array. In React, the HTML elements in an array need a 'key' attribute.
   render() {
-    const defaultValueSelect = "1/64 note";
     const className = "margin-right-1";
 
     let subtractionText = app.emptyString;
@@ -94,45 +103,45 @@ class ReverbCalculatorApp extends React.Component {
 
     if (this.state.durationResult === arithmeticOperation.addition) {
       elementOne = this.elementLabeledTextSelect(
-        this.preDelay,
+        this.preDelayColon,
         durations,
-        defaultValueSelect,
+        this.defaultValueSelect,
         this.valueOne,
         className
       );
       elementTwo = this.elementP("+", className);
       elementThree = this.elementLabeledTextSelect(
-        this.decay,
+        this.decayColon,
         durations,
-        defaultValueSelect,
+        this.defaultValueSelect,
         this.valueTwo
       );
     } else {
       subtractionText =
-        this.state[this.valueTwo] === this.preDelay
+        this.state[this.valueTwo] === this.preDelayColon
           ? reverb.preDelay
           : reverb.decay;
       calculatorValueTwo = this.state[this.valueThree];
 
       elementOne = this.elementLabeledTextSelect(
-        this.totalReverb,
+        this.totalReverbColon,
         durations,
-        defaultValueSelect,
+        this.defaultValueSelect,
         this.valueOne,
         className
       );
       elementTwo = this.elementP("-");
 
-      const values = [this.preDelay, this.decay];
+      const values = [this.preDelayColon, this.decayColon];
       elementThree = this.elementTextSelect(
         values,
-        this.preDelay,
+        this.preDelayColon,
         this.valueTwo
       );
 
       elementFour = this.elementTextSelect(
         durations,
-        defaultValueSelect,
+        this.defaultValueSelect,
         this.valueThree
       );
     }
@@ -141,7 +150,7 @@ class ReverbCalculatorApp extends React.Component {
       <div>
         <LabeledNumberInput
           labelText={"Tempo in BPM:"}
-          defaultValue={"128"}
+          defaultValue={this.defaultValueTempo}
           name={this.tempo}
           onChange={(e) => this.handleChange(this.tempo, e)}
         />

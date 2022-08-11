@@ -6,7 +6,6 @@ class TextSelect extends React.Component {
   constructor(props) {
     super(props);
 
-    this.values = this.props.values;
     this.value = this.props.defaultValue
       ? this.props.defaultValue
       : app.emptyString;
@@ -22,7 +21,7 @@ class TextSelect extends React.Component {
   }
 
   render() {
-    const options = this.values.map((d) => (
+    const options = this.props.values.map((d) => (
       <option key={d} value={d}>
         {d}
       </option>

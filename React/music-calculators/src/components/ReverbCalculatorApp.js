@@ -37,7 +37,6 @@ class ReverbCalculatorApp extends React.Component {
 
     const defaultValueSelect = "1/64 note";
 
-    // TODO: not all elements can get a default value in the render function
     this.state = {
       [this.tempo]: "128",
       [this.durationResult]: this.textValueCombinations[0].value,
@@ -50,11 +49,6 @@ class ReverbCalculatorApp extends React.Component {
   }
 
   handleChange(name, value) {
-    // TODO: determine if it is possible to remove this check
-    if (this.state[name] === value) {
-      return;
-    }
-
     this.setState({
       [name]: value,
     });

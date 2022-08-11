@@ -96,6 +96,8 @@ class ReverbCalculatorApp extends React.Component {
     let elementThree = null;
     let elementFour = null;
 
+    let subtractionText = reverb.preDelay;
+
     if (this.state.durationResult === arithmeticOperation.addition) {
       elementOne = this.elementLabeledTextSelect(
         this.preDelayColon,
@@ -112,6 +114,10 @@ class ReverbCalculatorApp extends React.Component {
         this.valueTwo
       );
     } else {
+      if (this.state[this.subtractionText] === this.decayColon) {
+        subtractionText = reverb.decay;
+      }
+
       elementOne = this.elementLabeledTextSelect(
         this.totalReverbColon,
         durations,
@@ -157,7 +163,7 @@ class ReverbCalculatorApp extends React.Component {
           tempo={this.state[this.tempo]}
           valueOne={this.state[this.valueOne]}
           valueTwo={this.state[this.valueTwo]}
-          subtractionText={this.state[this.subtractionText]}
+          subtractionText={subtractionText}
         />
       </div>
     );

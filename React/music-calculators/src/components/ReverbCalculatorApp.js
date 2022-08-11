@@ -4,11 +4,11 @@ import arithmeticOperation from "../constants/arithmeticOperation.constants.js";
 import durations from "../constants/durations.constants.js";
 import reverb from "../constants/reverb.constants.js";
 
-import DurationResultChoice from "./DurationResultChoice.js";
 import LabeledNumberInput from "./LabeledNumberInput.js";
+import LabeledRadioGroup from "./LabeledRadioGroup.js";
 import LabeledTextSelect from "./LabeledTextSelect.js";
 import ReverbCalculator from "./ReverbCalculator.js";
-import TextSelect from "./TextSelect.js";
+import TextSelect from "./TextSelect.js"; // TODO: component name is wrong
 
 class ReverbCalculatorApp extends React.Component {
   constructor(props) {
@@ -17,6 +17,17 @@ class ReverbCalculatorApp extends React.Component {
     this.preDelayColon = this.addColon(reverb.preDelay);
     this.decayColon = this.addColon(reverb.decay);
     this.totalReverbColon = this.addColon(reverb.totalReverb);
+
+    this.textValueCombinations = [
+      {
+        text: "The total reverb duration by choosing a duration for the pre-delay and decay",
+        value: arithmeticOperation.addition,
+      },
+      {
+        text: "The pre-delay or decay duration by choosing a duration for the total reverb, and pre-delay or decay",
+        value: arithmeticOperation.subtraction,
+      },
+    ];
 
     this.tempo = "tempo";
     this.durationResult = "durationResult";
@@ -29,7 +40,7 @@ class ReverbCalculatorApp extends React.Component {
     // TODO: not all elements can get a default value in the render function
     this.state = {
       [this.tempo]: "128",
-      [this.durationResult]: arithmeticOperation.addition,
+      [this.durationResult]: this.textValueCombinations[0].value,
       [this.valueOne]: defaultValueSelect,
       [this.valueTwo]: defaultValueSelect,
       [this.subtractionText]: this.preDelayColon,
@@ -149,7 +160,11 @@ class ReverbCalculatorApp extends React.Component {
           name={this.tempo}
           onChange={(e) => this.handleChange(this.tempo, e)}
         />
-        <DurationResultChoice
+        <LabeledRadioGroup
+          labelText={"Calculate in ms:"}
+          textValueCombinations={this.textValueCombinations}
+          defaultValue={this.state[this.durationResult]}
+          name={this.durationResult}
           onChange={(e) => this.handleChange(this.durationResult, e)}
         />
         <div className={"display-flex padding border-bottom"}>

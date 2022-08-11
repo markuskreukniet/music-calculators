@@ -8,7 +8,7 @@ import LabeledNumberInput from "./LabeledNumberInput.js";
 import LabeledRadioGroup from "./LabeledRadioGroup.js";
 import LabeledTextSelect from "./LabeledTextSelect.js";
 import ReverbCalculator from "./ReverbCalculator.js";
-import TextSelect from "./TextSelect.js"; // TODO: component name is wrong
+import TextSelect from "./TextSelect.js";
 
 class ReverbCalculatorApp extends React.Component {
   constructor(props) {

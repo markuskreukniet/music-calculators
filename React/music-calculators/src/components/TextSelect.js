@@ -2,7 +2,7 @@ import React from "react";
 
 import app from "../constants/app.constants.js";
 
-class SelectDuration extends React.Component {
+class TextSelect extends React.Component {
   constructor(props) {
     super(props);
 
@@ -40,4 +40,4 @@ class SelectDuration extends React.Component {
   }
 }
 
-export default SelectDuration;
+export default TextSelect;

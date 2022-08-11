@@ -29,7 +29,7 @@ class ReverbCalculatorApp extends React.Component {
     // TODO: not all elements can get a default value in the render function
     this.state = {
       [this.tempo]: "128",
-      [this.durationResult]: "addition",
+      [this.durationResult]: arithmeticOperation.addition,
       [this.valueOne]: defaultValueSelect,
       [this.valueTwo]: defaultValueSelect,
       [this.subtractionText]: this.preDelayColon,

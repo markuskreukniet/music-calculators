@@ -136,14 +136,17 @@ class Calculator extends React.Component {
     let resultValue = -1;
     let arithmeticOperationSign = app.emptyString;
 
+    // toMaxTwoDecimals is needed for the floating-point problem. For example, the result can go wrong with 0.1 ms as a value.
     switch (this.props.arithmeticOperation) {
       case arithmeticOperation.addition:
         resultValue = valueOneInMs + valueTwoInMs;
+        resultValue = this.toMaxTwoDecimals(resultValue);
         arithmeticOperationSign = "+";
 
         break;
       case arithmeticOperation.subtraction:
         resultValue = valueOneInMs - valueTwoInMs;
+        resultValue = this.toMaxTwoDecimals(resultValue);
         arithmeticOperationSign = "-";
 
         break;

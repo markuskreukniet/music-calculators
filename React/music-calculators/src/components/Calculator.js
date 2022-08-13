@@ -116,8 +116,6 @@ class Calculator extends React.Component {
         resultValue = valueOneInMs - valueTwoInMs;
         arithmeticOperationSign = "-";
 
-        // TODO: if negative resultValue, give error
-
         break;
       default:
         return null;
@@ -126,11 +124,20 @@ class Calculator extends React.Component {
     // toMaxTwoDecimals is needed for the floating-point problem. For example, the result can go wrong with 0.1 ms as a value.
     resultValue = this.toMaxTwoDecimals(resultValue);
 
-    return `${this.toValueMsTextString(valueOneInMs, this.props.valueOneText)}
+    let result = `${this.toValueMsTextString(
+      valueOneInMs,
+      this.props.valueOneText
+    )}
     ${arithmeticOperationSign}
     ${this.toValueMsTextString(valueTwoInMs, this.props.valueTwoText)}
     =
     ${this.toValueMsTextString(resultValue, this.props.resultTextPart)}`;
+
+    if (resultValue <= 0) {
+      result = `${result}. A result with a negative or 0 value is invalid.`;
+    }
+
+    return result;
   }
 
   render() {

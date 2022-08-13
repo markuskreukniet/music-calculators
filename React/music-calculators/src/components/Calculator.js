@@ -87,38 +87,8 @@ class Calculator extends React.Component {
     return this.toMaxTwoDecimals(ms);
   }
 
-  concatThreeStringsWithSpacesBetweenThem(string1, string2, string3) {
-    return `${string1} ${string2} ${string3}`;
-  }
-
-  determineText(
-    firstValue,
-    firstValueText,
-    secondValue,
-    secondValueText,
-    resultValue,
-    resultValueText,
-    arithmeticOperationSign
-  ) {
-    const ms = "ms";
-
-    return `${this.concatThreeStringsWithSpacesBetweenThem(
-      firstValue,
-      ms,
-      firstValueText
-    )}
-      ${arithmeticOperationSign}
-      ${this.concatThreeStringsWithSpacesBetweenThem(
-        secondValue,
-        ms,
-        secondValueText
-      )}
-      =
-      ${this.concatThreeStringsWithSpacesBetweenThem(
-        resultValue,
-        ms,
-        resultValueText
-      )}`;
+  toValueMsTextString(value, text) {
+    return `${value} ms ${text}`;
   }
 
   determineResultText() {
@@ -136,33 +106,31 @@ class Calculator extends React.Component {
     let resultValue = -1;
     let arithmeticOperationSign = app.emptyString;
 
-    // toMaxTwoDecimals is needed for the floating-point problem. For example, the result can go wrong with 0.1 ms as a value.
     switch (this.props.arithmeticOperation) {
       case arithmeticOperation.addition:
         resultValue = valueOneInMs + valueTwoInMs;
-        resultValue = this.toMaxTwoDecimals(resultValue);
         arithmeticOperationSign = "+";
 
         break;
       case arithmeticOperation.subtraction:
         resultValue = valueOneInMs - valueTwoInMs;
-        resultValue = this.toMaxTwoDecimals(resultValue);
         arithmeticOperationSign = "-";
+
+        // TODO: if negative resultValue, give error
 
         break;
       default:
         return null;
     }
 
-    return this.determineText(
-      valueOneInMs,
-      this.props.valueOneText,
-      valueTwoInMs,
-      this.props.valueTwoText,
-      resultValue,
-      this.props.resultTextPart,
-      arithmeticOperationSign
-    );
+    // toMaxTwoDecimals is needed for the floating-point problem. For example, the result can go wrong with 0.1 ms as a value.
+    resultValue = this.toMaxTwoDecimals(resultValue);
+
+    return `${this.toValueMsTextString(valueOneInMs, this.props.valueOneText)}
+    ${arithmeticOperationSign}
+    ${this.toValueMsTextString(valueTwoInMs, this.props.valueTwoText)}
+    =
+    ${this.toValueMsTextString(resultValue, this.props.resultTextPart)}`;
   }
 
   render() {

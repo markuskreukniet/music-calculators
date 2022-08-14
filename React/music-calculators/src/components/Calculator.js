@@ -60,7 +60,7 @@ class Calculator extends React.Component {
     return result;
   }
 
-  hasAtLeastTwoDecimals(value) {
+  hasMoreThanTwoDecimals(value) {
     const valueString = String(value);
     const dotString = ".";
     if (
@@ -74,7 +74,7 @@ class Calculator extends React.Component {
   }
 
   toMaxTwoDecimals(value) {
-    if (this.hasAtLeastTwoDecimals(value)) {
+    if (this.hasMoreThanTwoDecimals(value)) {
       const stringResult = value.toFixed(2); // to string with two decimals
       return parseFloat(stringResult); // return float
     } else {

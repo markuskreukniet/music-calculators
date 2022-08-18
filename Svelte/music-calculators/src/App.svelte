@@ -5,7 +5,7 @@
   import arithmeticOperation from "./lib/constants/arithmeticOperation.constants.js";
 
   import LabeledNumberInput from "./lib/components/LabeledNumberInput.svelte";
-  import RadioGroup from "./lib/components/RadioGroup.svelte";
+  import LabeledRadioGroup from "./lib/components/LabeledRadioGroup.svelte";
 
   const textValueCombinations = [
     {
@@ -19,7 +19,7 @@
   ];
 
   let value = 10;
-  let RadioGroupValue = arithmeticOperation.addition;
+  let LabeledRadioGroupValue = arithmeticOperation.addition;
 </script>
 
 <main>
@@ -40,12 +40,13 @@
   <LabeledNumberInput labelText={"labelText"} bind:value />
   value: {value}
 
-  <RadioGroup
+  <LabeledRadioGroup
     name={"name"}
-    bind:value={RadioGroupValue}
+    labelText={"LabeledRadioGroup"}
+    bind:value={LabeledRadioGroupValue}
     {textValueCombinations}
   />
-  RadioGroupValue: {RadioGroupValue}
+  LabeledRadioGroupValue: {LabeledRadioGroupValue}
 
   <p>
     Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank"

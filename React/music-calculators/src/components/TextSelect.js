@@ -21,9 +21,9 @@ class TextSelect extends React.Component {
   }
 
   render() {
-    const options = this.props.values.map((d) => (
-      <option key={d} value={d}>
-        {d}
+    const options = this.props.values.map((x) => (
+      <option key={x} value={x}>
+        {x}
       </option>
     ));
 

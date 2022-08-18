@@ -14,40 +14,20 @@ class RadioGroup extends React.Component {
   }
 
   render() {
-    const radio = "radio";
-    const displayBlock = "display-block";
+    const labelledRadioInputs = this.props.textValueCombinations.map((x) => (
+      <label className={"display-block"}>
+        <input
+          type="radio"
+          name={this.props.name}
+          value={x.value}
+          onChange={this.handleChange}
+          defaultChecked={x.value === this.props.defaultValue} // the attribute defaultChecked should be used and not the attribute checked
+        />
+        {x.text}
+      </label>
+    ));
 
-    // the attribute defaultChecked should be used and not the attribute checked
-    return (
-      <div>
-        <label className={displayBlock}>
-          <input
-            type={radio}
-            name={this.props.name}
-            value={this.props.textValueCombinations[0].value}
-            onChange={this.handleChange}
-            defaultChecked={
-              this.props.textValueCombinations[0].value ===
-              this.props.defaultValue
-            }
-          />
-          {this.props.textValueCombinations[0].text}
-        </label>
-        <label className={displayBlock}>
-          <input
-            type={radio}
-            name={this.props.name}
-            value={this.props.textValueCombinations[1].value}
-            onChange={this.handleChange}
-            defaultChecked={
-              this.props.textValueCombinations[1].value ===
-              this.props.defaultValue
-            }
-          />
-          {this.props.textValueCombinations[1].text}
-        </label>
-      </div>
-    );
+    return <div>{labelledRadioInputs}</div>;
   }
 }
 

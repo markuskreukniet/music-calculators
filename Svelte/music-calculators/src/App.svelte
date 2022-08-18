@@ -3,7 +3,9 @@
   import Counter from "./lib/Counter.svelte";
 
   import arithmeticOperation from "./lib/constants/arithmeticOperation.constants.js";
+  import durations from "./lib/constants/durations.constants.js";
 
+  import OptionalLabeledTextSelect from "./lib/components/OptionalLabeledTextSelect.svelte";
   import LabeledNumberInput from "./lib/components/LabeledNumberInput.svelte";
   import LabeledRadioGroup from "./lib/components/LabeledRadioGroup.svelte";
 
@@ -18,8 +20,9 @@
     },
   ];
 
-  let value = 10;
-  let LabeledRadioGroupValue = arithmeticOperation.addition;
+  let labeledNumberInputValue = 10;
+  let labeledRadioGroupValue = arithmeticOperation.addition;
+  let optionalLabeledTextSelectValue = "";
 </script>
 
 <main>
@@ -37,16 +40,26 @@
     <Counter />
   </div>
 
-  <LabeledNumberInput labelText={"labelText"} bind:value />
-  value: {value}
+  <LabeledNumberInput
+    labelText={"labelText"}
+    bind:value={labeledNumberInputValue}
+  />
+  LabeledNumberInput: {labeledNumberInputValue}
 
   <LabeledRadioGroup
-    name={"name"}
+    name={"LabeledRadioGroup"}
     labelText={"LabeledRadioGroup"}
-    bind:value={LabeledRadioGroupValue}
+    bind:value={labeledRadioGroupValue}
     {textValueCombinations}
   />
-  LabeledRadioGroupValue: {LabeledRadioGroupValue}
+  LabeledRadioGroupValue: {labeledRadioGroupValue}
+
+  <OptionalLabeledTextSelect
+    name={"OptionalLabeledTextSelect"}
+    values={durations}
+    bind:value={optionalLabeledTextSelectValue}
+  />
+  OptionalLabeledTextSelectValue: {optionalLabeledTextSelectValue}
 
   <p>
     Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank"

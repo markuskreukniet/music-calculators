@@ -1,9 +1,25 @@
 <script>
   import svelteLogo from "./assets/svelte.svg";
   import Counter from "./lib/Counter.svelte";
-  import LabeledNumberInput from "./lib/LabeledNumberInput.svelte";
+
+  import arithmeticOperation from "./lib/constants/arithmeticOperation.constants.js";
+
+  import LabeledNumberInput from "./lib/components/LabeledNumberInput.svelte";
+  import RadioGroup from "./lib/components/RadioGroup.svelte";
+
+  const textValueCombinations = [
+    {
+      text: "The total reverb duration by choosing a duration for the pre-delay and decay",
+      value: arithmeticOperation.addition,
+    },
+    {
+      text: "The pre-delay or decay duration by choosing a duration for the total reverb, and pre-delay or decay",
+      value: arithmeticOperation.subtraction,
+    },
+  ];
 
   let value = 10;
+  let RadioGroupValue = arithmeticOperation.addition;
 </script>
 
 <main>
@@ -23,6 +39,13 @@
 
   <LabeledNumberInput labelText={"labelText"} bind:value />
   value: {value}
+
+  <RadioGroup
+    name={"name"}
+    bind:value={RadioGroupValue}
+    {textValueCombinations}
+  />
+  RadioGroupValue: {RadioGroupValue}
 
   <p>
     Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank"

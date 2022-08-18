@@ -14,8 +14,8 @@ class RadioGroup extends React.Component {
   }
 
   render() {
-    const labeledRadioInputs = this.props.textValueCombinations.map((x) => (
-      <label className={"display-block"}>
+    const labeledRadioInputs = this.props.textValueCombinations.map((x, i) => (
+      <label className={"display-block"} key={i}>
         <input
           type="radio"
           name={this.props.name}

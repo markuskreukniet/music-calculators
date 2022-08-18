@@ -4,6 +4,13 @@ Vanilla JS is outdated
 
 React doesn't use Hooks
 
+## Run and build projects
+Run the React project with: npm start
+
+React project to production build: npm run build
+
+Run the Svelte project with: npm run dev
+
 ## Good to know for the React project
 
 ### Export to one single js, src/index.js example

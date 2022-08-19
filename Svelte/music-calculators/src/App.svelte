@@ -2,27 +2,7 @@
   import svelteLogo from "./assets/svelte.svg";
   import Counter from "./lib/Counter.svelte";
 
-  import arithmeticOperation from "./lib/constants/arithmeticOperation.constants.js";
-  import durations from "./lib/constants/durations.constants.js";
-
-  import OptionalLabeledTextSelect from "./lib/components/OptionalLabeledTextSelect.svelte";
-  import LabeledNumberInput from "./lib/components/LabeledNumberInput.svelte";
-  import LabeledRadioGroup from "./lib/components/LabeledRadioGroup.svelte";
-
-  const textValueCombinations = [
-    {
-      text: "The total reverb duration by choosing a duration for the pre-delay and decay",
-      value: arithmeticOperation.addition,
-    },
-    {
-      text: "The pre-delay or decay duration by choosing a duration for the total reverb, and pre-delay or decay",
-      value: arithmeticOperation.subtraction,
-    },
-  ];
-
-  let labeledNumberInputValue = 10;
-  let labeledRadioGroupValue = arithmeticOperation.addition;
-  let optionalLabeledTextSelectValue = "";
+  import ReverbCalculatorApp from "./lib/components/ReverbCalculatorApp.svelte";
 </script>
 
 <main>
@@ -40,26 +20,7 @@
     <Counter />
   </div>
 
-  <LabeledNumberInput
-    labelText={"labelText"}
-    bind:value={labeledNumberInputValue}
-  />
-  LabeledNumberInput: {labeledNumberInputValue}
-
-  <LabeledRadioGroup
-    name={"LabeledRadioGroup"}
-    labelText={"LabeledRadioGroup"}
-    bind:value={labeledRadioGroupValue}
-    {textValueCombinations}
-  />
-  LabeledRadioGroupValue: {labeledRadioGroupValue}
-
-  <OptionalLabeledTextSelect
-    name={"OptionalLabeledTextSelect"}
-    values={durations}
-    bind:value={optionalLabeledTextSelectValue}
-  />
-  OptionalLabeledTextSelectValue: {optionalLabeledTextSelectValue}
+  <ReverbCalculatorApp />
 
   <p>
     Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank"

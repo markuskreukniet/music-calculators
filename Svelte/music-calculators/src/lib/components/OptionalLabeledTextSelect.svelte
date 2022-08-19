@@ -3,8 +3,9 @@
 
   export let labelText = app.emptyString;
   export let values;
-  export let name;
   export let value;
+
+  const name = values.toString();
 </script>
 
 {#if labelText !== app.emptyString}
@@ -13,7 +14,7 @@
   </label>
 {/if}
 
-<select id={name} {name} bind:value>
+<select id={name} bind:value>
   {#each values as x}
     <option value={x}>
       {x}

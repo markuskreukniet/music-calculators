@@ -1,7 +1,17 @@
 <script>
   export let textValueCombinations;
-  export let name;
   export let value;
+
+  let name = "";
+
+  const length = textValueCombinations.lenght;
+  if (length === 1) {
+    name = textValueCombinations[0].value;
+  } else if (length > 1) {
+    for (let i = 1; i < length; i++) {
+      name += `, ${textValueCombinations[i].value}`;
+    }
+  }
 </script>
 
 {#each textValueCombinations as combination}

@@ -31,7 +31,17 @@
   let durationResult = textValueCombinations[0].value;
   let valueOne = defaultValueSelect;
   let valueTwo = defaultValueSelect;
-  let subtractionText = preDelayColon;
+  let subtractionTextColon = preDelayColon; // TODO: use this naming with colon also in React project
+
+  $: subtractionText = setSubtractionText(subtractionTextColon);
+
+  function setSubtractionText(subtractionTextColon) {
+    if (subtractionTextColon === preDelayColon) {
+      return reverb.preDelay;
+    } else {
+      return reverb.decay;
+    }
+  }
 
   function addColon(string) {
     return `${string}:`;
@@ -66,7 +76,7 @@
     values={durations}
   />
   <p>-</p>
-  <OptionalLabeledTextSelect bind:value={subtractionText} {values} />
+  <OptionalLabeledTextSelect bind:value={subtractionTextColon} {values} />
   <OptionalLabeledTextSelect bind:value={valueTwo} values={durations} />
 {/if}
 

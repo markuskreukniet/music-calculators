@@ -39,7 +39,6 @@
   }
 </script>
 
-<!-- TODO: use calculatorOperation also in React project -->
 <Calculator
   {tempo}
   {valueOne}

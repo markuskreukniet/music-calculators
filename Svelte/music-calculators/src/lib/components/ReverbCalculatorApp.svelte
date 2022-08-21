@@ -80,7 +80,6 @@
   <OptionalLabeledTextSelect bind:value={valueTwo} values={durations} />
 {/if}
 
-<!-- TODO: use calculatorOperation also in React project -->
 <ReverbCalculator
   calculatorOperation={durationResult}
   {tempo}

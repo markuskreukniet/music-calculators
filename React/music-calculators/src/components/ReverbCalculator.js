@@ -20,11 +20,11 @@ class ReverbCalculator extends React.Component {
 
   render() {
     if (
-      !this.props.arithmeticOperation ||
+      !this.props.calculatorOperation ||
       !this.props.tempo ||
       !this.props.valueOne ||
       !this.props.valueTwo ||
-      (this.props.arithmeticOperation === arithmeticOperation.subtraction &&
+      (this.props.calculatorOperation === arithmeticOperation.subtraction &&
         !this.props.subtractionText)
     ) {
       return;
@@ -34,7 +34,7 @@ class ReverbCalculator extends React.Component {
     let valueTwoText = this.decay;
     let resultTextPart = this.totalReverb;
 
-    if (this.props.arithmeticOperation === arithmeticOperation.subtraction) {
+    if (this.props.calculatorOperation === arithmeticOperation.subtraction) {
       valueOneText = this.totalReverb;
 
       if (this.props.subtractionText === reverb.preDelay) {
@@ -54,7 +54,7 @@ class ReverbCalculator extends React.Component {
         valueOneText={valueOneText}
         valueTwoText={valueTwoText}
         resultTextPart={resultTextPart}
-        arithmeticOperation={this.props.arithmeticOperation}
+        calculatorOperation={this.props.calculatorOperation}
       />
     );
   }

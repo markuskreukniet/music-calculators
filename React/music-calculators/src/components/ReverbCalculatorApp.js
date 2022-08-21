@@ -168,7 +168,7 @@ class ReverbCalculatorApp extends React.Component {
           {elementFour}
         </div>
         <ReverbCalculator
-          arithmeticOperation={this.state[this.durationResult]}
+          calculatorOperation={this.state[this.durationResult]}
           tempo={this.state[this.tempo]}
           valueOne={this.state[this.valueOne]}
           valueTwo={this.state[this.valueTwo]}

@@ -2,7 +2,6 @@
   import app from "../constants/app.constants.js";
   import arithmeticOperation from "../constants/arithmeticOperation.constants.js";
 
-  // TODO: use calculatorOperation also in React project
   export let tempo;
   export let calculatorOperation;
   export let valueOne;
@@ -22,7 +21,7 @@
   ); // TODO: React project also with resultText
 
   function determineNoteInMs(tempo) {
-    const minInMs = 60000; // 1 minute = 60000 milliseconds // TODO: const minInMs = 60000; also in React project in this function
+    const minInMs = 60000; // 1 minute = 60000 milliseconds
     const beatInMs = minInMs / tempo; // tempo is in BPM (beats per minute)
     return beatInMs * 4;
   }

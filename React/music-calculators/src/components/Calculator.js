@@ -4,14 +4,9 @@ import app from "../constants/app.constants.js";
 import arithmeticOperation from "../constants/arithmeticOperation.constants.js";
 
 class Calculator extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.minInMs = 60000; // 1 minute = 60000 milliseconds
-  }
-
   determineNoteInMs(tempo) {
-    const beatInMs = this.minInMs / tempo; // tempo is in BPM (beats per minute)
+    const minInMs = 60000; // 1 minute = 60000 milliseconds
+    const beatInMs = minInMs / tempo; // tempo is in BPM (beats per minute)
     return beatInMs * 4;
   }
 
@@ -106,7 +101,7 @@ class Calculator extends React.Component {
     let resultValue = -1;
     let arithmeticOperationSign = app.emptyString;
 
-    switch (this.props.arithmeticOperation) {
+    switch (this.props.calculatorOperation) {
       case arithmeticOperation.addition:
         resultValue = valueOneInMs + valueTwoInMs;
         arithmeticOperationSign = "+";

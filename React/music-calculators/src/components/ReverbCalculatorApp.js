@@ -54,24 +54,6 @@ class ReverbCalculatorApp extends React.Component {
     });
   }
 
-  elementLabeledTextSelect(
-    labelText,
-    values,
-    defaultValue,
-    elementName,
-    className
-  ) {
-    return (
-      <LabeledTextSelect
-        labelText={labelText}
-        values={values}
-        defaultValue={defaultValue}
-        class={className}
-        onChange={(e) => this.handleChange(elementName, e)}
-      />
-    );
-  }
-
   addColon(string) {
     return `${string}:`;
   }
@@ -88,31 +70,37 @@ class ReverbCalculatorApp extends React.Component {
     let subtractionText = reverb.preDelay;
 
     if (this.state.durationResult === arithmeticOperation.addition) {
-      elementOne = this.elementLabeledTextSelect(
-        this.preDelayColon,
-        durations,
-        this.state[this.valueOne],
-        this.valueOne,
-        className
+      elementOne = (
+        <LabeledTextSelect
+          labelText={this.preDelayColon}
+          values={durations}
+          defaultValue={this.state[this.valueOne]}
+          class={className}
+          onChange={(e) => this.handleChange(this.valueOne, e)}
+        />
       );
       elementTwo = <p className={className}>+</p>;
-      elementThree = this.elementLabeledTextSelect(
-        this.decayColon,
-        durations,
-        this.state[this.valueTwo],
-        this.valueTwo
+      elementThree = (
+        <LabeledTextSelect
+          labelText={this.decayColon}
+          values={durations}
+          defaultValue={this.state[this.valueTwo]}
+          onChange={(e) => this.handleChange(this.valueTwo, e)}
+        />
       );
     } else {
       if (this.state[this.subtractionText] === this.decayColon) {
         subtractionText = reverb.decay;
       }
 
-      elementOne = this.elementLabeledTextSelect(
-        this.totalReverbColon,
-        durations,
-        this.state[this.valueOne],
-        this.valueOne,
-        className
+      elementOne = (
+        <LabeledTextSelect
+          labelText={this.totalReverbColon}
+          values={durations}
+          defaultValue={this.state[this.valueOne]}
+          class={className}
+          onChange={(e) => this.handleChange(this.valueOne, e)}
+        />
       );
       elementTwo = <p>-</p>;
 

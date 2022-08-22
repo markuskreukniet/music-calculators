@@ -19,7 +19,7 @@ class LabeledRadioGroup extends React.Component {
         <p className={"text-before-list"}>{this.props.labelText}</p>
         <RadioGroup
           textValueCombinations={this.props.textValueCombinations}
-          defaultValue={this.props.defaultValue}
+          value={this.props.value}
           onChange={this.handleChange}
         />
       </div>

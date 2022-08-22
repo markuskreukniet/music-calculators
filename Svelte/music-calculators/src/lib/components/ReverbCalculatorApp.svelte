@@ -55,8 +55,6 @@
   {textValueCombinations}
 />
 
-<!-- TODO: React also in this way without functions -->
-<!-- TODO: remove names also in React project -->
 {#if durationResult === arithmeticOperation.addition}
   <OptionalLabeledTextSelect
     labelText={preDelayColon}

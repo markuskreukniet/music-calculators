@@ -74,7 +74,7 @@ class ReverbCalculatorApp extends React.Component {
         <LabeledTextSelect
           labelText={this.preDelayColon}
           values={durations}
-          defaultValue={this.state[this.valueOne]}
+          value={this.state[this.valueOne]}
           class={className}
           onChange={(e) => this.handleChange(this.valueOne, e)}
         />
@@ -84,7 +84,7 @@ class ReverbCalculatorApp extends React.Component {
         <LabeledTextSelect
           labelText={this.decayColon}
           values={durations}
-          defaultValue={this.state[this.valueTwo]}
+          value={this.state[this.valueTwo]}
           onChange={(e) => this.handleChange(this.valueTwo, e)}
         />
       );
@@ -97,7 +97,7 @@ class ReverbCalculatorApp extends React.Component {
         <LabeledTextSelect
           labelText={this.totalReverbColon}
           values={durations}
-          defaultValue={this.state[this.valueOne]}
+          value={this.state[this.valueOne]}
           class={className}
           onChange={(e) => this.handleChange(this.valueOne, e)}
         />
@@ -108,7 +108,7 @@ class ReverbCalculatorApp extends React.Component {
       elementThree = (
         <TextSelect
           values={values}
-          defaultValue={this.state[this.subtractionText]}
+          value={this.state[this.subtractionText]}
           onChange={(e) => this.handleChange(this.subtractionText, e)}
         />
       );
@@ -116,7 +116,7 @@ class ReverbCalculatorApp extends React.Component {
       elementFour = (
         <TextSelect
           values={durations}
-          defaultValue={this.state[this.valueTwo]}
+          value={this.state[this.valueTwo]}
           onChange={(e) => this.handleChange(this.valueTwo, e)}
         />
       );
@@ -132,7 +132,7 @@ class ReverbCalculatorApp extends React.Component {
         <LabeledRadioGroup
           labelText={"Calculate in ms:"}
           textValueCombinations={this.textValueCombinations}
-          defaultValue={this.state[this.durationResult]}
+          value={this.state[this.durationResult]}
           onChange={(e) => this.handleChange(this.durationResult, e)}
         />
         <div className={"display-flex padding border-bottom"}>

@@ -1,14 +1,10 @@
 import React from "react";
 
-import app from "../constants/app.constants.js";
-
 class NumberInput extends React.Component {
   constructor(props) {
     super(props);
 
-    this.value = this.props.defaultValue
-      ? this.props.defaultValue
-      : app.emptyString;
+    this.value = this.props.value ? this.props.value : 0;
 
     this.handleChange = this.handleChange.bind(this);
   }
@@ -22,12 +18,7 @@ class NumberInput extends React.Component {
 
   render() {
     return (
-      <input
-        type="number"
-        name={this.props.name}
-        value={this.value}
-        onChange={this.handleChange}
-      />
+      <input type="number" value={this.value} onChange={this.handleChange} />
     );
   }
 }

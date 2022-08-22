@@ -150,15 +150,13 @@ class ReverbCalculatorApp extends React.Component {
       <div>
         <LabeledNumberInput
           labelText={"Tempo in BPM:"}
-          defaultValue={this.state[this.tempo]}
-          name={this.tempo}
+          value={this.state[this.tempo]}
           onChange={(e) => this.handleChange(this.tempo, e)}
         />
         <LabeledRadioGroup
           labelText={"Calculate in ms:"}
           textValueCombinations={this.textValueCombinations}
           defaultValue={this.state[this.durationResult]}
-          name={this.durationResult}
           onChange={(e) => this.handleChange(this.durationResult, e)}
         />
         <div className={"display-flex padding border-bottom"}>

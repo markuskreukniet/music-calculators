@@ -16,11 +16,7 @@ class LabeledNumberInput extends React.Component {
     return (
       <label className={"display-block padding border-bottom"}>
         {this.props.labelText}
-        <NumberInput
-          name={this.props.name}
-          defaultValue={this.props.defaultValue}
-          onChange={this.handleChange}
-        />
+        <NumberInput value={this.props.value} onChange={this.handleChange} />
       </label>
     );
   }

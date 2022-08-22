@@ -72,16 +72,6 @@ class ReverbCalculatorApp extends React.Component {
     );
   }
 
-  elementTextSelect(values, defaultValue, elementName) {
-    return (
-      <TextSelect
-        values={values}
-        defaultValue={defaultValue}
-        onChange={(e) => this.handleChange(elementName, e)}
-      />
-    );
-  }
-
   addColon(string) {
     return `${string}:`;
   }
@@ -127,16 +117,20 @@ class ReverbCalculatorApp extends React.Component {
       elementTwo = <p>-</p>;
 
       const values = [this.preDelayColon, this.decayColon];
-      elementThree = this.elementTextSelect(
-        values,
-        this.state[this.subtractionText],
-        this.subtractionText
+      elementThree = (
+        <TextSelect
+          values={values}
+          defaultValue={this.state[this.subtractionText]}
+          onChange={(e) => this.handleChange(this.subtractionText, e)}
+        />
       );
 
-      elementFour = this.elementTextSelect(
-        durations,
-        this.state[this.valueTwo],
-        this.valueTwo
+      elementFour = (
+        <TextSelect
+          values={durations}
+          defaultValue={this.state[this.valueTwo]}
+          onChange={(e) => this.handleChange(this.valueTwo, e)}
+        />
       );
     }
 

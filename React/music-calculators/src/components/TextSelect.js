@@ -28,11 +28,7 @@ class TextSelect extends React.Component {
     ));
 
     return (
-      <select
-        name={this.props.name}
-        value={this.value}
-        onChange={this.handleChange}
-      >
+      <select value={this.value} onChange={this.handleChange}>
         {options}
       </select>
     );

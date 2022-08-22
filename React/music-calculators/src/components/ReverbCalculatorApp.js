@@ -66,15 +66,10 @@ class ReverbCalculatorApp extends React.Component {
         labelText={labelText}
         values={values}
         defaultValue={defaultValue}
-        name={elementName}
         class={className}
         onChange={(e) => this.handleChange(elementName, e)}
       />
     );
-  }
-
-  elementP(arithmeticOperationSign, className) {
-    return <p className={className}>{arithmeticOperationSign}</p>;
   }
 
   elementTextSelect(values, defaultValue, elementName) {
@@ -82,7 +77,6 @@ class ReverbCalculatorApp extends React.Component {
       <TextSelect
         values={values}
         defaultValue={defaultValue}
-        name={elementName}
         onChange={(e) => this.handleChange(elementName, e)}
       />
     );
@@ -111,7 +105,7 @@ class ReverbCalculatorApp extends React.Component {
         this.valueOne,
         className
       );
-      elementTwo = this.elementP("+", className);
+      elementTwo = <p className={className}>+</p>;
       elementThree = this.elementLabeledTextSelect(
         this.decayColon,
         durations,
@@ -130,7 +124,7 @@ class ReverbCalculatorApp extends React.Component {
         this.valueOne,
         className
       );
-      elementTwo = this.elementP("-");
+      elementTwo = <p>-</p>;
 
       const values = [this.preDelayColon, this.decayColon];
       elementThree = this.elementTextSelect(

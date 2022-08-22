@@ -17,7 +17,6 @@ class LabeledTextSelect extends React.Component {
       <label className={this.props.class}>
         {this.props.labelText}
         <TextSelect
-          name={this.props.name}
           values={this.props.values}
           defaultValue={this.props.defaultValue}
           onChange={this.handleChange}

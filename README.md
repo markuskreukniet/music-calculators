@@ -69,3 +69,22 @@ root.render(
   </body>
 </html>
 ```
+
+## Good to know for the Svelte project
+
+```
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + Svelte</title>
+    <script defer src="assets/index.2b4a1211.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    
+  </body>
+</html>
+```

@@ -80,6 +80,7 @@ root.render(
     <link rel="icon" type="image/svg+xml" href="vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + Svelte</title>
+    <!-- The defer attribute only works with the src attribute. With an inline script, the script should come under <div id="app"></div> -->
     <script defer src="assets/index.2b4a1211.js"></script>
   </head>
   <body>

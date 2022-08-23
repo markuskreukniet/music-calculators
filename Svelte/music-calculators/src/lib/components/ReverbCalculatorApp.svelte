@@ -31,7 +31,7 @@
   let durationResult = textValueCombinations[0].value;
   let valueOne = defaultValueSelect;
   let valueTwo = defaultValueSelect;
-  let subtractionTextColon = preDelayColon; // TODO: use this naming with colon also in React project
+  let subtractionTextColon = preDelayColon;
 
   $: subtractionText = setSubtractionText(subtractionTextColon);
 

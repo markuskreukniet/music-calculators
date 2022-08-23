@@ -18,7 +18,7 @@
     valueOneText,
     valueTwoText,
     resultTextPart
-  ); // TODO: React project also with resultText
+  );
 
   function determineNoteInMs(tempo) {
     const minInMs = 60000; // 1 minute = 60000 milliseconds

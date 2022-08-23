@@ -33,7 +33,7 @@ class ReverbCalculatorApp extends React.Component {
     this.durationResult = "durationResult";
     this.valueOne = "valueOne";
     this.valueTwo = "valueTwo";
-    this.subtractionText = "subtractionText";
+    this.subtractionTextColon = "subtractionTextColon";
 
     const defaultValueSelect = "1/64 note";
 
@@ -42,7 +42,7 @@ class ReverbCalculatorApp extends React.Component {
       [this.durationResult]: this.textValueCombinations[0].value,
       [this.valueOne]: defaultValueSelect,
       [this.valueTwo]: defaultValueSelect,
-      [this.subtractionText]: this.preDelayColon,
+      [this.subtractionTextColon]: this.preDelayColon,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -89,7 +89,7 @@ class ReverbCalculatorApp extends React.Component {
         />
       );
     } else {
-      if (this.state[this.subtractionText] === this.decayColon) {
+      if (this.state[this.subtractionTextColon] === this.decayColon) {
         subtractionText = reverb.decay;
       }
 
@@ -108,8 +108,8 @@ class ReverbCalculatorApp extends React.Component {
       elementThree = (
         <TextSelect
           values={values}
-          value={this.state[this.subtractionText]}
-          onChange={(e) => this.handleChange(this.subtractionText, e)}
+          value={this.state[this.subtractionTextColon]}
+          onChange={(e) => this.handleChange(this.subtractionTextColon, e)}
         />
       );
 

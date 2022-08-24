@@ -35,7 +35,7 @@ root.render(
 //reportWebVitals();
 ```
 
-### Use the app in a web component example
+### Use the app in a web component example (web component part might not work)
 
 ```
 <!DOCTYPE html>
@@ -88,4 +88,79 @@ root.render(
     
   </body>
 </html>
+```
+
+### Svelte as custom element
+
+vite.config.js (choose the comment svelte config, or the not commented)
+```
+import { defineConfig } from "vite";
+import { svelte } from "@sveltejs/vite-plugin-svelte";
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
+    // svelte({
+    //   compilerOptions: {
+    //     customElement: true,
+    //   },
+    // }),
+    svelte({
+      compilerOptions: { customElement: true },
+      include: /\.wc\.svelte$/,
+    }),
+    svelte({
+      compilerOptions: { customElement: false },
+      exclude: /\.wc\.svelte$/,
+    }),
+  ],
+});
+
+```
+
+index.html
+```
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + Svelte</title>
+  </head>
+  <body>
+    <!-- test-tag is only name, not a self made custom element -->
+    <test-tag id="app"></test-tag>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
+```
+
+main.js
+```
+//import './app.css'
+import App from "./App.svelte";
+
+const app = new App({
+  target: document.getElementById("app"),
+});
+
+export default app;
+```
+
+Counter.svelte
+```
+<!-- velte:options here might be needed, depends on vite.config.js -->
+<svelte:options tag="my-counter" />
+
+<script>
+  let count = 0;
+  const increment = () => {
+    count += 1;
+  };
+</script>
+
+<button on:click={increment}>
+  count is {count}
+</button>
 ```

@@ -28,7 +28,6 @@
     <Counter />
   </div>
 
-  <!-- TODO: every Svelte element is/returns one element -->
   <!-- Faking the HTML <body> tag. -->
   <div id="body">
     <ReverbCalculatorApp />

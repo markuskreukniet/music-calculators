@@ -1,8 +1,16 @@
 <script>
   import svelteLogo from "./assets/svelte.svg";
+
+  import style from "./lib/style.js";
+
   import Counter from "./lib/Counter.svelte";
 
   import ReverbCalculatorApp from "./lib/components/ReverbCalculatorApp.svelte";
+
+  // If there is a shadow dom, the style element gets appended outside of it.
+  var element = document.createElement("style");
+  element.innerHTML = style;
+  document.body.appendChild(element);
 </script>
 
 <main>
@@ -20,7 +28,11 @@
     <Counter />
   </div>
 
-  <ReverbCalculatorApp />
+  <!-- TODO: every Svelte element is/returns one element -->
+  <!-- Faking the HTML <body> tag. -->
+  <div id="body">
+    <ReverbCalculatorApp />
+  </div>
 
   <p>
     Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank"

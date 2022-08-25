@@ -48,40 +48,42 @@
   }
 </script>
 
-<LabeledNumberInput labelText={"Tempo in BPM:"} bind:value={tempo} />
-<LabeledRadioGroup
-  labelText={"Calculate in ms:"}
-  bind:value={durationResult}
-  {textValueCombinations}
-/>
+<div>
+  <LabeledNumberInput labelText={"Tempo in BPM:"} bind:value={tempo} />
+  <LabeledRadioGroup
+    labelText={"Calculate in ms:"}
+    bind:value={durationResult}
+    {textValueCombinations}
+  />
 
-{#if durationResult === arithmeticOperation.addition}
-  <OptionalLabeledTextSelect
-    labelText={preDelayColon}
-    bind:value={valueOne}
-    values={durations}
-  />
-  <p>+</p>
-  <OptionalLabeledTextSelect
-    labelText={decayColon}
-    bind:value={valueTwo}
-    values={durations}
-  />
-{:else}
-  <OptionalLabeledTextSelect
-    labelText={totalReverbColon}
-    bind:value={valueOne}
-    values={durations}
-  />
-  <p>-</p>
-  <OptionalLabeledTextSelect bind:value={subtractionTextColon} {values} />
-  <OptionalLabeledTextSelect bind:value={valueTwo} values={durations} />
-{/if}
+  {#if durationResult === arithmeticOperation.addition}
+    <OptionalLabeledTextSelect
+      labelText={preDelayColon}
+      bind:value={valueOne}
+      values={durations}
+    />
+    <p class="margin-only-right-1">+</p>
+    <OptionalLabeledTextSelect
+      labelText={decayColon}
+      bind:value={valueTwo}
+      values={durations}
+    />
+  {:else}
+    <OptionalLabeledTextSelect
+      labelText={totalReverbColon}
+      bind:value={valueOne}
+      values={durations}
+    />
+    <p>-</p>
+    <OptionalLabeledTextSelect bind:value={subtractionTextColon} {values} />
+    <OptionalLabeledTextSelect bind:value={valueTwo} values={durations} />
+  {/if}
 
-<ReverbCalculator
-  calculatorOperation={durationResult}
-  {tempo}
-  {valueOne}
-  {valueTwo}
-  {subtractionText}
-/>
+  <ReverbCalculator
+    calculatorOperation={durationResult}
+    {tempo}
+    {valueOne}
+    {valueTwo}
+    {subtractionText}
+  />
+</div>

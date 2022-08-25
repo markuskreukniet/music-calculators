@@ -17,8 +17,14 @@
 </script>
 
 {#each textValueCombinations as combination}
-  <label>
-    <input type="radio" bind:group={value} {name} value={combination.value} />
+  <label class="display-block">
+    <input
+      class="input-radio"
+      type="radio"
+      bind:group={value}
+      {name}
+      value={combination.value}
+    />
     {combination.text}
   </label>
 {/each}

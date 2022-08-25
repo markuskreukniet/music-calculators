@@ -3,7 +3,7 @@
   export let value;
 </script>
 
-<label>
+<label class="display-block padding border-bottom">
   {labelText}
   <input type="number" bind:value />
 </label>

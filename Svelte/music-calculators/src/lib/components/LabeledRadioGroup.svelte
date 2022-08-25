@@ -6,5 +6,7 @@
   export let value;
 </script>
 
-<p>{labelText}</p>
-<RadioGroup {textValueCombinations} bind:value />
+<div class="display-block padding border-bottom">
+  <p class="text-before-list">{labelText}</p>
+  <RadioGroup {textValueCombinations} bind:value />
+</div>

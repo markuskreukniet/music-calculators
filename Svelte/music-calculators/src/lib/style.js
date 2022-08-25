@@ -35,6 +35,10 @@ const style = `
         display: flex;
     }
 
+    .first-child-margin-only-right-1 :first-child {
+        margin: 0 var(--size-1) 0 0;
+    }
+
     .margin-0 {
         margin: 0;
     }

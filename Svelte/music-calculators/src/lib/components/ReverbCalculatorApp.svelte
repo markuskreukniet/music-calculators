@@ -35,6 +35,8 @@
 
   $: subtractionText = setSubtractionText(subtractionTextColon);
 
+  const className = "first-child-margin-only-right-1";
+
   function setSubtractionText(subtractionTextColon) {
     if (subtractionTextColon === preDelayColon) {
       return reverb.preDelay;
@@ -61,6 +63,7 @@
       labelText={preDelayColon}
       bind:value={valueOne}
       values={durations}
+      {className}
     />
     <p class="margin-only-right-1">+</p>
     <OptionalLabeledTextSelect
@@ -73,6 +76,7 @@
       labelText={totalReverbColon}
       bind:value={valueOne}
       values={durations}
+      {className}
     />
     <p>-</p>
     <OptionalLabeledTextSelect bind:value={subtractionTextColon} {values} />

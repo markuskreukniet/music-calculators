@@ -152,6 +152,6 @@
 </script>
 
 <div class="display-flex padding">
-  <p class="margin-only-right-1">Result:</p>
-  <p class="margin-0">{resultText}</p>
+  <p class="margin-0">Result:</p>
+  <p class="margin-only-left-1">{resultText}</p>
 </div>

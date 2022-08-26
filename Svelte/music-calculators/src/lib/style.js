@@ -15,6 +15,7 @@ const style = `
         --border: solid 1px var(--gray);
     }
 
+    /* faking HTML tag and CSS selectors */
     #body {
         line-height: var(--g-ratio-p);
     }
@@ -23,6 +24,7 @@ const style = `
         margin: 0 var(--size-1) 0 0;
     }
 
+    /* classes */
     .border-bottom {
         border-bottom: var(--border);
     }
@@ -35,16 +37,13 @@ const style = `
         display: flex;
     }
 
-    .first-child-margin-only-right-1 :first-child {
-        margin: 0 var(--size-1) 0 0;
+    .child-2-margin-only-left-1 :nth-child(2),
+    .margin-only-left-1 {
+        margin: 0 0 0 var(--size-1);
     }
 
     .margin-0 {
         margin: 0;
-    }
-
-    .margin-only-right-1 {
-        margin: 0 var(--size-1) 0 0;
     }
 
     .padding {

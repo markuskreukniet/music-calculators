@@ -35,7 +35,8 @@
 
   $: subtractionText = setSubtractionText(subtractionTextColon);
 
-  const className = "first-child-margin-only-right-1";
+  const child2MarginOnlyLeft = "child-2-margin-only-left-1";
+  const marginOnlyLeft = "margin-only-left-1";
 
   function setSubtractionText(subtractionTextColon) {
     if (subtractionTextColon === preDelayColon) {
@@ -58,30 +59,41 @@
     {textValueCombinations}
   />
 
-  {#if durationResult === arithmeticOperation.addition}
-    <OptionalLabeledTextSelect
-      labelText={preDelayColon}
-      bind:value={valueOne}
-      values={durations}
-      {className}
-    />
-    <p class="margin-only-right-1">+</p>
-    <OptionalLabeledTextSelect
-      labelText={decayColon}
-      bind:value={valueTwo}
-      values={durations}
-    />
-  {:else}
-    <OptionalLabeledTextSelect
-      labelText={totalReverbColon}
-      bind:value={valueOne}
-      values={durations}
-      {className}
-    />
-    <p>-</p>
-    <OptionalLabeledTextSelect bind:value={subtractionTextColon} {values} />
-    <OptionalLabeledTextSelect bind:value={valueTwo} values={durations} />
-  {/if}
+  <div class="display-flex padding border-bottom">
+    {#if durationResult === arithmeticOperation.addition}
+      <OptionalLabeledTextSelect
+        labelText={preDelayColon}
+        bind:value={valueOne}
+        values={durations}
+        className={child2MarginOnlyLeft}
+      />
+      <p class={marginOnlyLeft}>+</p>
+      <OptionalLabeledTextSelect
+        labelText={decayColon}
+        bind:value={valueTwo}
+        values={durations}
+        className={`${child2MarginOnlyLeft} ${marginOnlyLeft}`}
+      />
+    {:else}
+      <OptionalLabeledTextSelect
+        labelText={totalReverbColon}
+        bind:value={valueOne}
+        values={durations}
+        className={child2MarginOnlyLeft}
+      />
+      <p class={marginOnlyLeft}>-</p>
+      <OptionalLabeledTextSelect
+        bind:value={subtractionTextColon}
+        {values}
+        className={marginOnlyLeft}
+      />
+      <OptionalLabeledTextSelect
+        bind:value={valueTwo}
+        values={durations}
+        className={marginOnlyLeft}
+      />
+    {/if}
+  </div>
 
   <ReverbCalculator
     calculatorOperation={durationResult}

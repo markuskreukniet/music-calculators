@@ -59,7 +59,7 @@
     {textValueCombinations}
   />
 
-  <div class="display-flex padding border-bottom">
+  <div class="display-flex align-items-center padding border-bottom">
     {#if durationResult === arithmeticOperation.addition}
       <OptionalLabeledTextSelect
         labelText={preDelayColon}

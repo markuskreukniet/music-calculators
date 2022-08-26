@@ -24,7 +24,21 @@ const style = `
         margin: 0 var(--size-1) 0 0;
     }
 
+    .input-number, .select {
+        height: 2rem;
+        padding: 0 var(--size-1-s);
+        border: var(--border);
+    }
+
+    .input-number:focus-visible, .select:focus-visible {
+        outline: solid 2px var(--gray);
+    }
+
     /* classes */
+    .align-items-center {
+        align-items: center;
+    }
+
     .border-bottom {
         border-bottom: var(--border);
     }

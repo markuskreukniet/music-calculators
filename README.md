@@ -80,6 +80,18 @@ isEnvProduction &&
 
 ## Good to know for the Svelte project
 
+Compiled javascript of Svelte between script tags might interfere with other javascript, such as the javascript from WordPress. A solution is to place the Svelte javascript between {}.
+
+```
+<div id="app"></div>
+    
+<script>
+{
+// place content of javascript here
+}
+</script>
+```
+
 ```
 <!DOCTYPE html>
 <html lang="en">

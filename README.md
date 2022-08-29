@@ -87,7 +87,7 @@ Compiled javascript of Svelte between script tags might interfere with other jav
     
 <script>
 {
-// place content of javascript here
+// place javascript content here
 }
 </script>
 ```

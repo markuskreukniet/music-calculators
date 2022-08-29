@@ -35,6 +35,14 @@ root.render(
 //reportWebVitals();
 ```
 
+**OR** add to plugins: in node_modules/react-scripts/config/webpack.config.js
+```
+isEnvProduction &&
+      new webpack.optimize.LimitChunkCountPlugin({
+        maxChunks: 1
+      }),
+```
+
 ### Use the app in a web component example (web component part might not work)
 
 ```

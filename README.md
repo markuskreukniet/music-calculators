@@ -35,7 +35,7 @@ root.render(
 //reportWebVitals();
 ```
 
-**OR** add to plugins: in node_modules/react-scripts/config/webpack.config.js
+**OR (optional)** add to plugins: in node_modules/react-scripts/config/webpack.config.js
 ```
 isEnvProduction &&
       new webpack.optimize.LimitChunkCountPlugin({

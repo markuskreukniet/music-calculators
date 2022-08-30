@@ -110,6 +110,21 @@ Compiled javascript of Svelte between script tags might interfere with other jav
 </html>
 ```
 
+### disiable minify
+
+```
+import { defineConfig } from "vite";
+import { svelte } from "@sveltejs/vite-plugin-svelte";
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  build: {
+    minify: false,
+  },
+  plugins: [svelte()],
+});
+```
+
 ### Svelte as custom element
 
 vite.config.js (choose the comment svelte config, or the not commented)

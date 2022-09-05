@@ -16,8 +16,8 @@ function LabeledNumberInput(parent, labelText, value, listener) {
     input.addEventListener("change", listener);
 
     label.appendChild(input);
-    that.parent.appendChild(label);
 
+    that.parent.appendChild(label);
     that.element = label;
   };
 

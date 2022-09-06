@@ -7,6 +7,8 @@
   const name = values.toString();
 </script>
 
+<!-- The element is an OptionalLabeledTextSelect to handle the problem that a label should associate with a form control. -->
+
 <div class={className}>
   {#if labelText}
     <label for={name}>

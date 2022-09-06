@@ -1,9 +1,10 @@
-function LabelledTextSelect(parent, values, value, listener) {
+function LabelledTextSelect(parent, values, value, labelText, listener) {
   let that = this;
   this.parent = parent;
 
   this.values = values;
   this.value = value;
+  this.labelText = labelText;
   this.listener = listener;
 
   this.create = function () {

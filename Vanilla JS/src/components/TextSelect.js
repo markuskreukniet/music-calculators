@@ -2,9 +2,6 @@ function TextSelect(parent, values, value, listener) {
   let that = this;
   this.parent = parent;
 
-  this.values = values;
-  this.value = value;
-
   this.create = function () {
     let select = document.createElement("select");
 
@@ -15,7 +12,7 @@ function TextSelect(parent, values, value, listener) {
       select.appendChild(option);
     }
 
-    select.value = that.value;
+    select.value = value;
     select.addEventListener("change", listener);
     select.className = "select";
 

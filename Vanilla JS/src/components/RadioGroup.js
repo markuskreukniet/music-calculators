@@ -1,11 +1,6 @@
-// TODO: add event listener
-
 function RadioGroup(parent, textValueCombinations, value, listener) {
   let that = this;
   this.parent = parent;
-
-  this.textValueCombinations = textValueCombinations;
-  this.value = value;
 
   this.create = function () {
     // determine name
@@ -32,6 +27,11 @@ function RadioGroup(parent, textValueCombinations, value, listener) {
       input.type = "radio";
       input.value = combination.value;
       input.name = name;
+      input.addEventListener("change", listener);
+
+      if (value === combination.value) {
+        input.checked = true;
+      }
 
       label.appendChild(input);
 

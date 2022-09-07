@@ -2,17 +2,14 @@ function LabeledNumberInput(parent, labelText, value, listener) {
   let that = this;
   this.parent = parent;
 
-  this.labelText = labelText;
-  this.value = value;
-
   this.create = function () {
     let label = document.createElement("label");
-    label.innerHTML = that.labelText;
+    label.innerHTML = labelText;
     label.className = "display-block padding border-bottom";
 
     let input = document.createElement("input");
     input.type = "number";
-    input.value = that.value;
+    input.value = value;
     input.addEventListener("change", listener);
 
     label.appendChild(input);

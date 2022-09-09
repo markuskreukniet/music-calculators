@@ -1,3 +1,5 @@
+"use strict";
+
 const scriptUrls = [
   "./src/components/LabeledNumberInput.js",
   "./src/components/ReverbCalculatorApp.js",
@@ -29,7 +31,7 @@ function App(parent) {
     }
   };
   this.create = function () {
-    ReverbCalculatorApp(that.parent);
+    new ReverbCalculatorApp(that.parent);
   };
   this.init = async function () {
     await that.fetch();
@@ -39,4 +41,4 @@ function App(parent) {
 }
 
 const app = document.querySelector("#app");
-App(app);
+new App(app);

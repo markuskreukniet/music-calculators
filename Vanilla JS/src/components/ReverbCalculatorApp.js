@@ -3,6 +3,8 @@ function ReverbCalculatorApp(parent) {
   this.parent = parent;
 
   this.create = function () {
+    console.log("ReverbCalculatorApp create");
+
     let div = document.createElement("div");
 
     that.parent.appendChild(div);

@@ -25,7 +25,7 @@ function ReverbCalculatorApp(parent) {
   }
 
   this.create = function () {
-    const div = document.createElement("div");
+    const div = createElementAppendChild("div", that.parent);
 
     new LabeledNumberInput(div, "Tempo in BPM:", that.tempo, tempoChange);
     new LabeledRadioGroup(
@@ -36,7 +36,9 @@ function ReverbCalculatorApp(parent) {
       durationResultChange
     );
 
-    that.parent.appendChild(div);
+    const divRow = createElementAppendChild("div", div);
+    divRow.className = "display-block padding border-bottom";
+
     that.element = div;
   };
 

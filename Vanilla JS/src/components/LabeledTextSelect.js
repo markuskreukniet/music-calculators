@@ -3,12 +3,11 @@ function LabeledTextSelect(parent, values, value, labelText, listener) {
   this.parent = parent;
 
   this.create = function () {
-    const label = document.createElement("label");
+    const label = createElementAppendChild("label", that.parent);
     label.innerHTML = labelText;
 
     new TextSelect(label, values, value, listener);
 
-    that.parent.appendChild(label);
     that.element = label;
   };
 

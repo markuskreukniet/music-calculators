@@ -21,6 +21,14 @@ function includeScriptInHead(src) {
   });
 }
 
+// TODO: use createElementAppendChild where possible
+function createElementAppendChild(element, parent) {
+  const result = document.createElement(element);
+  parent.appendChild(result);
+
+  return result;
+}
+
 function App(parent) {
   let that = this;
   this.parent = parent;

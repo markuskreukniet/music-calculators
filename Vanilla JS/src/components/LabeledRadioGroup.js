@@ -9,18 +9,15 @@ function LabeledRadioGroup(
   this.parent = parent;
 
   this.create = function () {
-    const div = document.createElement("div");
+    const div = createElementAppendChild("div", that.parent);
     div.className = "display-block padding border-bottom";
 
-    const p = document.createElement("p");
+    const p = createElementAppendChild("p", div);
     p.innerHTML = labelText;
     p.className = "text-before-list";
 
-    div.appendChild(p);
-
     new RadioGroup(div, textValueCombinations, value, listener);
 
-    that.parent.appendChild(div);
     that.element = div;
   };
 

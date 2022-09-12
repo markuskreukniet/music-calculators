@@ -3,10 +3,10 @@ function TextSelect(parent, values, value, listener) {
   this.parent = parent;
 
   this.create = function () {
-    let select = document.createElement("select");
+    const select = document.createElement("select");
 
-    for (let value of values) {
-      let option = document.createElement("option");
+    for (const value of values) {
+      const option = document.createElement("option");
       option.value = value;
       option.innerHTML = value;
       select.appendChild(option);

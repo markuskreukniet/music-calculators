@@ -18,7 +18,7 @@ function RadioGroup(parent, textValueCombinations, value, listener) {
     }
 
     // create element
-    let div = document.createElement("div");
+    const div = document.createElement("div");
 
     for (let combination of textValueCombinations) {
       const label = document.createElement("label");
@@ -33,9 +33,10 @@ function RadioGroup(parent, textValueCombinations, value, listener) {
         input.checked = true;
       }
 
-      label.appendChild(input);
+      const text = document.createTextNode(combination.text);
 
-      // label.innerHTML += combination.text; TODO: result in a bug
+      label.appendChild(input);
+      label.appendChild(text);
       label.className = "display-block";
       div.appendChild(label);
     }

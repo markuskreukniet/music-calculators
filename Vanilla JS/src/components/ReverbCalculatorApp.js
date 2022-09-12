@@ -25,7 +25,7 @@ function ReverbCalculatorApp(parent) {
   }
 
   this.create = function () {
-    let div = document.createElement("div");
+    const div = document.createElement("div");
 
     new LabeledNumberInput(div, "Tempo in BPM:", that.tempo, tempoChange);
     new LabeledRadioGroup(

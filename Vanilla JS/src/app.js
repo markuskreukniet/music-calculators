@@ -35,7 +35,7 @@ function App(parent) {
     }
 
     try {
-      for (let url of scriptUrls) {
+      for (const url of scriptUrls) {
         await includeScriptInHead(url);
       }
     } catch (e) {

@@ -1,7 +1,11 @@
 "use strict";
 
+let arithmeticOperation = {};
+
 const scriptUrls = [
   "./src/components/LabeledNumberInput.js",
+  "./src/components/LabeledRadioGroup.js",
+  "./src/components/RadioGroup.js",
   "./src/components/ReverbCalculatorApp.js",
 ];
 
@@ -22,6 +26,14 @@ function App(parent) {
   this.parent = parent;
 
   this.fetch = async function () {
+    try {
+      import("./constants/arithmeticOperation.constants.js").then((module) => {
+        arithmeticOperation = module.default;
+      });
+    } catch (e) {
+      console.log(e);
+    }
+
     try {
       for (let url of scriptUrls) {
         await includeScriptInHead(url);

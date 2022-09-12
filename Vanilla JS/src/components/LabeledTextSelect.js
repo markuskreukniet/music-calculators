@@ -6,7 +6,7 @@ function LabeledTextSelect(parent, values, value, labelText, listener) {
     let label = document.createElement("label");
     label.innerHTML = labelText;
 
-    TextSelect(label, values, value, listener);
+    new TextSelect(label, values, value, listener);
 
     that.parent.appendChild(label);
     that.element = label;

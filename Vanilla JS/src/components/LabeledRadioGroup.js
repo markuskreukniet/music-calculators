@@ -18,7 +18,7 @@ function LabeledRadioGroup(
 
     div.appendChild(p);
 
-    RadioGroup(div, textValueCombinations, value, listener);
+    new RadioGroup(div, textValueCombinations, value, listener);
 
     that.parent.appendChild(div);
     that.element = div;

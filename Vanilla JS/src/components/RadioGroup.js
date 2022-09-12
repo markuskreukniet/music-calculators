@@ -35,7 +35,7 @@ function RadioGroup(parent, textValueCombinations, value, listener) {
 
       label.appendChild(input);
 
-      label.innerHTML = combination.text;
+      label.innerHTML += combination.text;
       label.className = "display-block";
 
       div.appendChild(label);

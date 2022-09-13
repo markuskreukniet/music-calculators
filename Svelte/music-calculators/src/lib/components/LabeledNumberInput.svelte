@@ -5,5 +5,10 @@
 
 <label class="display-block padding border-bottom">
   {labelText}
-  <input type="number" bind:value class="margin-only-left-1 input-number" />
+  <input
+    on:change|preventDefault
+    type="number"
+    bind:value
+    class="margin-only-left-1 input-number"
+  />
 </label>

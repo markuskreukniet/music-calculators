@@ -19,6 +19,7 @@
 <div>
   {#each textValueCombinations as combination}
     <label class="display-block">
+      <!-- on:change|preventDefault is not needed -->
       <input
         class="input-radio"
         type="radio"

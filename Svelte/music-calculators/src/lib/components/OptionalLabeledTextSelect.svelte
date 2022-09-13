@@ -16,7 +16,7 @@
     </label>
   {/if}
 
-  <select id={name} bind:value class="select">
+  <select id={name} on:change|preventDefault bind:value class="select">
     {#each values as x}
       <option value={x}>
         {x}

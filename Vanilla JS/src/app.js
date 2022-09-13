@@ -15,7 +15,7 @@ const scriptUrls = [
 
 function includeScriptInHead(src) {
   return new Promise((resolve, reject) => {
-    const script = document.createElement("script");
+    const script = document.createElement("script"); // TODO: change to createElementAppendChild?
 
     script.setAttribute("src", src);
     script.addEventListener("load", resolve);
@@ -25,7 +25,6 @@ function includeScriptInHead(src) {
   });
 }
 
-// TODO: use createElementAppendChild where possible
 function createElementAppendChild(element, parent) {
   const result = document.createElement(element);
   parent.appendChild(result);

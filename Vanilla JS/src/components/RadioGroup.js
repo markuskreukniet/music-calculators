@@ -20,7 +20,7 @@ function RadioGroup(parent, textValueCombinations, value, listener) {
     // create element
     const div = createElementAppendChild("div", that.parent);
 
-    for (let combination of textValueCombinations) {
+    for (const combination of textValueCombinations) {
       const label = createElementAppendChild("label", div);
 
       const input = createElementAppendChild("input", label);

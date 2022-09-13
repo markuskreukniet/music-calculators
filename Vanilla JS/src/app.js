@@ -4,7 +4,10 @@
 
 "use strict";
 
+let app = {};
 let arithmeticOperation = {};
+let durations = {};
+let reverb = {};
 
 const scriptUrls = [
   "./src/components/LabeledNumberInput.js",
@@ -38,8 +41,17 @@ function App(parent) {
 
   this.fetch = async function () {
     try {
+      import("./constants/app.constants.js").then((module) => {
+        app = module.default;
+      });
       import("./constants/arithmeticOperation.constants.js").then((module) => {
         arithmeticOperation = module.default;
+      });
+      import("./constants/durations.constants.js").then((module) => {
+        durations = module.default;
+      });
+      import("./constants/reverb.constants.js").then((module) => {
+        reverb = module.default;
       });
     } catch (e) {
       console.log(e);
@@ -63,5 +75,5 @@ function App(parent) {
   this.init();
 }
 
-const app = document.querySelector("#app");
-new App(app);
+const appElement = document.querySelector("#app");
+new App(appElement);

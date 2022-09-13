@@ -1,3 +1,7 @@
+// TODO: example code component logic in readme
+// TODO: shorten code where possible
+// TODO: try to make custom element of this app, maybe with giving style tag an id and adding styles to it
+
 "use strict";
 
 let arithmeticOperation = {};

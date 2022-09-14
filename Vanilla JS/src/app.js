@@ -12,8 +12,10 @@ let reverb = {};
 const scriptUrls = [
   "./src/components/LabeledNumberInput.js",
   "./src/components/LabeledRadioGroup.js",
+  "./src/components/LabeledTextSelect.js",
   "./src/components/RadioGroup.js",
   "./src/components/ReverbCalculatorApp.js",
+  "./src/components/TextSelect.js",
 ];
 
 function includeScriptInHead(src) {

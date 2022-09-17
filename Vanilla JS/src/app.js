@@ -14,6 +14,7 @@ const scriptUrls = [
   "./src/components/LabeledRadioGroup.js",
   "./src/components/LabeledTextSelect.js",
   "./src/components/RadioGroup.js",
+  "./src/components/ReverbCalculator.js",
   "./src/components/ReverbCalculatorApp.js",
   "./src/components/TextSelect.js",
 ];

@@ -34,32 +34,38 @@ function ReverbCalculatorApp(parent) {
   // TODO: these change functions same as React project
   function tempoChange(e) {
     console.log("tempoChange", e.target.value);
+
     that.tempo = e.target.value;
-    that.render();
+    that.reverbCalculator.render();
   }
 
   function durationResultChange(e) {
     console.log("durationResultChange", e.target.value);
+
     that.durationResult = e.target.value;
     that.render();
+    that.reverbCalculator.render();
   }
 
   function valueOneChange(e) {
     console.log("valueOneChange", e.target.value);
+
     that.valueOne = e.target.value;
-    that.render();
+    that.reverbCalculator.render();
   }
 
   function valueTwoChange(e) {
     console.log("valueTwoChange", e.target.value);
+
     that.valueTwo = e.target.value;
-    that.render();
+    that.reverbCalculator.render();
   }
 
   function subtractionTextColonChange(e) {
     console.log("subtractionTextColonChange", e.target.value);
+
     that.subtractionTextColon = e.target.value;
-    that.render();
+    that.reverbCalculator.render();
   }
 
   this.create = function () {
@@ -77,13 +83,13 @@ function ReverbCalculatorApp(parent) {
     that.divRow = createElementAppendChild("div", div);
     that.divRow.className = "display-block padding border-bottom";
 
-    that.reverbCalculator = createElementAppendChild(null, div); // TODO: null allowed in Firefox?
+    that.reverbCalculator = new ReverbCalculator(div);
+    that.reverbCalculator.render();
 
     that.element = div;
   };
   this.render = function () {
     that.divRow.innerHTML = "";
-    // empty that.reverbCalculator
 
     const marginOnlyLeft = "margin-only-left-1";
 
@@ -130,8 +136,6 @@ function ReverbCalculatorApp(parent) {
 
       new TextSelect(that.divRow, durations, that.valueTwo, valueTwoChange); // TODO: className
     }
-
-    //
   };
   this.init = function () {
     that.create();

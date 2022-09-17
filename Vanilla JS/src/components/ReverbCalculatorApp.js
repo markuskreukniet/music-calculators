@@ -8,23 +8,7 @@ function ReverbCalculatorApp(parent) {
 
   const values = [preDelayColon, decayColon];
 
-  const textValueCombinations = [
-    {
-      text: "The total reverb duration by choosing a duration for the pre-delay and decay",
-      value: arithmeticOperation.addition,
-    },
-    {
-      text: "The pre-delay or decay duration by choosing a duration for the total reverb, and pre-delay or decay",
-      value: arithmeticOperation.subtraction,
-    },
-  ];
-
-  const defaultValueSelect = "1/64 note";
-
-  this.tempo = 128;
-  this.durationResult = textValueCombinations[0].value;
-  this.valueOne = defaultValueSelect;
-  this.valueTwo = defaultValueSelect;
+  // TODO: move to create
   this.subtractionTextColon = preDelayColon;
 
   function addColon(string) {
@@ -69,6 +53,25 @@ function ReverbCalculatorApp(parent) {
   }
 
   this.create = function () {
+    const textValueCombinations = [
+      {
+        text: "The total reverb duration by choosing a duration for the pre-delay and decay",
+        value: arithmeticOperation.addition,
+      },
+      {
+        text: "The pre-delay or decay duration by choosing a duration for the total reverb, and pre-delay or decay",
+        value: arithmeticOperation.subtraction,
+      },
+    ];
+
+    const defaultValueSelect = "1/64 note";
+
+    this.tempo = 128;
+    this.durationResult = textValueCombinations[0].value;
+    this.valueOne = defaultValueSelect;
+    this.valueTwo = defaultValueSelect;
+
+    // create
     const div = createElementAppendChild("div", that.parent);
 
     new LabeledNumberInput(div, "Tempo in BPM:", that.tempo, tempoChange);

@@ -15,22 +15,7 @@ function ReverbCalculatorApp(parent) {
     return `${string}:`;
   }
 
-  // TODO: these change functions same as React project
-  function tempoChange(e) {
-    console.log("tempoChange", e.target.value);
-
-    that.tempo = e.target.value;
-    that.reverbCalculator.render();
-  }
-
-  function durationResultChange(e) {
-    console.log("durationResultChange", e.target.value);
-
-    that.durationResult = e.target.value;
-    that.render();
-    that.reverbCalculator.render();
-  }
-
+  // TODO: these change functions same as React project, to the switch
   function valueOneChange(e) {
     console.log("valueOneChange", e.target.value);
 
@@ -71,16 +56,34 @@ function ReverbCalculatorApp(parent) {
     this.valueOne = defaultValueSelect;
     this.valueTwo = defaultValueSelect;
 
+    function handleChange(name, value) {
+      switch (name) {
+        case "tempo":
+          that.tempo = value;
+
+          break;
+        case "durationResult":
+          that.durationResult = value;
+          that.render();
+
+          break;
+      }
+
+      that.reverbCalculator.render();
+    }
+
     // create
     const div = createElementAppendChild("div", that.parent);
 
-    new LabeledNumberInput(div, "Tempo in BPM:", that.tempo, tempoChange);
+    new LabeledNumberInput(div, "Tempo in BPM:", that.tempo, (e) =>
+      handleChange("tempo", e.target.value)
+    );
     new LabeledRadioGroup(
       div,
       textValueCombinations,
       that.durationResult,
       "Calculate in ms:",
-      durationResultChange
+      (e) => handleChange("durationResult", e.target.value)
     );
 
     that.divRow = createElementAppendChild("div", div);

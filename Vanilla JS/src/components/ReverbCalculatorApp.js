@@ -15,25 +15,32 @@ function ReverbCalculatorApp(parent) {
     return `${string}:`;
   }
 
-  // TODO: these change functions same as React project, to the switch
-  function valueOneChange(e) {
-    console.log("valueOneChange", e.target.value);
+  function handleChange(name, value) {
+    switch (name) {
+      case "tempo":
+        that.tempo = value;
 
-    that.valueOne = e.target.value;
-    that.reverbCalculator.render();
-  }
+        break;
+      case "durationResult":
+        that.durationResult = value;
+        that.render();
 
-  function valueTwoChange(e) {
-    console.log("valueTwoChange", e.target.value);
+        break;
+      case "valueOne":
+        that.valueOne = value;
 
-    that.valueTwo = e.target.value;
-    that.reverbCalculator.render();
-  }
+        break;
+      case "valueTwo":
+        that.valueTwo = value;
 
-  function subtractionTextColonChange(e) {
-    console.log("subtractionTextColonChange", e.target.value);
+        break;
 
-    that.subtractionTextColon = e.target.value;
+      case "subtractionTextColon":
+        that.subtractionTextColon = value;
+
+        break;
+    }
+
     that.reverbCalculator.render();
   }
 
@@ -55,22 +62,6 @@ function ReverbCalculatorApp(parent) {
     this.durationResult = textValueCombinations[0].value;
     this.valueOne = defaultValueSelect;
     this.valueTwo = defaultValueSelect;
-
-    function handleChange(name, value) {
-      switch (name) {
-        case "tempo":
-          that.tempo = value;
-
-          break;
-        case "durationResult":
-          that.durationResult = value;
-          that.render();
-
-          break;
-      }
-
-      that.reverbCalculator.render();
-    }
 
     // create
     const div = createElementAppendChild("div", that.parent);
@@ -108,7 +99,7 @@ function ReverbCalculatorApp(parent) {
         durations,
         that.valueOne,
         preDelayColon,
-        valueOneChange
+        (e) => handleChange("valueOne", e.target.value)
       ); // TODO: className
 
       p.innerHTML = "+";
@@ -119,7 +110,7 @@ function ReverbCalculatorApp(parent) {
         durations,
         that.valueTwo,
         decayColon,
-        valueTwoChange
+        (e) => handleChange("valueTwo", e.target.value)
       ); // TODO: className
     } else {
       new LabeledTextSelect(
@@ -127,17 +118,14 @@ function ReverbCalculatorApp(parent) {
         durations,
         that.valueOne,
         totalReverbColon,
-        valueOneChange
+        (e) => handleChange("valueOne", e.target.value) // TODO: duplicate
       ); // TODO: className
 
       p.innerHTML = "-";
       that.divRow.appendChild(p);
 
-      new TextSelect(
-        that.divRow,
-        values,
-        that.subtractionTextColon,
-        subtractionTextColonChange
+      new TextSelect(that.divRow, values, that.subtractionTextColon, (e) =>
+        handleChange("subtractionTextColon", e.target.value)
       ); // TODO: className
 
       new TextSelect(that.divRow, durations, that.valueTwo, valueTwoChange); // TODO: className

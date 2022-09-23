@@ -1,4 +1,5 @@
 <script>
+  import app from "../constants/app.constants.js";
   import arithmeticOperation from "../constants/arithmeticOperation.constants.js";
   import reverb from "../constants/reverb.constants.js";
 
@@ -14,23 +15,32 @@
   const decay = addParentheses(reverb.decay);
   const totalReverb = addParentheses(reverb.totalReverb);
 
-  let valueOneText = preDelay;
-  let valueTwoText = decay;
-  let resultTextPart = totalReverb;
+  let valueOneText = app.emptyString;
+  let valueTwoText = app.emptyString;
+  let resultTextPart = app.emptyString;
 
   $: setCalculatorValues(calculatorOperation, subtractionText);
 
   function setCalculatorValues(calculatorOperation, subtractionText) {
-    if (calculatorOperation === arithmeticOperation.subtraction) {
-      valueOneText = totalReverb;
-
-      if (subtractionText === reverb.preDelay) {
-        valueTwoText = preDelay;
-        resultTextPart = decay;
-      } else {
+    switch (calculatorOperation) {
+      case arithmeticOperation.addition:
+        valueOneText = preDelay;
         valueTwoText = decay;
-        resultTextPart = preDelay;
-      }
+        resultTextPart = totalReverb;
+
+        break;
+      case arithmeticOperation.subtraction:
+        valueOneText = totalReverb;
+
+        if (subtractionText === reverb.preDelay) {
+          valueTwoText = preDelay;
+          resultTextPart = decay;
+        } else {
+          valueTwoText = decay;
+          resultTextPart = preDelay;
+        }
+
+        break;
     }
   }
 

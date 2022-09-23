@@ -45,7 +45,12 @@
     let isDotted = false;
     let isFraction = false;
 
-    value = value.replace(" note", app.emptyString);
+    const notes = " notes";
+    if (value.includes(notes)) {
+      value = value.replace(notes, app.emptyString);
+    } else {
+      value = value.replace(" note", app.emptyString);
+    }
 
     if (value.includes(tripletString)) {
       isTriplet = true;

@@ -63,7 +63,7 @@
     result = isFraction ? note / value : note * value;
 
     if (isTriplet) {
-      result = (value / 3) * 2;
+      result = (result / 3) * 2;
     } else if (isDotted) {
       result *= 1.5;
     }

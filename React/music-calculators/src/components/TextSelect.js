@@ -19,6 +19,11 @@ class TextSelect extends React.Component {
   }
 
   render() {
+    let className = "select";
+    if (this.props.className) {
+      className += ` ${this.props.className}`;
+    }
+
     const options = this.props.values.map((x) => (
       <option key={x} value={x}>
         {x}
@@ -29,7 +34,7 @@ class TextSelect extends React.Component {
       <select
         value={this.value}
         onChange={this.handleChange}
-        className="select"
+        className={className}
       >
         {options}
       </select>

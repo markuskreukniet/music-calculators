@@ -62,7 +62,7 @@ class ReverbCalculatorApp extends React.Component {
 
   // This function aims to skip an array. In React, the HTML elements in an array need a 'key' attribute.
   render() {
-    const child2MarginOnlyLeft = "child-2-margin-only-left-1";
+    const child1MarginOnlyLeft = "child-1-margin-only-left-1";
     const marginOnlyLeft = "margin-only-left-1";
 
     let elementOne = null;
@@ -78,7 +78,7 @@ class ReverbCalculatorApp extends React.Component {
           labelText={this.preDelayColon}
           values={durations}
           value={this.state[this.valueOne]}
-          className={child2MarginOnlyLeft}
+          className={child1MarginOnlyLeft}
           onChange={(e) => this.handleChange(this.valueOne, e)}
         />
       );
@@ -89,7 +89,7 @@ class ReverbCalculatorApp extends React.Component {
           values={durations}
           value={this.state[this.valueTwo]}
           onChange={(e) => this.handleChange(this.valueTwo, e)}
-          className={`${child2MarginOnlyLeft} ${marginOnlyLeft}`}
+          className={`${child1MarginOnlyLeft} ${marginOnlyLeft}`}
         />
       );
     } else {
@@ -102,7 +102,7 @@ class ReverbCalculatorApp extends React.Component {
           labelText={this.totalReverbColon}
           values={durations}
           value={this.state[this.valueOne]}
-          className={child2MarginOnlyLeft}
+          className={child1MarginOnlyLeft}
           onChange={(e) => this.handleChange(this.valueOne, e)}
         />
       );

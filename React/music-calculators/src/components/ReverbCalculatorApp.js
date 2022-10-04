@@ -18,6 +18,8 @@ class ReverbCalculatorApp extends React.Component {
     this.decayColon = this.addColon(reverb.decay);
     this.totalReverbColon = this.addColon(reverb.totalReverb);
 
+    this.values = [this.preDelayColon, this.decayColon];
+
     this.textValueCombinations = [
       {
         text: "The total reverb duration by choosing a duration for the pre-delay and decay",
@@ -106,10 +108,9 @@ class ReverbCalculatorApp extends React.Component {
       );
       elementTwo = <p className={marginOnlyLeft}>-</p>;
 
-      const values = [this.preDelayColon, this.decayColon];
       elementThree = (
         <TextSelect
-          values={values}
+          values={this.values}
           value={this.state[this.subtractionTextColon]}
           onChange={(e) => this.handleChange(this.subtractionTextColon, e)}
           className={marginOnlyLeft}

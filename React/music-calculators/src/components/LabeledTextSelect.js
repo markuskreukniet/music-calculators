@@ -14,7 +14,7 @@ class LabeledTextSelect extends React.Component {
 
   render() {
     return (
-      <label className={this.props.class}>
+      <label className={this.props.className}>
         {this.props.labelText}
         <TextSelect
           values={this.props.values}

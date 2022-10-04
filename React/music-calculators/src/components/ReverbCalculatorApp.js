@@ -78,7 +78,7 @@ class ReverbCalculatorApp extends React.Component {
           labelText={this.preDelayColon}
           values={durations}
           value={this.state[this.valueOne]}
-          class={child2MarginOnlyLeft}
+          className={child2MarginOnlyLeft}
           onChange={(e) => this.handleChange(this.valueOne, e)}
         />
       );
@@ -89,7 +89,7 @@ class ReverbCalculatorApp extends React.Component {
           values={durations}
           value={this.state[this.valueTwo]}
           onChange={(e) => this.handleChange(this.valueTwo, e)}
-          class={`${child2MarginOnlyLeft} ${marginOnlyLeft}`}
+          className={`${child2MarginOnlyLeft} ${marginOnlyLeft}`}
         />
       );
     } else {
@@ -102,7 +102,7 @@ class ReverbCalculatorApp extends React.Component {
           labelText={this.totalReverbColon}
           values={durations}
           value={this.state[this.valueOne]}
-          class={child2MarginOnlyLeft}
+          className={child2MarginOnlyLeft}
           onChange={(e) => this.handleChange(this.valueOne, e)}
         />
       );

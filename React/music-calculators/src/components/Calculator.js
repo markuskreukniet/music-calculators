@@ -143,8 +143,8 @@ class Calculator extends React.Component {
   render() {
     return (
       <div className={"display-flex padding"}>
-        <p className={"margin-right-1"}>Result:</p>
-        <p>{this.determineResultText()}</p>
+        <p className={"margin-0"}>Result:</p>
+        <p className={"margin-only-left-1"}>{this.determineResultText()}</p>
       </div>
     );
   }

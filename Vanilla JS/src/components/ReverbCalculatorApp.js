@@ -2,49 +2,50 @@ function ReverbCalculatorApp(parent) {
   let that = this;
   this.parent = parent;
 
-  const preDelayColon = addColon(reverb.preDelay);
-  const decayColon = addColon(reverb.decay);
-  const totalReverbColon = addColon(reverb.totalReverb);
-
-  const values = [preDelayColon, decayColon];
-
-  // TODO: move to create
-  this.subtractionTextColon = preDelayColon;
-
-  function addColon(string) {
-    return `${string}:`;
-  }
-
-  function handleChange(name, value) {
-    switch (name) {
-      case "tempo":
-        that.tempo = value;
-
-        break;
-      case "durationResult":
-        that.durationResult = value;
-        that.render();
-
-        break;
-      case "valueOne":
-        that.valueOne = value;
-
-        break;
-      case "valueTwo":
-        that.valueTwo = value;
-
-        break;
-
-      case "subtractionTextColon":
-        that.subtractionTextColon = value;
-
-        break;
+  this.create = function () {
+    // functions
+    function addColon(string) {
+      return `${string}:`;
     }
 
-    that.reverbCalculator.render();
-  }
+    function handleChange(name, value) {
+      switch (name) {
+        case "tempo":
+          that.tempo = value;
 
-  this.create = function () {
+          break;
+        case "durationResult":
+          that.durationResult = value;
+          that.render();
+
+          break;
+        case "valueOne":
+          that.valueOne = value;
+
+          break;
+        case "valueTwo":
+          that.valueTwo = value;
+
+          break;
+
+        case "subtractionTextColon":
+          that.subtractionTextColon = value;
+
+          break;
+      }
+
+      that.reverbCalculator.render();
+    }
+
+    // initializations
+    that.preDelayColon = addColon(reverb.preDelay);
+    that.decayColon = addColon(reverb.decay);
+    that.totalReverbColon = addColon(reverb.totalReverb);
+
+    that.values = [that.preDelayColon, that.decayColon];
+
+    that.subtractionTextColon = that.preDelayColon;
+
     const textValueCombinations = [
       {
         text: "The total reverb duration by choosing a duration for the pre-delay and decay",
@@ -98,7 +99,7 @@ function ReverbCalculatorApp(parent) {
         that.divRow,
         durations,
         that.valueOne,
-        preDelayColon,
+        that.preDelayColon,
         (e) => handleChange("valueOne", e.target.value)
       ); // TODO: className
 
@@ -109,7 +110,7 @@ function ReverbCalculatorApp(parent) {
         that.divRow,
         durations,
         that.valueTwo,
-        decayColon,
+        that.decayColon,
         (e) => handleChange("valueTwo", e.target.value)
       ); // TODO: className
     } else {
@@ -117,18 +118,20 @@ function ReverbCalculatorApp(parent) {
         that.divRow,
         durations,
         that.valueOne,
-        totalReverbColon,
+        that.totalReverbColon,
         (e) => handleChange("valueOne", e.target.value) // TODO: duplicate
       ); // TODO: className
 
       p.innerHTML = "-";
       that.divRow.appendChild(p);
 
-      new TextSelect(that.divRow, values, that.subtractionTextColon, (e) =>
+      new TextSelect(that.divRow, that.values, that.subtractionTextColon, (e) =>
         handleChange("subtractionTextColon", e.target.value)
       ); // TODO: className
 
-      new TextSelect(that.divRow, durations, that.valueTwo, valueTwoChange); // TODO: className
+      new TextSelect(that.divRow, durations, that.valueTwo, (e) =>
+        handleChange("valueTwo", e.target.value)
+      ); // TODO: className
     }
   };
   this.init = function () {

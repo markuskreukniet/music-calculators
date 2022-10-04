@@ -26,7 +26,11 @@ class TextSelect extends React.Component {
     ));
 
     return (
-      <select value={this.value} onChange={this.handleChange}>
+      <select
+        value={this.value}
+        onChange={this.handleChange}
+        className="select"
+      >
         {options}
       </select>
     );

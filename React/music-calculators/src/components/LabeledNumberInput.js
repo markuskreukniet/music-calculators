@@ -1,22 +1,31 @@
 import React from "react";
-import NumberInput from "./NumberInput.js";
 
 class LabeledNumberInput extends React.Component {
   constructor(props) {
     super(props);
 
+    this.value = this.props.value ? this.props.value : 0;
+
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(value) {
-    this.props.onChange(value);
+  handleChange(e) {
+    e.preventDefault();
+
+    this.value = e.target.value;
+    this.props.onChange(this.value);
   }
 
   render() {
     return (
       <label className={"display-block padding border-bottom"}>
         {this.props.labelText}
-        <NumberInput value={this.props.value} onChange={this.handleChange} />
+        <input
+          type="number"
+          value={this.value}
+          onChange={this.handleChange}
+          class="margin-only-left-1 input-number"
+        />
       </label>
     );
   }

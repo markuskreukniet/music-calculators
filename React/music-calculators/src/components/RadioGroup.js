@@ -36,6 +36,7 @@ class RadioGroup extends React.Component {
           value={x.value}
           onChange={this.handleChange}
           defaultChecked={x.value === this.props.value} // the attribute defaultChecked should be used and not the attribute checked
+          className="input-radio"
         />
         {x.text}
       </label>

@@ -60,7 +60,8 @@ class ReverbCalculatorApp extends React.Component {
 
   // This function aims to skip an array. In React, the HTML elements in an array need a 'key' attribute.
   render() {
-    const className = "margin-right-1";
+    const child2MarginOnlyLeft = "child-2-margin-only-left-1";
+    const marginOnlyLeft = "margin-only-left-1";
 
     let elementOne = null;
     let elementTwo = null;
@@ -75,17 +76,18 @@ class ReverbCalculatorApp extends React.Component {
           labelText={this.preDelayColon}
           values={durations}
           value={this.state[this.valueOne]}
-          class={className}
+          class={child2MarginOnlyLeft}
           onChange={(e) => this.handleChange(this.valueOne, e)}
         />
       );
-      elementTwo = <p className={className}>+</p>;
+      elementTwo = <p className={marginOnlyLeft}>+</p>;
       elementThree = (
         <LabeledTextSelect
           labelText={this.decayColon}
           values={durations}
           value={this.state[this.valueTwo]}
           onChange={(e) => this.handleChange(this.valueTwo, e)}
+          class={`${child2MarginOnlyLeft} ${marginOnlyLeft}`}
         />
       );
     } else {
@@ -98,11 +100,11 @@ class ReverbCalculatorApp extends React.Component {
           labelText={this.totalReverbColon}
           values={durations}
           value={this.state[this.valueOne]}
-          class={className}
+          class={child2MarginOnlyLeft}
           onChange={(e) => this.handleChange(this.valueOne, e)}
         />
       );
-      elementTwo = <p>-</p>;
+      elementTwo = <p className={marginOnlyLeft}>-</p>;
 
       const values = [this.preDelayColon, this.decayColon];
       elementThree = (
@@ -110,6 +112,7 @@ class ReverbCalculatorApp extends React.Component {
           values={values}
           value={this.state[this.subtractionTextColon]}
           onChange={(e) => this.handleChange(this.subtractionTextColon, e)}
+          className={marginOnlyLeft}
         />
       );
 
@@ -118,6 +121,7 @@ class ReverbCalculatorApp extends React.Component {
           values={durations}
           value={this.state[this.valueTwo]}
           onChange={(e) => this.handleChange(this.valueTwo, e)}
+          className={marginOnlyLeft}
         />
       );
     }
@@ -135,7 +139,7 @@ class ReverbCalculatorApp extends React.Component {
           value={this.state[this.durationResult]}
           onChange={(e) => this.handleChange(this.durationResult, e)}
         />
-        <div className={"display-flex padding border-bottom"}>
+        <div className="display-flex align-items-center padding border-bottom">
           {elementOne}
           {elementTwo}
           {elementThree}

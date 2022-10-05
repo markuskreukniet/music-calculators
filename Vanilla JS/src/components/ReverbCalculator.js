@@ -2,6 +2,10 @@ function ReverbCalculator(parent) {
   let that = this;
   this.parent = parent;
 
+  this.create = function () {
+    that.calculator = new Calculator(that.parent);
+  };
+
   this.render = function (
     durationResult,
     tempo,
@@ -9,8 +13,14 @@ function ReverbCalculator(parent) {
     valueTwo,
     subtractionText
   ) {
-    new Calculator(that.parent);
+    that.calculator.render();
   };
+
+  this.init = function () {
+    that.create();
+  };
+
+  this.init();
 
   return this;
 }

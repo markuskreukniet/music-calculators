@@ -3,7 +3,8 @@ function Calculator(parent) {
   this.parent = parent;
 
   this.create = function () {
-    console.log("Calculator create");
+    const div = createElementAppendChild("div", that.parent);
+    that.element = div;
   };
   this.render = function () {
     console.log("Calculator render");

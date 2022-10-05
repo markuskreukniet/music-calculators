@@ -10,6 +10,7 @@ let durations = {};
 let reverb = {};
 
 const scriptUrls = [
+  "./src/components/Calculator.js",
   "./src/components/LabeledNumberInput.js",
   "./src/components/LabeledRadioGroup.js",
   "./src/components/LabeledTextSelect.js",

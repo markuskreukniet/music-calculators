@@ -29,12 +29,22 @@ function ReverbCalculatorApp(parent) {
           break;
 
         case "subtractionTextColon":
-          that.subtractionTextColon = value;
+          if (value === that.preDelayColon) {
+            that.subtractionText = reverb.preDelay;
+          } else {
+            that.subtractionText = reverb.decay;
+          }
 
           break;
       }
 
-      that.reverbCalculator.render();
+      that.reverbCalculator.render(
+        that.durationResult,
+        that.tempo,
+        that.valueOne,
+        that.valueTwo,
+        that.subtractionText
+      );
     }
 
     // initializations
@@ -59,10 +69,10 @@ function ReverbCalculatorApp(parent) {
 
     const defaultValueSelect = "1/64 note";
 
-    this.tempo = 128;
-    this.durationResult = textValueCombinations[0].value;
-    this.valueOne = defaultValueSelect;
-    this.valueTwo = defaultValueSelect;
+    that.tempo = 128;
+    that.durationResult = textValueCombinations[0].value;
+    that.valueOne = defaultValueSelect;
+    that.valueTwo = defaultValueSelect;
 
     // create
     const div = createElementAppendChild("div", that.parent);
@@ -82,7 +92,13 @@ function ReverbCalculatorApp(parent) {
     that.divRow.className = "display-block padding border-bottom";
 
     that.reverbCalculator = new ReverbCalculator(div);
-    that.reverbCalculator.render();
+    that.reverbCalculator.render(
+      that.durationResult,
+      that.tempo,
+      that.valueOne,
+      that.valueTwo,
+      that.subtractionText
+    );
 
     that.element = div;
   };

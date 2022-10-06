@@ -3,9 +3,12 @@ function LabeledNumberInput(parent, labelText, value, listener) {
   this.parent = parent;
 
   this.create = function () {
-    const label = createElementAppendChild("label", that.parent);
+    const label = createElementAppendChildWithClassName(
+      "label",
+      that.parent,
+      "display-block padding border-bottom"
+    );
     label.innerHTML = labelText;
-    label.className = "display-block padding border-bottom";
 
     const input = createElementAppendChild("input", label);
     input.type = "number";

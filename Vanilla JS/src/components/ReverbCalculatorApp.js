@@ -88,8 +88,11 @@ function ReverbCalculatorApp(parent) {
       (e) => that.handleChange("durationResult", e.target.value)
     );
 
-    that.divRow = createElementAppendChild("div", div);
-    that.divRow.className = "display-block padding border-bottom";
+    that.divRow = createElementAppendChildWithClassName(
+      "div",
+      div,
+      "display-block padding border-bottom"
+    );
 
     that.reverbCalculator = new ReverbCalculator(div);
     that.reverbCalculator.render(

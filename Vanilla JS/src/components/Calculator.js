@@ -3,16 +3,21 @@ function Calculator(parent) {
   this.parent = parent;
 
   this.create = function () {
-    const div = createElementAppendChild("div", that.parent);
-    div.className = "display-flex padding";
+    const div = createElementAppendChildWithClassName(
+      "div",
+      that.parent,
+      "display-flex padding"
+    );
     that.element = div;
 
-    const p = createElementAppendChild("p", div);
-    p.className = "margin-0";
+    const p = createElementAppendChildWithClassName("p", div, "margin-0");
     p.innerHTML = "Result:";
 
-    that.resultP = createElementAppendChild("p", div);
-    that.resultP.className = "margin-only-left-1";
+    that.resultP = createElementAppendChildWithClassName(
+      "p",
+      div,
+      "margin-only-left-1"
+    );
   };
   this.render = function (
     calculatorOperation,

@@ -39,6 +39,13 @@ function createElementAppendChild(element, parent) {
   return result;
 }
 
+function createElementAppendChildWithClassName(element, parent, className) {
+  const result = createElementAppendChild(element, parent);
+  result.className = className;
+
+  return result;
+}
+
 function App(parent) {
   let that = this;
   this.parent = parent;

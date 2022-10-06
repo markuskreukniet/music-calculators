@@ -21,7 +21,11 @@ function RadioGroup(parent, textValueCombinations, value, listener) {
     const div = createElementAppendChild("div", that.parent);
 
     for (const combination of textValueCombinations) {
-      const label = createElementAppendChild("label", div);
+      const label = createElementAppendChildWithClassName(
+        "label",
+        div,
+        "display-block"
+      );
 
       const input = createElementAppendChild("input", label);
       input.type = "radio";
@@ -36,7 +40,6 @@ function RadioGroup(parent, textValueCombinations, value, listener) {
       const text = document.createTextNode(combination.text);
 
       label.appendChild(text);
-      label.className = "display-block";
     }
 
     that.element = div;

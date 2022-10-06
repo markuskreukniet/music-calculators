@@ -3,7 +3,11 @@ function TextSelect(parent, values, value, listener) {
   this.parent = parent;
 
   this.create = function () {
-    const select = createElementAppendChild("select", that.parent);
+    const select = createElementAppendChildWithClassName(
+      "select",
+      that.parent,
+      "select"
+    );
 
     for (const value of values) {
       const option = createElementAppendChild("option", select);
@@ -13,7 +17,6 @@ function TextSelect(parent, values, value, listener) {
 
     select.value = value;
     select.addEventListener("change", listener);
-    select.className = "select";
 
     that.element = select;
   };

@@ -8,7 +8,7 @@ function ReverbCalculatorApp(parent) {
       return `${string}:`;
     }
 
-    function handleChange(name, value) {
+    that.handleChange = function (name, value) {
       switch (name) {
         case "tempo":
           that.tempo = value;
@@ -45,7 +45,7 @@ function ReverbCalculatorApp(parent) {
         that.valueTwo,
         that.subtractionText
       );
-    }
+    };
 
     // initializations
     that.preDelayColon = addColon(reverb.preDelay);
@@ -78,14 +78,14 @@ function ReverbCalculatorApp(parent) {
     const div = createElementAppendChild("div", that.parent);
 
     new LabeledNumberInput(div, "Tempo in BPM:", that.tempo, (e) =>
-      handleChange("tempo", e.target.value)
+      that.handleChange("tempo", e.target.value)
     );
     new LabeledRadioGroup(
       div,
       textValueCombinations,
       that.durationResult,
       "Calculate in ms:",
-      (e) => handleChange("durationResult", e.target.value)
+      (e) => that.handleChange("durationResult", e.target.value)
     );
 
     that.divRow = createElementAppendChild("div", div);
@@ -116,7 +116,7 @@ function ReverbCalculatorApp(parent) {
         durations,
         that.valueOne,
         that.preDelayColon,
-        (e) => handleChange("valueOne", e.target.value)
+        (e) => that.handleChange("valueOne", e.target.value)
       ); // TODO: className
 
       p.innerHTML = "+";
@@ -127,7 +127,7 @@ function ReverbCalculatorApp(parent) {
         durations,
         that.valueTwo,
         that.decayColon,
-        (e) => handleChange("valueTwo", e.target.value)
+        (e) => that.handleChange("valueTwo", e.target.value)
       ); // TODO: className
     } else {
       new LabeledTextSelect(
@@ -135,18 +135,18 @@ function ReverbCalculatorApp(parent) {
         durations,
         that.valueOne,
         that.totalReverbColon,
-        (e) => handleChange("valueOne", e.target.value) // TODO: duplicate
+        (e) => that.handleChange("valueOne", e.target.value) // TODO: duplicate
       ); // TODO: className
 
       p.innerHTML = "-";
       that.divRow.appendChild(p);
 
       new TextSelect(that.divRow, that.values, that.subtractionTextColon, (e) =>
-        handleChange("subtractionTextColon", e.target.value)
+        that.handleChange("subtractionTextColon", e.target.value)
       ); // TODO: className
 
       new TextSelect(that.divRow, durations, that.valueTwo, (e) =>
-        handleChange("valueTwo", e.target.value)
+        that.handleChange("valueTwo", e.target.value)
       ); // TODO: className
     }
   };

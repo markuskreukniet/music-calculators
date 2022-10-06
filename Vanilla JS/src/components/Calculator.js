@@ -6,7 +6,13 @@ function Calculator(parent) {
     const div = createElementAppendChild("div", that.parent);
     that.element = div;
   };
-  this.render = function () {
+  this.render = function (
+    calculatorOperation,
+    tempo,
+    valueOne,
+    valueTwo,
+    subtractionText
+  ) {
     console.log("Calculator render");
   };
   this.init = function () {

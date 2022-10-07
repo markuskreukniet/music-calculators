@@ -55,6 +55,7 @@ function ReverbCalculatorApp(parent) {
     that.values = [that.preDelayColon, that.decayColon];
 
     that.subtractionTextColon = that.preDelayColon;
+    that.subtractionText = reverb.preDelay;
 
     const textValueCombinations = [
       {

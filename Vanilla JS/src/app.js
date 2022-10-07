@@ -2,23 +2,14 @@
 // TODO: shorten code where possible
 // TODO: try to make custom element of this app, maybe with giving style tag an id and adding styles to it
 
+// TODO: refactor
+
 "use strict";
 
 let app = {};
 let arithmeticOperation = {};
 let durations = {};
 let reverb = {};
-
-const scriptUrls = [
-  "./src/components/Calculator.js",
-  "./src/components/LabeledNumberInput.js",
-  "./src/components/LabeledRadioGroup.js",
-  "./src/components/LabeledTextSelect.js",
-  "./src/components/RadioGroup.js",
-  "./src/components/ReverbCalculator.js",
-  "./src/components/ReverbCalculatorApp.js",
-  "./src/components/TextSelect.js",
-];
 
 function includeScriptInHead(src) {
   return new Promise((resolve, reject) => {
@@ -51,6 +42,17 @@ function App(parent) {
   this.parent = parent;
 
   this.fetch = async function () {
+    const scriptUrls = [
+      "./src/components/Calculator.js",
+      "./src/components/LabeledNumberInput.js",
+      "./src/components/LabeledRadioGroup.js",
+      "./src/components/LabeledTextSelect.js",
+      "./src/components/RadioGroup.js",
+      "./src/components/ReverbCalculator.js",
+      "./src/components/ReverbCalculatorApp.js",
+      "./src/components/TextSelect.js",
+    ];
+
     try {
       import("./constants/app.constants.js").then((module) => {
         app = module.default;
@@ -63,6 +65,9 @@ function App(parent) {
       });
       import("./constants/reverb.constants.js").then((module) => {
         reverb = module.default;
+      });
+      import("./style.js").then((module) => {
+        that.style = module.default;
       });
     } catch (e) {
       console.log(e);
@@ -77,6 +82,11 @@ function App(parent) {
     }
   };
   this.create = function () {
+    // If there is a shadow dom, the style element gets appended outside of it.
+    var element = document.createElement("style");
+    element.innerHTML = that.style;
+    document.body.appendChild(element);
+
     new ReverbCalculatorApp(that.parent);
   };
   this.init = async function () {

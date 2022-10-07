@@ -10,7 +10,11 @@ function LabeledNumberInput(parent, labelText, value, listener) {
     );
     label.innerHTML = labelText;
 
-    const input = createElementAppendChild("input", label);
+    const input = createElementAppendChildWithClassName(
+      "input",
+      label,
+      "margin-only-left-1 input-number"
+    );
     input.type = "number";
     input.value = value;
     input.addEventListener("change", listener);

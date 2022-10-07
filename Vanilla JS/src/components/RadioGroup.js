@@ -27,7 +27,11 @@ function RadioGroup(parent, textValueCombinations, value, listener) {
         "display-block"
       );
 
-      const input = createElementAppendChild("input", label);
+      const input = createElementAppendChildWithClassName(
+        "input",
+        label,
+        "input-radio"
+      );
       input.type = "radio";
       input.value = combination.value;
       input.name = name;

@@ -92,7 +92,7 @@ function ReverbCalculatorApp(parent) {
     that.divRow = createElementAppendChildWithClassName(
       "div",
       div,
-      "display-block padding border-bottom"
+      "display-flex align-items-center padding border-bottom"
     );
 
     that.reverbCalculator = new ReverbCalculator(div);
@@ -109,6 +109,7 @@ function ReverbCalculatorApp(parent) {
   this.render = function () {
     that.divRow.innerHTML = "";
 
+    const child1MarginOnlyLeft = "child-1-margin-only-left-1";
     const marginOnlyLeft = "margin-only-left-1";
 
     const p = document.createElement("p");
@@ -120,8 +121,9 @@ function ReverbCalculatorApp(parent) {
         durations,
         that.valueOne,
         that.preDelayColon,
-        (e) => that.handleChange("valueOne", e.target.value)
-      ); // TODO: className
+        (e) => that.handleChange("valueOne", e.target.value),
+        child1MarginOnlyLeft
+      );
 
       p.innerHTML = "+";
       that.divRow.appendChild(p);
@@ -131,16 +133,18 @@ function ReverbCalculatorApp(parent) {
         durations,
         that.valueTwo,
         that.decayColon,
-        (e) => that.handleChange("valueTwo", e.target.value)
-      ); // TODO: className
+        (e) => that.handleChange("valueTwo", e.target.value),
+        `${child1MarginOnlyLeft} ${marginOnlyLeft}`
+      );
     } else {
       new LabeledTextSelect(
         that.divRow,
         durations,
         that.valueOne,
         that.totalReverbColon,
-        (e) => that.handleChange("valueOne", e.target.value) // TODO: duplicate
-      ); // TODO: className
+        (e) => that.handleChange("valueOne", e.target.value),
+        child1MarginOnlyLeft
+      );
 
       p.innerHTML = "-";
       that.divRow.appendChild(p);

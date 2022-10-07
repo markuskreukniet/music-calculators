@@ -1,9 +1,20 @@
-function LabeledTextSelect(parent, values, value, labelText, listener) {
+function LabeledTextSelect(
+  parent,
+  values,
+  value,
+  labelText,
+  listener,
+  className
+) {
   let that = this;
   this.parent = parent;
 
   this.create = function () {
-    const label = createElementAppendChild("label", that.parent);
+    const label = createElementAppendChildWithClassName(
+      "label",
+      that.parent,
+      className
+    );
     label.innerHTML = labelText;
 
     new TextSelect(label, values, value, listener);

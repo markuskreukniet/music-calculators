@@ -165,8 +165,6 @@ function Calculator(parent) {
     }
 
     // render
-    console.log("Calculator render");
-
     that.resultP.innerHTML = determineResultText(
       tempo,
       calculatorOperation,

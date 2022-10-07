@@ -38,11 +38,13 @@ function ReverbCalculator(parent) {
     }
 
     that.calculator.render(
-      calculatorOperation,
       tempo,
       valueOne,
       valueTwo,
-      subtractionText
+      valueOneText,
+      valueTwoText,
+      resultTextPart,
+      calculatorOperation
     );
   };
 

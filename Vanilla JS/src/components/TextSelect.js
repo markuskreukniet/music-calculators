@@ -1,12 +1,17 @@
-function TextSelect(parent, values, value, listener) {
+function TextSelect(parent, values, value, listener, className) {
   let that = this;
   this.parent = parent;
 
   this.create = function () {
+    let selectClassName = "select";
+    if (className) {
+      selectClassName += ` ${className}`;
+    }
+
     const select = createElementAppendChildWithClassName(
       "select",
       that.parent,
-      "select"
+      selectClassName
     );
 
     for (const value of values) {

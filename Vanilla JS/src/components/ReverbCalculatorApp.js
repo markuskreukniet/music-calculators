@@ -145,13 +145,21 @@ function ReverbCalculatorApp(parent) {
       p.innerHTML = "-";
       that.divRow.appendChild(p);
 
-      new TextSelect(that.divRow, that.values, that.subtractionTextColon, (e) =>
-        that.handleChange("subtractionTextColon", e.target.value)
-      ); // TODO: className
+      new TextSelect(
+        that.divRow,
+        that.values,
+        that.subtractionTextColon,
+        (e) => that.handleChange("subtractionTextColon", e.target.value),
+        marginOnlyLeft
+      );
 
-      new TextSelect(that.divRow, durations, that.valueTwo, (e) =>
-        that.handleChange("valueTwo", e.target.value)
-      ); // TODO: className
+      new TextSelect(
+        that.divRow,
+        durations,
+        that.valueTwo,
+        (e) => that.handleChange("valueTwo", e.target.value),
+        marginOnlyLeft
+      );
     }
   };
   this.init = function () {

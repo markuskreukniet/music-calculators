@@ -69,11 +69,7 @@ function App(parent) {
       import("./style.js").then((module) => {
         that.style = module.default;
       });
-    } catch (e) {
-      console.log(e);
-    }
 
-    try {
       for (const url of scriptUrls) {
         await includeScriptInHead(url);
       }

@@ -13,13 +13,11 @@ let reverb = {};
 
 function includeScriptInHead(src) {
   return new Promise((resolve, reject) => {
-    const script = document.createElement("script"); // TODO: change to createElementAppendChild?
+    const script = createElementAppendChild("script", document.head);
 
     script.setAttribute("src", src);
     script.addEventListener("load", resolve);
     script.addEventListener("error", reject);
-
-    document.head.appendChild(script);
   });
 }
 

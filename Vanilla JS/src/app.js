@@ -40,6 +40,14 @@ function App(parent) {
   this.parent = parent;
 
   this.fetch = async function () {
+    function importDefaultModule(moduleName) {
+      return new Promise((resolve) => {
+        import(moduleName).then((module) => {
+          resolve(module.default);
+        });
+      });
+    }
+
     const scriptUrls = [
       "./src/components/Calculator.js",
       "./src/components/LabeledNumberInput.js",
@@ -52,21 +60,23 @@ function App(parent) {
     ];
 
     try {
-      import("./constants/app.constants.js").then((module) => {
-        app = module.default;
-      });
-      import("./constants/arithmeticOperation.constants.js").then((module) => {
-        arithmeticOperation = module.default;
-      });
-      import("./constants/durations.constants.js").then((module) => {
-        durations = module.default;
-      });
-      import("./constants/reverb.constants.js").then((module) => {
-        reverb = module.default;
-      });
-      import("./style.js").then((module) => {
-        that.style = module.default;
-      });
+      const importApp = importDefaultModule("./constants/app.constants.js");
+      const importArithmeticOperation = importDefaultModule(
+        "./constants/arithmeticOperation.constants.js"
+      );
+      const importDurations = importDefaultModule(
+        "./constants/durations.constants.js"
+      );
+      const importReverb = importDefaultModule(
+        "./constants/reverb.constants.js"
+      );
+      const importStyle = importDefaultModule("./style.js");
+
+      app = await importApp;
+      arithmeticOperation = await importArithmeticOperation;
+      durations = await importDurations;
+      reverb = await importReverb;
+      that.style = await importStyle;
 
       for (const url of scriptUrls) {
         await includeScriptInHead(url);

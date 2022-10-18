@@ -78,10 +78,9 @@ function App(parent) {
       reverb = await importReverb;
       that.style = await importStyle;
 
-      const promises = [];
-      for (const url of scriptUrls) {
-        promises.push(includeScriptInHead(url));
-      }
+      const promises = scriptUrls.map((x) => {
+        return includeScriptInHead(x);
+      });
 
       await Promise.all(promises);
     } catch (e) {

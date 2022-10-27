@@ -18,6 +18,7 @@ function LabeledNumberInput(parent, labelText, value, listener) {
     input.type = "number";
     input.value = value;
     input.addEventListener("change", listener);
+    input.addEventListener("keyup", listener);
 
     that.element = label;
   };

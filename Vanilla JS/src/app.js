@@ -4,8 +4,6 @@
 
 // TODO: refactor
 
-// TODO: BPM change only happens with clicking outside input
-
 "use strict";
 
 let app = {};

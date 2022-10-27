@@ -89,9 +89,8 @@ function App(parent) {
   };
   this.create = function () {
     // If there is a shadow dom, the style element gets appended outside of it.
-    var element = document.createElement("style");
+    const element = createElementAppendChild("style", document.body);
     element.innerHTML = that.style;
-    document.body.appendChild(element);
 
     new ReverbCalculatorApp(that.parent);
   };

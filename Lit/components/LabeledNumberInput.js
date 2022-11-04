@@ -25,7 +25,6 @@ export class LabeledNumberInput extends LitElement {
         ${this.labelText}
         <input
           type="number"
-          bind:value
           @input=${this._handleChange}
           .value=${this.value}
           class="margin-only-left-1 input-number"

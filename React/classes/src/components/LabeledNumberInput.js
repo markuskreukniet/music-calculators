@@ -24,7 +24,7 @@ class LabeledNumberInput extends React.Component {
           type="number"
           value={this.value}
           onChange={this.handleChange}
-          className="margin-only-left-1 input-number"
+          className={"margin-only-left-1 input-number"}
         />
       </label>
     );

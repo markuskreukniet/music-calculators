@@ -1,8 +1,9 @@
 import {LitElement, html} from 'lit';
-
-// TODO: fix styles
+import style from '../style.js';
 
 export class LabeledNumberInput extends LitElement {
+  static styles = [style];
+
   static get properties() {
     return {
       labelText: {type: String},

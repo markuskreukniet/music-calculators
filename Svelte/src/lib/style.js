@@ -1,6 +1,5 @@
 // TODO: name everything with prefix mca- (Music Calculators App)
 // TODO: explain why using prefix
-// TODO: use the style logic in the React project
 const style = `
     :root {
         /* golden ratio */

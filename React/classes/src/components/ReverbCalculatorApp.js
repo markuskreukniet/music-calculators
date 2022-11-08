@@ -140,9 +140,7 @@ class ReverbCalculatorApp extends React.Component {
           value={this.state[this.durationResult]}
           onChange={(e) => this.handleChange(this.durationResult, e)}
         />
-        <div
-          className={"display-flex align-items-center padding border-bottom"}
-        >
+        <div className="display-flex align-items-center padding border-bottom">
           {elementOne}
           {elementTwo}
           {elementThree}

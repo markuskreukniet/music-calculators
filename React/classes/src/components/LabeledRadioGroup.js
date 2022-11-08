@@ -15,8 +15,8 @@ class LabeledRadioGroup extends React.Component {
 
   render() {
     return (
-      <div className={"display-block padding border-bottom"}>
-        <p className={"text-before-list"}>{this.props.labelText}</p>
+      <div className="display-block padding border-bottom">
+        <p className="text-before-list">{this.props.labelText}</p>
         <RadioGroup
           textValueCombinations={this.props.textValueCombinations}
           value={this.props.value}

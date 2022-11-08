@@ -18,13 +18,13 @@ class LabeledNumberInput extends React.Component {
 
   render() {
     return (
-      <label className={"display-block padding border-bottom"}>
+      <label className="display-block padding border-bottom">
         {this.props.labelText}
         <input
           type="number"
           value={this.value}
           onChange={this.handleChange}
-          className={"margin-only-left-1 input-number"}
+          className="margin-only-left-1 input-number"
         />
       </label>
     );

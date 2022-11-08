@@ -29,7 +29,7 @@ class RadioGroup extends React.Component {
 
   render() {
     const labeledRadioInputs = this.combinations.map((x, i) => (
-      <label className={"display-block"} key={i}>
+      <label className="display-block" key={i}>
         <input
           type="radio"
           name={this.name}

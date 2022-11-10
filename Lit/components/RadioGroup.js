@@ -54,7 +54,7 @@ export class RadioGroup extends LitElement {
                 value=${combination.value}
                 @input=${this._handleChange}
                 ?checked=${combination.value === this.value}
-                className="input-radio"
+                class="input-radio"
               />
             </label>
           `

@@ -27,53 +27,23 @@
   }
 
   function valueToMs(value, note) {
-    // if ms value, return its number
-    let msString = " ms"; // has whitespace
-    if (value.includes(msString)) {
-      msString = value.replace(msString, app.emptyString);
-      return parseFloat(msString); // return float
-    }
+    // value = value.replace(" note", "").replace(" notes", "").replace(" ms", ""); // not needed
+    let noteValue = parseFloat(value);
 
-    // determine ms value
-    let result = -1;
-
-    const tripletString = " triplet";
-    const dottedString = " dotted";
+    // Check if the value is in fractional form
     const fractionString = "1/";
-
-    let isTriplet = false;
-    let isDotted = false;
-    let isFraction = false;
-
-    const notes = " notes";
-    if (value.includes(notes)) {
-      value = value.replace(notes, app.emptyString);
-    } else {
-      value = value.replace(" note", app.emptyString);
-    }
-
-    if (value.includes(tripletString)) {
-      isTriplet = true;
-      value = value.replace(tripletString, app.emptyString);
-    } else if (value.includes(dottedString)) {
-      isDotted = true;
-      value = value.replace(dottedString, app.emptyString);
-    }
-
     if (value.includes(fractionString)) {
-      isFraction = true;
-      value = value.replace(fractionString, app.emptyString);
+      noteValue =
+        note / parseInt(value.replace(fractionString, app.emptyString), 10);
     }
 
-    result = isFraction ? note / value : note * value;
-
-    if (isTriplet) {
-      result = (result / 3) * 2;
-    } else if (isDotted) {
-      result *= 1.5;
+    if (value.includes(" triplet")) {
+      noteValue = (noteValue / 3) * 2;
+    } else if (value.includes(" dotted")) {
+      noteValue *= 1.5;
     }
 
-    return result;
+    return noteValue;
   }
 
   function hasMoreThanTwoDecimals(value) {

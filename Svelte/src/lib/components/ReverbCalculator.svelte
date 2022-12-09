@@ -1,5 +1,4 @@
 <script>
-  import app from "../constants/app.constants.js";
   import arithmeticOperation from "../constants/arithmeticOperation.constants.js";
   import reverb from "../constants/reverb.constants.js";
 
@@ -15,32 +14,40 @@
   const decay = addParentheses(reverb.decay);
   const totalReverb = addParentheses(reverb.totalReverb);
 
-  let valueOneText = app.emptyString;
-  let valueTwoText = app.emptyString;
-  let resultTextPart = app.emptyString;
+  let labeledFormula = {};
 
-  $: setCalculatorValues(calculatorOperation, subtractionText);
+  $: setCalculatorValues(
+    calculatorOperation,
+    valueOne,
+    valueTwo,
+    subtractionText
+  );
 
-  function setCalculatorValues(calculatorOperation, subtractionText) {
-    switch (calculatorOperation) {
-      case arithmeticOperation.addition:
-        valueOneText = preDelay;
-        valueTwoText = decay;
-        resultTextPart = totalReverb;
+  function setCalculatorValues(
+    calculatorOperation,
+    valueOne,
+    valueTwo,
+    subtractionText
+  ) {
+    labeledFormula = {
+      operator: calculatorOperation,
+      operandLabelCombinations: [
+        { operand: valueOne, label: preDelay },
+        { operand: valueTwo, label: decay },
+      ],
+      label: totalReverb,
+    };
 
-        break;
-      case arithmeticOperation.subtraction:
-        valueOneText = totalReverb;
+    if (calculatorOperation === arithmeticOperation.subtraction) {
+      labeledFormula.operandLabelCombinations[0].label = totalReverb;
 
-        if (subtractionText === reverb.preDelay) {
-          valueTwoText = preDelay;
-          resultTextPart = decay;
-        } else {
-          valueTwoText = decay;
-          resultTextPart = preDelay;
-        }
-
-        break;
+      if (subtractionText === reverb.preDelay) {
+        labeledFormula.operandLabelCombinations[1].label = preDelay;
+        labeledFormula.label = decay;
+      } else {
+        labeledFormula.operandLabelCombinations[1].label = decay;
+        labeledFormula.label = preDelay;
+      }
     }
   }
 
@@ -49,12 +56,4 @@
   }
 </script>
 
-<Calculator
-  {tempo}
-  {valueOne}
-  {valueTwo}
-  {valueOneText}
-  {valueTwoText}
-  {resultTextPart}
-  {calculatorOperation}
-/>
+<Calculator {tempo} {labeledFormula} />

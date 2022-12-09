@@ -3,22 +3,9 @@
   import arithmeticOperation from "../constants/arithmeticOperation.constants.js";
 
   export let tempo;
-  export let calculatorOperation;
-  export let valueOne;
-  export let valueTwo;
-  export let valueOneText;
-  export let valueTwoText;
-  export let resultTextPart;
+  export let labeledFormula;
 
-  $: resultText = determineResultText(
-    tempo,
-    calculatorOperation,
-    valueOne,
-    valueTwo,
-    valueOneText,
-    valueTwoText,
-    resultTextPart
-  );
+  $: resultText = determineResultText(tempo, labeledFormula);
 
   function determineNoteInMs(tempo) {
     const minInMs = 60000; // 1 minute = 60000 milliseconds
@@ -77,24 +64,22 @@
     return `${value} ms ${text}`;
   }
 
-  function determineResultText(
-    tempo,
-    calculatorOperation,
-    valueOne,
-    valueTwo,
-    valueOneText,
-    valueTwoText,
-    resultTextPart
-  ) {
+  function determineResultText(tempo, labeledFormula) {
     const noteInMs = determineNoteInMs(tempo);
 
-    const valueOneInMs = valueToMsWithMaxTwoDecimals(valueOne, noteInMs);
-    const valueTwoInMs = valueToMsWithMaxTwoDecimals(valueTwo, noteInMs);
+    const valueOneInMs = valueToMsWithMaxTwoDecimals(
+      labeledFormula.operandLabelCombinations[0].operand,
+      noteInMs
+    );
+    const valueTwoInMs = valueToMsWithMaxTwoDecimals(
+      labeledFormula.operandLabelCombinations[1].operand,
+      noteInMs
+    );
 
     let resultValue = -1;
     let arithmeticOperationSign = app.emptyString;
 
-    switch (calculatorOperation) {
+    switch (labeledFormula.operator) {
       case arithmeticOperation.addition:
         resultValue = valueOneInMs + valueTwoInMs;
         arithmeticOperationSign = "+";
@@ -112,11 +97,17 @@
     // toMaxTwoDecimals is needed for the floating-point problem. For example, the result can go wrong with 0.1 ms as a value.
     resultValue = toMaxTwoDecimals(resultValue);
 
-    let result = `${toValueMsTextString(valueOneInMs, valueOneText)}
+    let result = `${toValueMsTextString(
+      valueOneInMs,
+      labeledFormula.operandLabelCombinations[0].label
+    )}
     ${arithmeticOperationSign}
-    ${toValueMsTextString(valueTwoInMs, valueTwoText)}
+    ${toValueMsTextString(
+      valueTwoInMs,
+      labeledFormula.operandLabelCombinations[1].label
+    )}
     =
-    ${toValueMsTextString(resultValue, resultTextPart)}`;
+    ${toValueMsTextString(resultValue, labeledFormula.label)}`;
 
     if (resultValue <= 0) {
       result = `${result}. A result with a negative or 0 value is invalid.`;

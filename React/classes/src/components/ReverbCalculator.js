@@ -19,17 +19,6 @@ class ReverbCalculator extends React.Component {
   }
 
   render() {
-    if (
-      !this.props.calculatorOperation ||
-      !this.props.tempo ||
-      !this.props.valueOne ||
-      !this.props.valueTwo ||
-      (this.props.calculatorOperation === arithmeticOperation.subtraction &&
-        !this.props.subtractionText)
-    ) {
-      return;
-    }
-
     const labeledFormula = {
       operator: this.props.calculatorOperation,
       operandLabelCombinations: [

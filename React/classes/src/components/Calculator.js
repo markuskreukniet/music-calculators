@@ -63,20 +63,21 @@ class Calculator extends React.Component {
 
   determineResultText() {
     const noteInMs = this.determineNoteInMs(this.props.tempo);
+    const labeledFormula = this.props.labeledFormula;
 
     const valueOneInMs = this.valueToMsWithMaxTwoDecimals(
-      this.props.valueOne,
+      labeledFormula.operandLabelCombinations[0].operand,
       noteInMs
     );
     const valueTwoInMs = this.valueToMsWithMaxTwoDecimals(
-      this.props.valueTwo,
+      labeledFormula.operandLabelCombinations[1].operand,
       noteInMs
     );
 
     let resultValue = -1;
     let arithmeticOperationSign = app.emptyString;
 
-    switch (this.props.calculatorOperation) {
+    switch (labeledFormula.operator) {
       case arithmeticOperation.addition:
         resultValue = valueOneInMs + valueTwoInMs;
         arithmeticOperationSign = "+";
@@ -96,12 +97,15 @@ class Calculator extends React.Component {
 
     let result = `${this.toValueMsTextString(
       valueOneInMs,
-      this.props.valueOneText
+      labeledFormula.operandLabelCombinations[0].label
     )}
     ${arithmeticOperationSign}
-    ${this.toValueMsTextString(valueTwoInMs, this.props.valueTwoText)}
+    ${this.toValueMsTextString(
+      valueTwoInMs,
+      labeledFormula.operandLabelCombinations[1].label
+    )}
     =
-    ${this.toValueMsTextString(resultValue, this.props.resultTextPart)}`;
+    ${this.toValueMsTextString(resultValue, labeledFormula.label)}`;
 
     if (resultValue <= 0) {
       result = `${result}. A result with a negative or 0 value is invalid.`;

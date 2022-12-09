@@ -30,32 +30,29 @@ class ReverbCalculator extends React.Component {
       return;
     }
 
-    let valueOneText = this.preDelay;
-    let valueTwoText = this.decay;
-    let resultTextPart = this.totalReverb;
+    const labeledFormula = {
+      operator: this.props.calculatorOperation,
+      operandLabelCombinations: [
+        { operand: this.props.valueOne, label: this.preDelay },
+        { operand: this.props.valueTwo, label: this.decay },
+      ],
+      label: this.totalReverb,
+    };
 
     if (this.props.calculatorOperation === arithmeticOperation.subtraction) {
-      valueOneText = this.totalReverb;
+      labeledFormula.operandLabelCombinations[0].label = this.totalReverb;
 
       if (this.props.subtractionText === reverb.preDelay) {
-        valueTwoText = this.preDelay;
-        resultTextPart = this.decay;
+        labeledFormula.operandLabelCombinations[1].label = this.preDelay;
+        labeledFormula.label = this.decay;
       } else {
-        valueTwoText = this.decay;
-        resultTextPart = this.preDelay;
+        labeledFormula.operandLabelCombinations[1].label = this.decay;
+        labeledFormula.label = this.preDelay;
       }
     }
 
     return (
-      <Calculator
-        tempo={this.props.tempo}
-        valueOne={this.props.valueOne}
-        valueTwo={this.props.valueTwo}
-        valueOneText={valueOneText}
-        valueTwoText={valueTwoText}
-        resultTextPart={resultTextPart}
-        calculatorOperation={this.props.calculatorOperation}
-      />
+      <Calculator tempo={this.props.tempo} labeledFormula={labeledFormula} />
     );
   }
 }

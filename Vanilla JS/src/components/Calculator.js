@@ -19,15 +19,7 @@ function Calculator(parent) {
       "margin-only-left-1"
     );
   };
-  this.render = function (
-    tempo,
-    valueOne,
-    valueTwo,
-    valueOneText,
-    valueTwoText,
-    resultTextPart,
-    calculatorOperation
-  ) {
+  this.render = function (tempo, labeledFormula) {
     // functions
     function determineNoteInMs(tempo) {
       const minInMs = 60000; // 1 minute = 60000 milliseconds
@@ -86,24 +78,22 @@ function Calculator(parent) {
       return `${value} ms ${text}`;
     }
 
-    function determineResultText(
-      tempo,
-      calculatorOperation,
-      valueOne,
-      valueTwo,
-      valueOneText,
-      valueTwoText,
-      resultTextPart
-    ) {
+    function determineResultText(tempo, labeledFormula) {
       const noteInMs = determineNoteInMs(tempo);
 
-      const valueOneInMs = valueToMsWithMaxTwoDecimals(valueOne, noteInMs);
-      const valueTwoInMs = valueToMsWithMaxTwoDecimals(valueTwo, noteInMs);
+      const valueOneInMs = valueToMsWithMaxTwoDecimals(
+        labeledFormula.operandLabelCombinations[0].operand,
+        noteInMs
+      );
+      const valueTwoInMs = valueToMsWithMaxTwoDecimals(
+        labeledFormula.operandLabelCombinations[1].operand,
+        noteInMs
+      );
 
       let resultValue = -1;
       let arithmeticOperationSign = app.emptyString;
 
-      switch (calculatorOperation) {
+      switch (labeledFormula.operator) {
         case arithmeticOperation.addition:
           resultValue = valueOneInMs + valueTwoInMs;
           arithmeticOperationSign = "+";
@@ -121,11 +111,17 @@ function Calculator(parent) {
       // toMaxTwoDecimals is needed for the floating-point problem. For example, the result can go wrong with 0.1 ms as a value.
       resultValue = toMaxTwoDecimals(resultValue);
 
-      let result = `${toValueMsTextString(valueOneInMs, valueOneText)}
+      let result = `${toValueMsTextString(
+        valueOneInMs,
+        labeledFormula.operandLabelCombinations[0].label
+      )}
       ${arithmeticOperationSign}
-      ${toValueMsTextString(valueTwoInMs, valueTwoText)}
+      ${toValueMsTextString(
+        valueTwoInMs,
+        labeledFormula.operandLabelCombinations[1].label
+      )}
       =
-      ${toValueMsTextString(resultValue, resultTextPart)}`;
+      ${toValueMsTextString(resultValue, labeledFormula.label)}`;
 
       if (resultValue <= 0) {
         result = `${result}. A result with a negative or 0 value is invalid.`;
@@ -135,15 +131,7 @@ function Calculator(parent) {
     }
 
     // render
-    that.resultP.innerHTML = determineResultText(
-      tempo,
-      calculatorOperation,
-      valueOne,
-      valueTwo,
-      valueOneText,
-      valueTwoText,
-      resultTextPart
-    );
+    that.resultP.innerHTML = determineResultText(tempo, labeledFormula);
   };
   this.init = function () {
     that.create();

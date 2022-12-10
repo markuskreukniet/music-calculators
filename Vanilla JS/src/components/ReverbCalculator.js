@@ -21,31 +21,28 @@ function ReverbCalculator(parent) {
     valueTwo,
     subtractionText
   ) {
-    let valueOneText = that.preDelay;
-    let valueTwoText = that.decay;
-    let resultTextPart = that.totalReverb;
+    const labeledFormula = {
+      operator: calculatorOperation,
+      operandLabelCombinations: [
+        { operand: valueOne, label: that.preDelay },
+        { operand: valueTwo, label: that.decay },
+      ],
+      label: that.totalReverb,
+    };
 
     if (calculatorOperation === arithmeticOperation.subtraction) {
-      valueOneText = that.totalReverb;
+      labeledFormula.operandLabelCombinations[0].label = that.totalReverb;
 
       if (subtractionText === reverb.preDelay) {
-        valueTwoText = that.preDelay;
-        resultTextPart = that.decay;
+        labeledFormula.operandLabelCombinations[1].label = that.preDelay;
+        labeledFormula.label = that.decay;
       } else {
-        valueTwoText = that.decay;
-        resultTextPart = that.preDelay;
+        labeledFormula.operandLabelCombinations[1].label = that.decay;
+        labeledFormula.label = that.preDelay;
       }
     }
 
-    that.calculator.render(
-      tempo,
-      valueOne,
-      valueTwo,
-      valueOneText,
-      valueTwoText,
-      resultTextPart,
-      calculatorOperation
-    );
+    that.calculator.render(tempo, labeledFormula);
   };
 
   this.init = function () {

@@ -14,7 +14,7 @@
   }
 
   function valueToMs(value, note) {
-    // value = value.replace(" note", "").replace(" notes", "").replace(" ms", ""); // not needed
+    // value = value.replace(" notes", "").replace(" note", "").replace(" ms", ""); // not needed
     let noteValue = parseFloat(value);
 
     // Check if the value is in fractional form

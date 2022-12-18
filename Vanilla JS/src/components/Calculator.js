@@ -31,11 +31,12 @@ function Calculator(parent) {
       // value = value.replace(" notes", "").replace(" note", "").replace(" ms", ""); // not needed
       let noteValue = parseFloat(value);
 
-      // Check if the value is in fractional form
       const fractionString = "1/";
       if (value.includes(fractionString)) {
         noteValue =
           note / parseInt(value.replace(fractionString, app.emptyString), 10);
+      } else if (value.includes("note")) {
+        noteValue = note * parseInt(value, 10);
       }
 
       if (value.includes(" triplet")) {

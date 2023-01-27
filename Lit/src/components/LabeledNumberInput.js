@@ -2,6 +2,10 @@ import {LitElement, html} from 'lit';
 import style from '../style.js';
 
 export class LabeledNumberInput extends LitElement {
+  constructor() {
+    super();
+  }
+
   static styles = [style];
 
   static get properties() {

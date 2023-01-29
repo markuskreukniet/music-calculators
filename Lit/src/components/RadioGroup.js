@@ -1,5 +1,6 @@
 import {LitElement, html} from 'lit';
 import {map} from 'lit/directives/map.js';
+import customEventOptionsPart from '../constants/customEvent.constants.js';
 import style from '../style.js';
 
 export class RadioGroup extends LitElement {
@@ -32,11 +33,9 @@ export class RadioGroup extends LitElement {
 
   // TODO: same as in LabeledNumberInput? depends also on preventdefault
   _handleChange(e) {
-    const options = {
-      detail: e.target.value,
-      bubbles: true,
-      composed: true,
-    };
+    const options = customEventOptionsPart;
+    options.detail = e.target.value;
+
     this.dispatchEvent(new CustomEvent('value', options));
   }
 

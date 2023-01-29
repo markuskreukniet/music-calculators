@@ -1,4 +1,5 @@
 import {LitElement, html} from 'lit';
+import customEventOptionsPart from '../constants/customEvent.constants.js';
 import style from '../style.js';
 
 export class LabeledNumberInput extends LitElement {
@@ -16,11 +17,9 @@ export class LabeledNumberInput extends LitElement {
   }
 
   _handleChange(e) {
-    const options = {
-      detail: e.target.value,
-      bubbles: true, // The event bubbles up through the DOM tree, which parent elements can handle.
-      composed: true, // The parent element can handle the event if the element is in a shadow tree.
-    };
+    const options = customEventOptionsPart; // TODO: same as RadioGroup
+    options.detail = e.target.value;
+
     this.dispatchEvent(new CustomEvent('value', options));
   }
 

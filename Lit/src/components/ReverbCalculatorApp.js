@@ -8,13 +8,14 @@ export class ReverbCalculatorApp extends LitElement {
     return {
       _durationResult: {type: String, state: true},
       _tempo: {type: Number, state: true},
+      _textValueCombinations: {type: Array, state: true},
     };
   }
 
   constructor() {
     super();
 
-    const textValueCombinations = [
+    this._textValueCombinations = [
       {
         text: 'The total reverb duration by choosing a duration for the pre-delay and decay',
         value: arithmeticOperation.addition,
@@ -25,7 +26,7 @@ export class ReverbCalculatorApp extends LitElement {
       },
     ];
 
-    this._durationResult = textValueCombinations[0].value;
+    this._durationResult = this._textValueCombinations[0].value;
     this._tempo = 128;
   }
 
@@ -42,13 +43,15 @@ export class ReverbCalculatorApp extends LitElement {
       <div>
         <labeled-number-input
           labelText=${'Tempo in BPM:'}
-          value=${this._tempo}
+          .value=${this._tempo}
           @value=${this._handleChangeTempo}
         ></labeled-number-input>
-        <!-- <labeled-radio-group
+        <labeled-radio-group
           labelText=${'Calculate in ms:'}
+          .textValueCombinations=${this._textValueCombinations}
+          .value=${this._durationResult}
           @value=${this._handleChangeDurationResult}
-        ></labeled-radio-group> -->
+        ></labeled-radio-group>
       </div>
     `;
   }

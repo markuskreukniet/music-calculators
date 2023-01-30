@@ -24,7 +24,7 @@ class TextSelect extends LitElement {
       (x) => html`<option value=${x}>${x}</option>`
     );
     return html`
-      <select value=${this.value} @change=${this.handleChange}>
+      <select .value=${this.value} @change=${this.handleChange}>
         ${options}
       </select>
     `;

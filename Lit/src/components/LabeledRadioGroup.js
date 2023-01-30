@@ -7,10 +7,24 @@ export class LabeledRadioGroup extends LitElement {
 
   static get properties() {
     return {
-      labelText: {type: String},
-      textValueCombinations: {type: Array},
+      labelText: {
+        type: String,
+        hasChanged(newVal) {
+          console.log('labelText', newVal);
+        },
+      },
+      textValueCombinations: {
+        type: Array,
+        hasChanged(newVal) {
+          console.log('textValueCombinations', newVal);
+        },
+      },
       value: {type: String},
     };
+  }
+
+  constructor() {
+    super();
   }
 
   // TODO: same as in LabeledNumberInput?
@@ -27,11 +41,11 @@ export class LabeledRadioGroup extends LitElement {
     return html`
       <div class="display-block padding border-bottom">
         <p class="text-before-list">${this.labelText}</p>
-        <radio-group
-          text-value-combinations=${this.textValueCombinations}
-          value=${this.value}
+        <!-- <radio-group
+          .textValueCombinations=${this.textValueCombinations}
+          .value=${this.value}
           @value=${this._handleChange}
-        ></radio-group>
+        ></radio-group> -->
       </div>
     `;
   }

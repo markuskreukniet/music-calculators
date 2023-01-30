@@ -1,6 +1,6 @@
 import {LitElement, html} from 'lit';
 import style from '../style.js';
-import 'RadioGroup.js';
+import './RadioGroup.js';
 
 export class LabeledRadioGroup extends LitElement {
   static styles = [style];

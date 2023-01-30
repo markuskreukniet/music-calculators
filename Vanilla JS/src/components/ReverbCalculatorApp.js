@@ -8,6 +8,7 @@ function ReverbCalculatorApp(parent) {
       return `${string}:`;
     }
 
+    // TODO: should be same as lit and svelte
     that.handleChange = function (name, value) {
       switch (name) {
         case "tempo":

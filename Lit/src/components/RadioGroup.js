@@ -1,6 +1,6 @@
 import {LitElement, html} from 'lit';
 import {map} from 'lit/directives/map.js';
-import getCustomEventOptions from '../constants/customEvent.helpers.js';
+import getCustomEventOptions from '../helpers/customEvent.helpers.js';
 import style from '../style.js';
 
 export class RadioGroup extends LitElement {

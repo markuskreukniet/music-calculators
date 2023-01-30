@@ -38,20 +38,30 @@ export class ReverbCalculatorApp extends LitElement {
     this._tempo = e.detail;
   }
 
+  _renderPart() {
+    if (this._durationResult === arithmeticOperation.addition) {
+      return html``;
+    } else {
+      return html``;
+    }
+  }
+
   render() {
     return html`
-      <div>
-        <labeled-number-input
-          labelText=${'Tempo in BPM:'}
-          .value=${this._tempo}
-          @value=${this._handleChangeTempo}
-        ></labeled-number-input>
-        <labeled-radio-group
-          labelText=${'Calculate in ms:'}
-          .textValueCombinations=${this._textValueCombinations}
-          .value=${this._durationResult}
-          @value=${this._handleChangeDurationResult}
-        ></labeled-radio-group>
+      <labeled-number-input
+        labelText=${'Tempo in BPM:'}
+        .value=${this._tempo}
+        @value=${this._handleChangeTempo}
+      ></labeled-number-input>
+      <labeled-radio-group
+        labelText=${'Calculate in ms:'}
+        .textValueCombinations=${this._textValueCombinations}
+        .value=${this._durationResult}
+        @value=${this._handleChangeDurationResult}
+      ></labeled-radio-group>
+
+      <div class="display-flex align-items-center padding border-bottom">
+        ${this._renderPart()}
       </div>
     `;
   }

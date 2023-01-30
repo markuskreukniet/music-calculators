@@ -39,6 +39,7 @@ export class LabeledRadioGroup extends LitElement {
 
   render() {
     return html`
+      <!-- TODO: should be style on host? -->
       <div class="display-block padding border-bottom">
         <p class="text-before-list">${this.labelText}</p>
         <!-- <radio-group

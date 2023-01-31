@@ -1,5 +1,6 @@
 import {LitElement, html} from 'lit';
 import style from '../style.js';
+import getCustomEventOptions from '../helpers/customEvent.helpers.js';
 import './RadioGroup.js';
 
 export class LabeledRadioGroup extends LitElement {
@@ -27,13 +28,8 @@ export class LabeledRadioGroup extends LitElement {
     super();
   }
 
-  // TODO: same as in LabeledNumberInput?
   _handleChange(e) {
-    const options = {
-      detail: e.target.value,
-      bubbles: true,
-      composed: true,
-    };
+    const options = getCustomEventOptions(e.target.value);
     this.dispatchEvent(new CustomEvent('value', options));
   }
 
@@ -42,11 +38,11 @@ export class LabeledRadioGroup extends LitElement {
       <!-- TODO: should be style on host? -->
       <div class="display-block padding border-bottom">
         <p class="text-before-list">${this.labelText}</p>
-        <!-- <radio-group
+        <radio-group
           .textValueCombinations=${this.textValueCombinations}
           .value=${this.value}
           @value=${this._handleChange}
-        ></radio-group> -->
+        ></radio-group>
       </div>
     `;
   }

@@ -8,7 +8,13 @@ export class RadioGroup extends LitElement {
 
   static get properties() {
     return {
-      textValueCombinations: {type: Array},
+      textValueCombinations: {
+        type: Array,
+        hasChanged(textValueCombinations) {
+          console.log('textValueCombinations', textValueCombinations);
+          this._setName(); // TODO
+        },
+      },
       value: {type: String},
       _name: {type: String, state: true},
     };
@@ -17,7 +23,16 @@ export class RadioGroup extends LitElement {
   constructor() {
     super();
 
+    this._setNameToEmptyString();
+  }
+
+  _setNameToEmptyString() {
     this._name = '';
+  }
+
+  _setName() {
+    this._setNameToEmptyString();
+
     const length = this.textValueCombinations.length;
 
     if (length > 0) {
@@ -31,7 +46,6 @@ export class RadioGroup extends LitElement {
     }
   }
 
-  // TODO: same as in LabeledNumberInput? depends also on preventdefault
   _handleChange(e) {
     const options = getCustomEventOptions(e.target.value);
     this.dispatchEvent(new CustomEvent('value', options));

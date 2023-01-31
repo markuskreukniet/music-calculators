@@ -12,38 +12,33 @@ export class RadioGroup extends LitElement {
         type: Array,
         hasChanged(textValueCombinations) {
           console.log('textValueCombinations', textValueCombinations);
-          this._setName(); // TODO
         },
       },
       value: {type: String},
-      _name: {type: String, state: true},
     };
   }
 
   constructor() {
     super();
-
-    this._setNameToEmptyString();
   }
 
-  _setNameToEmptyString() {
-    this._name = '';
-  }
-
-  _setName() {
-    this._setNameToEmptyString();
+  // TODO: same logic in other React and such?
+  _getName() {
+    let name = '';
 
     const length = this.textValueCombinations.length;
 
     if (length > 0) {
-      this._name = this.textValueCombinations[0].value;
+      name = this.textValueCombinations[0].value;
     }
 
     if (length > 1) {
       for (let i = 1; i < length; i++) {
-        this._name += `, ${this.textValueCombinations[i].value}`;
+        name += `, ${this.textValueCombinations[i].value}`;
       }
     }
+
+    return name;
   }
 
   _handleChange(e) {
@@ -51,7 +46,6 @@ export class RadioGroup extends LitElement {
     this.dispatchEvent(new CustomEvent('value', options));
   }
 
-  // TODO: does @input work?
   render() {
     return html`
       <div>
@@ -61,7 +55,7 @@ export class RadioGroup extends LitElement {
             <label class="display-block">
               <input
                 type="radio"
-                .name=${this._name}
+                .name=${this._getName()}
                 value=${combination.value}
                 @input=${this._handleChange}
                 ?checked=${combination.value === this.value}

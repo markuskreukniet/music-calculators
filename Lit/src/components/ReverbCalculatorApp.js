@@ -2,6 +2,7 @@ import {LitElement, html} from 'lit';
 import arithmeticOperation from '../constants/arithmeticOperation.constants.js';
 import './LabeledNumberInput.js';
 import './LabeledRadioGroup.js';
+import './ReverbCalculator.js';
 
 export class ReverbCalculatorApp extends LitElement {
   static get properties() {
@@ -63,6 +64,11 @@ export class ReverbCalculatorApp extends LitElement {
       <div class="display-flex align-items-center padding border-bottom">
         ${this._renderPart()}
       </div>
+
+      <reverb-calculator
+        .calculatorOperation=${this._durationResult}
+        .tempo=${this._durationResult}
+      ></reverb-calculator>
     `;
   }
 }

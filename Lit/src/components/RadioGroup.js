@@ -18,10 +18,6 @@ export class RadioGroup extends LitElement {
     };
   }
 
-  constructor() {
-    super();
-  }
-
   // TODO: same logic in other React and such?
   _getName() {
     let name = '';
@@ -55,12 +51,13 @@ export class RadioGroup extends LitElement {
             <label class="display-block">
               <input
                 type="radio"
-                .name=${this._getName()}
+                name=${this._getName()}
                 value=${combination.value}
                 @input=${this._handleChange}
                 ?checked=${combination.value === this.value}
                 class="input-radio"
               />
+              ${combination.text}
             </label>
           `
         )}

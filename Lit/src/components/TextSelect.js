@@ -15,7 +15,7 @@ class TextSelect extends LitElement {
   }
 
   handleChange(e) {
-    // e.preventDefault(); TODO:
+    // e.preventDefault(); TODO: is needed?
   }
 
   render() {

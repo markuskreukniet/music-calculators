@@ -2,6 +2,7 @@ import {LitElement, html} from 'lit';
 import arithmeticOperation from '../constants/arithmeticOperation.constants.js';
 import './LabeledNumberInput.js';
 import './LabeledRadioGroup.js';
+import './LabeledTextSelect.js';
 import './ReverbCalculator.js';
 
 export class ReverbCalculatorApp extends LitElement {
@@ -39,9 +40,10 @@ export class ReverbCalculatorApp extends LitElement {
     this._tempo = e.detail;
   }
 
+  // TODO: o.a. react ook zo render?
   _renderPart() {
     if (this._durationResult === arithmeticOperation.addition) {
-      return html``;
+      return html`<labeled-text-select></labeled-text-select>`;
     } else {
       return html``;
     }

@@ -16,6 +16,7 @@ Run the Svelte project with: npm run dev
 took logic from:
 https://javascript.plainenglish.io/create-a-pwa-from-scratch-with-vanilla-javascript-c726c5b2f9e0
 
+```
 function ComponentName(parent) {
   let that = this;
   this.parent = parent;
@@ -51,6 +52,7 @@ function ComponentName(parent) {
   // initialize
   this.init();
 }
+```
 
 ## Good to know for the React project
 

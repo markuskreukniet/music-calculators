@@ -11,6 +11,47 @@ React project to production build: npm run build
 
 Run the Svelte project with: npm run dev
 
+## Good to know for the Vanilla JS project
+
+took logic from:
+https://javascript.plainenglish.io/create-a-pwa-from-scratch-with-vanilla-javascript-c726c5b2f9e0
+
+function ComponentName(parent) {
+  let that = this;
+  this.parent = parent;
+  this.componentId = "componentId";
+  this.styling = `
+    .`+that.componentId+`{position:relative;}
+    .`+that.componentId+`-inner{width:100%;}
+  `;
+
+  this.fetch = async function(){
+    // async operations, such as query data from DB
+  }
+  this.stylize = function(){
+   // create a <style> node and set its id to that.componentId
+   // set the content of the <style> node to that.styling
+   // then append it to the DOM
+   // (or overwrite the content of an existing <style> with the same ID)
+  }
+  this.create = function(){
+   // create a new container for the component
+   // append it to that.parent
+   // store it as that.element
+  }
+  this.render = function(){
+   // empty that.element and recreate its content
+  }
+  this.init = async function(){
+    await that.fetch();
+    that.stylize();
+    that.create();
+    that.render();
+  }
+  // initialize
+  this.init();
+}
+
 ## Good to know for the React project
 
 ### Export to one single js, src/index.js example

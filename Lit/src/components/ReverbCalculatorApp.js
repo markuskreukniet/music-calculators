@@ -1,5 +1,7 @@
 import {LitElement, html} from 'lit';
 import arithmeticOperation from '../constants/arithmeticOperation.constants.js';
+import durations from '../constants/durations.constants.js';
+import reverb from '../constants/reverb.constants.js';
 import './LabeledNumberInput.js';
 import './LabeledRadioGroup.js';
 import './LabeledTextSelect.js';
@@ -8,14 +10,28 @@ import './ReverbCalculator.js';
 export class ReverbCalculatorApp extends LitElement {
   static get properties() {
     return {
+      _preDelayColon: {type: String, state: true},
+      _decayColon: {type: String, state: true},
+      _totalReverbColon: {type: String, state: true},
+
+      _values: {type: Array, state: true},
+      _textValueCombinations: {type: Array, state: true},
+
+      _valueOne: {type: String, state: true},
+      _valueTwo: {type: String, state: true},
       _durationResult: {type: String, state: true},
       _tempo: {type: Number, state: true},
-      _textValueCombinations: {type: Array, state: true},
     };
   }
 
   constructor() {
     super();
+
+    this._preDelayColon = this._addColon(reverb.preDelay);
+    this._decayColon = this._addColon(reverb.decay);
+    this._totalReverbColon = this._addColon(reverb.totalReverb);
+
+    this._values = [this._preDelayColon, this._decayColon];
 
     this._textValueCombinations = [
       {
@@ -28,8 +44,25 @@ export class ReverbCalculatorApp extends LitElement {
       },
     ];
 
+    const defaultValueSelect = '1/64 note';
+
+    this._valueOne = defaultValueSelect;
+    this._valueTwo = defaultValueSelect;
+
     this._durationResult = this._textValueCombinations[0].value;
     this._tempo = 128;
+  }
+
+  _addColon(string) {
+    return `${string}:`;
+  }
+
+  _handleChangeValueOne(e) {
+    this._valueOne = e.detail;
+  }
+
+  _handleChangeValueTwo(e) {
+    this._valueTwo = e.detail;
   }
 
   _handleChangeDurationResult(e) {
@@ -43,7 +76,14 @@ export class ReverbCalculatorApp extends LitElement {
   // TODO: o.a. react ook zo render?
   _renderPart() {
     if (this._durationResult === arithmeticOperation.addition) {
-      return html`<labeled-text-select></labeled-text-select>`;
+      return html`
+        <labeled-text-select
+          .labelText=${this._preDelayColon}
+          .values=${durations}
+          .value=${this._valueOne}
+          @value=${this._handleChangeValueOne}
+        ></labeled-text-select>
+      `;
     } else {
       return html``;
     }

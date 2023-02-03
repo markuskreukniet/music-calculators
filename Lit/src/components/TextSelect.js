@@ -1,6 +1,7 @@
 import {LitElement, html} from 'lit-element';
+import getCustomEventOptions from '../helpers/customEvent.helpers.js';
 
-import app from '../constants/app.constants.js'; // TODO:
+// TODO: import app from '../constants/app.constants.js';
 
 class TextSelect extends LitElement {
   static get properties() {
@@ -16,6 +17,8 @@ class TextSelect extends LitElement {
 
   handleChange(e) {
     // e.preventDefault(); TODO: is needed?
+    const options = getCustomEventOptions(e.target.value);
+    this.dispatchEvent(new CustomEvent('value', options));
   }
 
   render() {

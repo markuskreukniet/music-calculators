@@ -83,9 +83,24 @@ export class ReverbCalculatorApp extends LitElement {
           .value=${this._valueOne}
           @value=${this._handleChangeValueOne}
         ></labeled-text-select>
+        <p>+</p>
+        <labeled-text-select
+          .labelText=${this._decayColon}
+          .values=${durations}
+          .value=${this._valueTwo}
+          @value=${this._handleChangeValueTwo}
+        ></labeled-text-select>
       `;
     } else {
-      return html``;
+      return html`
+        <labeled-text-select
+          .labelText=${this._totalReverbColon}
+          .values=${durations}
+          .value=${this._valueOne}
+          @value=${this._handleChangeValueOne}
+        ></labeled-text-select>
+        <p>-</p>
+      `;
     }
   }
 

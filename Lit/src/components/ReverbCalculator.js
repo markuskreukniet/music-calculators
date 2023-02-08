@@ -1,6 +1,7 @@
 import {LitElement, html} from 'lit';
 import arithmeticOperation from '../constants/arithmeticOperation.constants.js';
 import reverb from '../constants/reverb.constants.js';
+import './MusicCalculator.js';
 
 export class ReverbCalculator extends LitElement {
   static get properties() {
@@ -30,10 +31,33 @@ export class ReverbCalculator extends LitElement {
   }
 
   render() {
-    if (this.props.calculatorOperation === arithmeticOperation.subtraction) {
-      //
+    const labeledFormula = {
+      operator: this.calculatorOperation,
+      operandLabelCombinations: [
+        {operand: this.valueOne, label: this._preDelay},
+        {operand: this.valueTwo, label: this._decay},
+      ],
+      label: this._totalReverb,
+    };
+
+    if (this.calculatorOperation === arithmeticOperation.subtraction) {
+      labeledFormula.operandLabelCombinations[0].label = this._totalReverb;
+
+      if (this.subtractionText === reverb.preDelay) {
+        labeledFormula.operandLabelCombinations[1].label = this._preDelay;
+        labeledFormula.label = this._decay;
+      } else {
+        labeledFormula.operandLabelCombinations[1].label = this._decay;
+        labeledFormula.label = this._preDelay;
+      }
     }
-    return html``;
+
+    return html`
+      <music-calculator
+        .tempo=${this.tempo}
+        .labeledFormula=${labeledFormula}
+      ></music-calculator>
+    `;
   }
 }
 

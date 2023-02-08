@@ -6,6 +6,7 @@ import './LabeledNumberInput.js';
 import './LabeledRadioGroup.js';
 import './LabeledTextSelect.js';
 import './ReverbCalculator.js';
+import './TextSelect.js';
 
 export class ReverbCalculatorApp extends LitElement {
   static get properties() {
@@ -13,6 +14,7 @@ export class ReverbCalculatorApp extends LitElement {
       _preDelayColon: {type: String, state: true},
       _decayColon: {type: String, state: true},
       _totalReverbColon: {type: String, state: true},
+      _subtractionTextColon: {type: String, state: true},
 
       _values: {type: Array, state: true},
       _textValueCombinations: {type: Array, state: true},
@@ -30,6 +32,7 @@ export class ReverbCalculatorApp extends LitElement {
     this._preDelayColon = this._addColon(reverb.preDelay);
     this._decayColon = this._addColon(reverb.decay);
     this._totalReverbColon = this._addColon(reverb.totalReverb);
+    this._subtractionTextColon = this._preDelayColon;
 
     this._values = [this._preDelayColon, this._decayColon];
 
@@ -73,6 +76,10 @@ export class ReverbCalculatorApp extends LitElement {
     this._tempo = e.detail;
   }
 
+  handleChangeSubtractionTextColon(e) {
+    this._subtractionTextColon = e.detail;
+  }
+
   // TODO: o.a. react ook zo render?
   _renderPartAddition() {
     return html`
@@ -101,6 +108,16 @@ export class ReverbCalculatorApp extends LitElement {
         @value=${this._handleChangeValueOne}
       ></labeled-text-select>
       <p>-</p>
+      <text-select
+        .values=${this._values}
+        .value=${this._subtractionTextColon}
+        @value=${this.handleChangeSubtractionTextColon}
+      ></text-select>
+      <text-select
+        .values=${durations}
+        .value=${this._valueTwo}
+        @value=${this._handleChangeValueTwo}
+      ></text-select>
     `;
   }
 

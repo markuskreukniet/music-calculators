@@ -74,37 +74,47 @@ export class ReverbCalculatorApp extends LitElement {
   }
 
   // TODO: o.a. react ook zo render?
-  _renderPart() {
-    if (this._durationResult === arithmeticOperation.addition) {
-      return html`
-        <labeled-text-select
-          .labelText=${this._preDelayColon}
-          .values=${durations}
-          .value=${this._valueOne}
-          @value=${this._handleChangeValueOne}
-        ></labeled-text-select>
-        <p>+</p>
-        <labeled-text-select
-          .labelText=${this._decayColon}
-          .values=${durations}
-          .value=${this._valueTwo}
-          @value=${this._handleChangeValueTwo}
-        ></labeled-text-select>
-      `;
-    } else {
-      return html`
-        <labeled-text-select
-          .labelText=${this._totalReverbColon}
-          .values=${durations}
-          .value=${this._valueOne}
-          @value=${this._handleChangeValueOne}
-        ></labeled-text-select>
-        <p>-</p>
-      `;
-    }
+  _renderPartAddition() {
+    return html`
+      <labeled-text-select
+        .labelText=${this._preDelayColon}
+        .values=${durations}
+        .value=${this._valueOne}
+        @value=${this._handleChangeValueOne}
+      ></labeled-text-select>
+      <p>+</p>
+      <labeled-text-select
+        .labelText=${this._decayColon}
+        .values=${durations}
+        .value=${this._valueTwo}
+        @value=${this._handleChangeValueTwo}
+      ></labeled-text-select>
+    `;
+  }
+
+  _renderPartSubtraction() {
+    return html`
+      <labeled-text-select
+        .labelText=${this._totalReverbColon}
+        .values=${durations}
+        .value=${this._valueOne}
+        @value=${this._handleChangeValueOne}
+      ></labeled-text-select>
+      <p>-</p>
+    `;
   }
 
   render() {
+    let subtractionText = reverb.preDelay;
+    let htmlPart = null;
+
+    if (this._durationResult === arithmeticOperation.addition) {
+      htmlPart = this._renderPartAddition();
+    } else {
+      subtractionText = reverb.decay;
+      htmlPart = this._renderPartSubtraction();
+    }
+
     return html`
       <labeled-number-input
         labelText=${'Tempo in BPM:'}
@@ -119,12 +129,13 @@ export class ReverbCalculatorApp extends LitElement {
       ></labeled-radio-group>
 
       <div class="display-flex align-items-center padding border-bottom">
-        ${this._renderPart()}
+        ${htmlPart}
       </div>
 
       <reverb-calculator
         .calculatorOperation=${this._durationResult}
         .tempo=${this._durationResult}
+        subtractionText=${subtractionText}
       ></reverb-calculator>
     `;
   }

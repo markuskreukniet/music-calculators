@@ -9,6 +9,7 @@ import './ReverbCalculator.js';
 import './TextSelect.js';
 
 export class ReverbCalculatorApp extends LitElement {
+  // TODO: niet alles hier moet als property: https://lit.dev/tutorials/word-viewer/#5
   static get properties() {
     return {
       _preDelayColon: {type: String, state: true},

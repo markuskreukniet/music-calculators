@@ -152,7 +152,9 @@ export class ReverbCalculatorApp extends LitElement {
 
       <reverb-calculator
         .calculatorOperation=${this._durationResult}
-        .tempo=${this._durationResult}
+        .tempo=${this._tempo}
+        .valueOne=${this._valueOne}
+        .valueTwo=${this._valueTwo}
         subtractionText=${subtractionText}
       ></reverb-calculator>
     `;

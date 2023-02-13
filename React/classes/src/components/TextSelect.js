@@ -6,6 +6,7 @@ class TextSelect extends React.Component {
   constructor(props) {
     super(props);
 
+    // TODO: check if it makes more sense to remove this line
     this.value = this.props.value ? this.props.value : app.emptyString;
 
     this.handleChange = this.handleChange.bind(this);

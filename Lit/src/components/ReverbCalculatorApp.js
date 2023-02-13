@@ -9,23 +9,23 @@ import './ReverbCalculator.js';
 import './TextSelect.js';
 
 export class ReverbCalculatorApp extends LitElement {
-  // TODO: niet alles hier moet als property: https://lit.dev/tutorials/word-viewer/#5
+  // Not every property should be part of properties: https://lit.dev/tutorials/word-viewer/#5
   static get properties() {
     return {
-      _preDelayColon: {type: String, state: true},
-      _decayColon: {type: String, state: true},
-      _totalReverbColon: {type: String, state: true},
-      _subtractionTextColon: {type: String, state: true},
-
-      _values: {type: Array, state: true},
-      _textValueCombinations: {type: Array, state: true},
-
       _valueOne: {type: String, state: true},
       _valueTwo: {type: String, state: true},
       _durationResult: {type: String, state: true},
       _tempo: {type: Number, state: true},
     };
   }
+
+  _preDelayColon;
+  _decayColon;
+  _totalReverbColon;
+  _subtractionTextColon;
+
+  _values;
+  _textValueCombinations;
 
   constructor() {
     super();
@@ -85,14 +85,14 @@ export class ReverbCalculatorApp extends LitElement {
   _renderPartAddition() {
     return html`
       <labeled-text-select
-        .labelText=${this._preDelayColon}
+        labelText=${this._preDelayColon}
         .values=${durations}
         .value=${this._valueOne}
         @value=${this._handleChangeValueOne}
       ></labeled-text-select>
       <p>+</p>
       <labeled-text-select
-        .labelText=${this._decayColon}
+        labelText=${this._decayColon}
         .values=${durations}
         .value=${this._valueTwo}
         @value=${this._handleChangeValueTwo}
@@ -103,7 +103,7 @@ export class ReverbCalculatorApp extends LitElement {
   _renderPartSubtraction() {
     return html`
       <labeled-text-select
-        .labelText=${this._totalReverbColon}
+        labelText=${this._totalReverbColon}
         .values=${durations}
         .value=${this._valueOne}
         @value=${this._handleChangeValueOne}
@@ -111,7 +111,7 @@ export class ReverbCalculatorApp extends LitElement {
       <p>-</p>
       <text-select
         .values=${this._values}
-        .value=${this._subtractionTextColon}
+        value=${this._subtractionTextColon}
         @value=${this.handleChangeSubtractionTextColon}
       ></text-select>
       <text-select

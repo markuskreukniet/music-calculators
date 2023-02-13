@@ -2,6 +2,7 @@ import {LitElement, html} from 'lit';
 import arithmeticOperation from '../constants/arithmeticOperation.constants.js';
 import durations from '../constants/durations.constants.js';
 import reverb from '../constants/reverb.constants.js';
+import style from '../style.js';
 import './LabeledNumberInput.js';
 import './LabeledRadioGroup.js';
 import './LabeledTextSelect.js';
@@ -57,6 +58,8 @@ export class ReverbCalculatorApp extends LitElement {
     this._tempo = 128;
   }
 
+  static styles = [style];
+
   _addColon(string) {
     return `${string}:`;
   }
@@ -82,13 +85,14 @@ export class ReverbCalculatorApp extends LitElement {
   }
 
   // TODO: o.a. react ook zo render?
-  _renderPartAddition() {
+  _renderPartAddition(className, className2) {
     return html`
       <labeled-text-select
         labelText=${this._preDelayColon}
         .values=${durations}
         .value=${this._valueOne}
         @value=${this._handleChangeValueOne}
+        className=${className}
       ></labeled-text-select>
       <p>+</p>
       <labeled-text-select
@@ -96,41 +100,51 @@ export class ReverbCalculatorApp extends LitElement {
         .values=${durations}
         .value=${this._valueTwo}
         @value=${this._handleChangeValueTwo}
+        className=${`${className} ${className2}`}
       ></labeled-text-select>
     `;
   }
 
-  _renderPartSubtraction() {
+  _renderPartSubtraction(className, className2) {
     return html`
       <labeled-text-select
         labelText=${this._totalReverbColon}
         .values=${durations}
         .value=${this._valueOne}
         @value=${this._handleChangeValueOne}
+        className=${className}
       ></labeled-text-select>
-      <p>-</p>
+      <p className=${className2}>-</p>
       <text-select
         .values=${this._values}
         value=${this._subtractionTextColon}
         @value=${this.handleChangeSubtractionTextColon}
+        className=${className2}
       ></text-select>
       <text-select
         .values=${durations}
         .value=${this._valueTwo}
         @value=${this._handleChangeValueTwo}
+        className=${className2}
       ></text-select>
     `;
   }
 
   render() {
+    const child1MarginOnlyLeft = 'child-1-margin-only-left-1';
+    const marginOnlyLeft = 'margin-only-left-1';
+
     let subtractionText = reverb.preDelay;
     let htmlPart = null;
 
     if (this._durationResult === arithmeticOperation.addition) {
-      htmlPart = this._renderPartAddition();
+      htmlPart = this._renderPartAddition(child1MarginOnlyLeft, marginOnlyLeft);
     } else {
       subtractionText = reverb.decay;
-      htmlPart = this._renderPartSubtraction();
+      htmlPart = this._renderPartSubtraction(
+        child1MarginOnlyLeft,
+        marginOnlyLeft
+      );
     }
 
     return html`

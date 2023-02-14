@@ -3,7 +3,8 @@
 import {css} from 'lit';
 
 const style = css`
-  :root {
+  /* should be :host instead of :root */
+  :host {
     /* golden ratio */
     --g-ratio-p: 1.618;
     --g-ratio-n: 0.618;

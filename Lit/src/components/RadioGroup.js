@@ -37,6 +37,7 @@ export class RadioGroup extends LitElement {
   render() {
     return html`
       <div>
+        <!-- TODO: add if textValueCombinations.length > 0 -->
         ${map(
           this.textValueCombinations,
           (combination) => html`

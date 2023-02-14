@@ -1,4 +1,4 @@
-import {LitElement, html} from 'lit-element';
+import {LitElement, html} from 'lit';
 import getCustomEventOptions from '../helpers/customEvent.helpers.js';
 import './TextSelect.js';
 

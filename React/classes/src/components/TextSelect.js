@@ -20,7 +20,7 @@ class TextSelect extends React.Component {
   }
 
   render() {
-    let className = "select";
+    let className = "select"; // TODO: move to constructor?
     if (this.props.className) {
       className += ` ${this.props.className}`;
     }

@@ -4,48 +4,42 @@ function RadioGroup(parent, textValueCombinations, value, listener) {
 
   this.create = function () {
     // determine name
-    let name = "";
-    const length = textValueCombinations.length;
+    let name = this.textValueCombinations?.[0]?.value;
 
-    if (length > 0) {
-      name = textValueCombinations[0].value;
-    }
-
-    if (length > 1) {
-      for (let i = 1; i < length; i++) {
-        name += `, ${textValueCombinations[i].value}`;
-      }
+    for (let i = 1; i < this.textValueCombinations?.length; i++) {
+      name += `, ${this.textValueCombinations[i].value}`;
     }
 
     // create element
     const div = createElementAppendChild("div", that.parent);
 
-    for (const combination of textValueCombinations) {
-      const label = createElementAppendChildWithClassName(
-        "label",
-        div,
-        "display-block"
-      );
+    if (textValueCombinations?.length > 0) {
+      for (const combination of textValueCombinations) {
+        const label = createElementAppendChildWithClassName(
+          "label",
+          div,
+          "display-block"
+        );
 
-      const input = createElementAppendChildWithClassName(
-        "input",
-        label,
-        "input-radio"
-      );
-      input.type = "radio";
-      input.value = combination.value;
-      input.name = name;
-      input.addEventListener("change", listener);
+        const input = createElementAppendChildWithClassName(
+          "input",
+          label,
+          "input-radio"
+        );
+        input.type = "radio";
+        input.value = combination.value;
+        input.name = name;
+        input.addEventListener("change", listener);
 
-      if (value === combination.value) {
-        input.checked = true;
+        if (value === combination.value) {
+          input.checked = true;
+        }
+
+        const text = document.createTextNode(combination.text);
+
+        label.appendChild(text);
       }
-
-      const text = document.createTextNode(combination.text);
-
-      label.appendChild(text);
     }
-
     that.element = div;
   };
 

@@ -20,9 +20,9 @@ export class RadioGroup extends LitElement {
 
   // TODO: same logic in other React and such?
   _getName() {
-    let name = this.textValueCombinations[0]?.value;
+    let name = this.textValueCombinations?.[0]?.value;
 
-    for (let i = 1; i < this.textValueCombinations.length; i++) {
+    for (let i = 1; i < this.textValueCombinations?.length; i++) {
       name += `, ${this.textValueCombinations[i].value}`;
     }
 

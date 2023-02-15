@@ -6,9 +6,9 @@ class RadioGroup extends React.Component {
 
     this.combinations = this.props.textValueCombinations;
 
-    this.name = this.combinations[0]?.value;
+    this.name = this.combinations?.[0]?.value;
 
-    for (let i = 1; i < this.combinations.length; i++) {
+    for (let i = 1; i < this.combinations?.length; i++) {
       this.name += `, ${this.combinations[i].value}`;
     }
 

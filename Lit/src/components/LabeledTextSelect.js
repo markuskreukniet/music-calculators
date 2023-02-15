@@ -1,8 +1,11 @@
 import {LitElement, html} from 'lit';
 import dispatchEventValue from '../helpers/customEvent.helpers.js';
+import style from '../style.js';
 import './TextSelect.js';
 
 class LabeledTextSelect extends LitElement {
+  static styles = [style];
+
   static get properties() {
     return {
       className: {type: String},

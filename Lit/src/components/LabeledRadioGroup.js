@@ -14,10 +14,6 @@ export class LabeledRadioGroup extends LitElement {
     };
   }
 
-  constructor() {
-    super();
-  }
-
   _handleChange(e) {
     dispatchEventValue(this, e.detail);
   }

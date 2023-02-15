@@ -3,6 +3,8 @@ import dispatchEventValue from '../helpers/customEvent.helpers.js';
 import style from '../style.js';
 
 class TextSelect extends LitElement {
+  static styles = [style];
+
   static get properties() {
     return {
       value: {type: String},
@@ -18,8 +20,6 @@ class TextSelect extends LitElement {
 
     this._className = 'select';
   }
-
-  static styles = [style];
 
   handleChange(e) {
     // e.preventDefault(); // TODO: is needed?

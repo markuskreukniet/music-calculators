@@ -1,5 +1,5 @@
 import {LitElement, html} from 'lit';
-import getCustomEventOptions from '../helpers/customEvent.helpers.js';
+import dispatchEventValue from '../helpers/customEvent.helpers.js';
 import './TextSelect.js';
 
 class LabeledTextSelect extends LitElement {
@@ -17,8 +17,7 @@ class LabeledTextSelect extends LitElement {
   }
 
   handleChange(e) {
-    const options = getCustomEventOptions(e.detail);
-    this.dispatchEvent(new CustomEvent('value', options));
+    dispatchEventValue(this, e.detail);
   }
 
   render() {

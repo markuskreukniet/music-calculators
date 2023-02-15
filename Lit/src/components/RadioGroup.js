@@ -1,6 +1,6 @@
 import {LitElement, html} from 'lit';
 import {map} from 'lit/directives/map.js';
-import getCustomEventOptions from '../helpers/customEvent.helpers.js';
+import dispatchEventValue from '../helpers/customEvent.helpers.js';
 import style from '../style.js';
 
 export class RadioGroup extends LitElement {
@@ -25,30 +25,27 @@ export class RadioGroup extends LitElement {
   }
 
   _handleChange(e) {
-    const options = getCustomEventOptions(e.target.value);
-    this.dispatchEvent(new CustomEvent('value', options));
+    dispatchEventValue(this, e.target.value);
   }
 
   render() {
     return html`
-      <div>
-        ${map(
-          this.textValueCombinations,
-          (combination) => html`
-            <label class="display-block">
-              <input
-                type="radio"
-                name=${this._getName()}
-                value=${combination.value}
-                @input=${this._handleChange}
-                ?checked=${combination.value === this.value}
-                class="input-radio"
-              />
-              ${combination.text}
-            </label>
-          `
-        )}
-      </div>
+      ${map(
+        this.textValueCombinations,
+        (combination) => html`
+          <label class="display-block">
+            <input
+              type="radio"
+              name=${this._getName()}
+              value=${combination.value}
+              @input=${this._handleChange}
+              ?checked=${combination.value === this.value}
+              class="input-radio"
+            />
+            ${combination.text}
+          </label>
+        `
+      )}
     `;
   }
 }

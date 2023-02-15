@@ -1,5 +1,5 @@
 import {LitElement, html} from 'lit';
-import getCustomEventOptions from '../helpers/customEvent.helpers.js';
+import dispatchEventValue from '../helpers/customEvent.helpers.js';
 import style from '../style.js';
 import './RadioGroup.js';
 
@@ -19,8 +19,7 @@ export class LabeledRadioGroup extends LitElement {
   }
 
   _handleChange(e) {
-    const options = getCustomEventOptions(e.detail);
-    this.dispatchEvent(new CustomEvent('value', options));
+    dispatchEventValue(this, e.detail);
   }
 
   render() {

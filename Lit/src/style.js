@@ -55,7 +55,7 @@ const style = css`
     display: flex;
   }
 
-  .child-2-margin-only-left-1 :nth-child(2),
+  .child-1-margin-only-left-1 :nth-child(1),
   .margin-only-left-1 {
     margin: 0 0 0 var(--size-1);
   }

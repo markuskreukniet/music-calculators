@@ -12,17 +12,13 @@ class LabeledTextSelect extends LitElement {
     };
   }
 
-  constructor() {
-    super();
-  }
-
   handleChange(e) {
     dispatchEventValue(this, e.detail);
   }
 
   render() {
     return html`
-      <label .className=${this.className}>
+      <label class=${this.className}>
         ${this.labelText}
         <text-select
           .values=${this.values}

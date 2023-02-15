@@ -13,33 +13,32 @@ function RadioGroup(parent, textValueCombinations, value, listener) {
     // create element
     const div = createElementAppendChild("div", that.parent);
 
-    if (textValueCombinations?.length > 0) {
-      for (const combination of textValueCombinations) {
-        const label = createElementAppendChildWithClassName(
-          "label",
-          div,
-          "display-block"
-        );
+    for (const combination of textValueCombinations) {
+      const label = createElementAppendChildWithClassName(
+        "label",
+        div,
+        "display-block"
+      );
 
-        const input = createElementAppendChildWithClassName(
-          "input",
-          label,
-          "input-radio"
-        );
-        input.type = "radio";
-        input.value = combination.value;
-        input.name = name;
-        input.addEventListener("change", listener);
+      const input = createElementAppendChildWithClassName(
+        "input",
+        label,
+        "input-radio"
+      );
+      input.type = "radio";
+      input.value = combination.value;
+      input.name = name;
+      input.addEventListener("change", listener);
 
-        if (value === combination.value) {
-          input.checked = true;
-        }
-
-        const text = document.createTextNode(combination.text);
-
-        label.appendChild(text);
+      if (value === combination.value) {
+        input.checked = true;
       }
+
+      const text = document.createTextNode(combination.text);
+
+      label.appendChild(text);
     }
+
     that.element = div;
   };
 

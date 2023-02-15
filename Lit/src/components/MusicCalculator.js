@@ -22,8 +22,6 @@ export class MusicCalculator extends LitElement {
     // value = value.replace(" notes", "").replace(" note", "").replace(" ms", ""); // not needed
     let noteValue = parseFloat(value);
 
-    console.log('_valueToMs value', value);
-
     const fractionString = '1/';
     if (value.includes(fractionString)) {
       noteValue =
@@ -75,8 +73,6 @@ export class MusicCalculator extends LitElement {
   _determineResultText() {
     const noteInMs = this._determineNoteInMs(this.tempo);
     const labeledFormula = this.labeledFormula;
-
-    console.log('labeledFormula', labeledFormula);
 
     const valueOneInMs = this._valueToMsWithMaxTwoDecimals(
       labeledFormula.operandLabelCombinations[0].operand,

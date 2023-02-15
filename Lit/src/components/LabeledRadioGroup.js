@@ -8,18 +8,8 @@ export class LabeledRadioGroup extends LitElement {
 
   static get properties() {
     return {
-      labelText: {
-        type: String,
-        hasChanged(newVal) {
-          console.log('labelText', newVal);
-        },
-      },
-      textValueCombinations: {
-        type: Array,
-        hasChanged(newVal) {
-          console.log('textValueCombinations', newVal);
-        },
-      },
+      labelText: {type: String},
+      textValueCombinations: {type: Array},
       value: {type: String},
     };
   }

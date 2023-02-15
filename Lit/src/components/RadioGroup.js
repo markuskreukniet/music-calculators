@@ -8,12 +8,7 @@ export class RadioGroup extends LitElement {
 
   static get properties() {
     return {
-      textValueCombinations: {
-        type: Array,
-        hasChanged(textValueCombinations) {
-          console.log('textValueCombinations', textValueCombinations);
-        },
-      },
+      textValueCombinations: {type: Array},
       value: {type: String},
     };
   }

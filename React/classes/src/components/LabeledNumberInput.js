@@ -4,6 +4,7 @@ class LabeledNumberInput extends React.Component {
   constructor(props) {
     super(props);
 
+    // TODO: remove check
     this.value = this.props.value ? this.props.value : 0;
 
     this.handleChange = this.handleChange.bind(this);

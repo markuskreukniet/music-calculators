@@ -3,18 +3,14 @@ import dispatchEventValue from '../helpers/customEvent.helpers.js';
 import style from '../style.js';
 
 export class LabeledNumberInput extends LitElement {
+  static styles = [style];
+
   static get properties() {
     return {
       labelText: {type: String},
       value: {type: Number},
     };
   }
-
-  constructor() {
-    super();
-  }
-
-  static styles = [style];
 
   _handleChange(e) {
     dispatchEventValue(this, e.target.value);

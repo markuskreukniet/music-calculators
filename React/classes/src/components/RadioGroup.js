@@ -6,9 +6,9 @@ class RadioGroup extends React.Component {
 
     this.combinations = this.props.textValueCombinations;
 
-    this.name = this.combinations?.[0]?.value;
+    this.name = this.combinations[0]?.value;
 
-    for (let i = 1; i < this.combinations?.length; i++) {
+    for (let i = 1; i < this.combinations.length; i++) {
       this.name += `, ${this.combinations[i].value}`;
     }
 
@@ -22,7 +22,7 @@ class RadioGroup extends React.Component {
   }
 
   render() {
-    const labeledRadioInputs = this.combinations?.map((x, i) => (
+    const labeledRadioInputs = this.combinations.map((x, i) => (
       <label className="display-block" key={i}>
         <input
           type="radio"

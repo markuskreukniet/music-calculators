@@ -17,13 +17,13 @@ export class ReverbCalculatorApp extends LitElement {
       _valueTwo: {type: String, state: true},
       _durationResult: {type: String, state: true},
       _tempo: {type: Number, state: true},
+      _subtractionTextColon: {type: String, state: true},
     };
   }
 
   _preDelayColon;
   _decayColon;
   _totalReverbColon;
-  _subtractionTextColon;
 
   _values;
   _textValueCombinations;
@@ -140,7 +140,10 @@ export class ReverbCalculatorApp extends LitElement {
     if (this._durationResult === arithmeticOperation.addition) {
       htmlPart = this._renderPartAddition(child1MarginOnlyLeft, marginOnlyLeft);
     } else {
-      subtractionText = reverb.decay;
+      if (this._subtractionTextColon === this._decayColon) {
+        subtractionText = reverb.decay;
+      }
+
       htmlPart = this._renderPartSubtraction(
         child1MarginOnlyLeft,
         marginOnlyLeft

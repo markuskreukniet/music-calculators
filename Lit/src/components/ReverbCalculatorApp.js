@@ -10,6 +10,8 @@ import './ReverbCalculator.js';
 import './TextSelect.js';
 
 export class ReverbCalculatorApp extends LitElement {
+  static styles = [style];
+
   // Not every property should be part of properties: https://lit.dev/tutorials/word-viewer/#5
   static get properties() {
     return {
@@ -57,8 +59,6 @@ export class ReverbCalculatorApp extends LitElement {
     this._durationResult = this._textValueCombinations[0].value;
     this._tempo = 128;
   }
-
-  static styles = [style];
 
   _addColon(string) {
     return `${string}:`;
@@ -161,6 +161,7 @@ export class ReverbCalculatorApp extends LitElement {
         .textValueCombinations=${this._textValueCombinations}
         .value=${this._durationResult}
         @value=${this._handleChangeDurationResult}
+        class="display-block padding border-bottom"
       ></labeled-radio-group>
 
       <div class="display-flex align-items-center padding border-bottom">

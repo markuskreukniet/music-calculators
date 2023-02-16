@@ -14,12 +14,12 @@ export class ReverbCalculator extends LitElement {
       valueOne: {type: String},
       valueTwo: {type: String},
       subtractionText: {type: String},
-
-      _preDelay: {type: String},
-      _decay: {type: String},
-      _totalReverb: {type: String},
     };
   }
+
+  _preDelay;
+  _decay;
+  _totalReverb;
 
   constructor() {
     super();

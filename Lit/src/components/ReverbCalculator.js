@@ -1,9 +1,12 @@
 import {LitElement, html} from 'lit';
 import arithmeticOperation from '../constants/arithmeticOperation.constants.js';
 import reverb from '../constants/reverb.constants.js';
+import style from '../style.js';
 import './MusicCalculator.js';
 
 export class ReverbCalculator extends LitElement {
+  static styles = [style];
+
   static get properties() {
     return {
       calculatorOperation: {type: String},
@@ -56,6 +59,7 @@ export class ReverbCalculator extends LitElement {
       <music-calculator
         .tempo=${this.tempo}
         .labeledFormula=${labeledFormula}
+        class="display-flex padding"
       ></music-calculator>
     `;
   }

@@ -1,9 +1,11 @@
 import {LitElement, html} from 'lit';
-
 import arithmeticOperation from '../constants/arithmeticOperation.constants.js';
+import style from '../style.js';
 
 // TODO: same naming other projects, such as React
 export class MusicCalculator extends LitElement {
+  static styles = [style];
+
   static get properties() {
     return {
       tempo: {type: Number},
@@ -126,10 +128,8 @@ export class MusicCalculator extends LitElement {
 
   render() {
     return html`
-      <div className="display-flex padding">
-        <p className="margin-0">Result:</p>
-        <p className="margin-only-left-1">${this._determineResultText()}</p>
-      </div>
+      <p class="margin-0">Result:</p>
+      <p class="margin-only-left-1">${this._determineResultText()}</p>
     `;
   }
 }

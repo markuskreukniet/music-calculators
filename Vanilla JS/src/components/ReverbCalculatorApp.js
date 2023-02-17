@@ -53,11 +53,9 @@ function ReverbCalculatorApp(parent) {
     that.decayColon = addColon(reverb.decay);
     that.totalReverbColon = addColon(reverb.totalReverb);
 
-    that.values = [that.preDelayColon, that.decayColon];
-
-    that.subtractionTextColon = that.preDelayColon;
     that.subtractionText = reverb.preDelay;
 
+    that.values = [that.preDelayColon, that.decayColon];
     const textValueCombinations = [
       {
         text: "The total reverb duration by choosing a duration for the pre-delay and decay",
@@ -71,6 +69,7 @@ function ReverbCalculatorApp(parent) {
 
     const defaultValueSelect = "1/64 note";
 
+    that.subtractionTextColon = that.preDelayColon;
     that.tempo = 128;
     that.durationResult = textValueCombinations[0].value;
     that.valueOne = defaultValueSelect;

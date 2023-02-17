@@ -19,7 +19,6 @@ class ReverbCalculatorApp extends React.Component {
     this.totalReverbColon = this.addColon(reverb.totalReverb);
 
     this.values = [this.preDelayColon, this.decayColon];
-
     this.textValueCombinations = [
       {
         text: "The total reverb duration by choosing a duration for the pre-delay and decay",

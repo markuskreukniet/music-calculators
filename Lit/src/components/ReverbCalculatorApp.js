@@ -36,10 +36,8 @@ export class ReverbCalculatorApp extends LitElement {
     this._preDelayColon = this._addColon(reverb.preDelay);
     this._decayColon = this._addColon(reverb.decay);
     this._totalReverbColon = this._addColon(reverb.totalReverb);
-    this._subtractionTextColon = this._preDelayColon;
 
     this._values = [this._preDelayColon, this._decayColon];
-
     this._textValueCombinations = [
       {
         text: 'The total reverb duration by choosing a duration for the pre-delay and decay',
@@ -53,9 +51,9 @@ export class ReverbCalculatorApp extends LitElement {
 
     const defaultValueSelect = '1/64 note';
 
+    this._subtractionTextColon = this._preDelayColon;
     this._valueOne = defaultValueSelect;
     this._valueTwo = defaultValueSelect;
-
     this._durationResult = this._textValueCombinations[0].value;
     this._tempo = 128;
   }
@@ -94,7 +92,7 @@ export class ReverbCalculatorApp extends LitElement {
         @value=${this._handleChangeValueOne}
         className=${className}
       ></labeled-text-select>
-      <p>+</p>
+      <p class=${className2}>+</p>
       <labeled-text-select
         labelText=${this._decayColon}
         .values=${durations}
@@ -114,10 +112,10 @@ export class ReverbCalculatorApp extends LitElement {
         @value=${this._handleChangeValueOne}
         className=${className}
       ></labeled-text-select>
-      <p className=${className2}>-</p>
+      <p class=${className2}>-</p>
       <text-select
         .values=${this._values}
-        value=${this._subtractionTextColon}
+        .value=${this._subtractionTextColon}
         @value=${this.handleChangeSubtractionTextColon}
         className=${className2}
       ></text-select>

@@ -13,7 +13,6 @@
   const totalReverbColon = addColon(reverb.totalReverb);
 
   const values = [preDelayColon, decayColon];
-
   const textValueCombinations = [
     {
       text: "The total reverb duration by choosing a duration for the pre-delay and decay",

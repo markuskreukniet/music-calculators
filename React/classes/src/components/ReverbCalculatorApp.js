@@ -59,70 +59,72 @@ class ReverbCalculatorApp extends React.Component {
     return `${string}:`;
   }
 
-  // This function aims to skip an array. In React, the HTML elements in an array need a 'key' attribute.
-  render() {
-    const child1MarginOnlyLeft = "child-1-margin-only-left-1";
-    const marginOnlyLeft = "margin-only-left-1";
-
-    let elementOne = null;
-    let elementTwo = null;
-    let elementThree = null;
-    let elementFour = null;
-
-    let subtractionText = reverb.preDelay;
-
-    if (this.state.durationResult === arithmeticOperation.addition) {
-      elementOne = (
+  renderPartAddition(className, className2) {
+    return (
+      <>
         <LabeledTextSelect
           labelText={this.preDelayColon}
           values={durations}
           value={this.state[this.valueOne]}
-          className={child1MarginOnlyLeft}
+          className={className}
           onChange={(e) => this.handleChange(this.valueOne, e)}
         />
-      );
-      elementTwo = <p className={marginOnlyLeft}>+</p>;
-      elementThree = (
+        <p className={className2}>+</p>
         <LabeledTextSelect
           labelText={this.decayColon}
           values={durations}
           value={this.state[this.valueTwo]}
           onChange={(e) => this.handleChange(this.valueTwo, e)}
-          className={`${child1MarginOnlyLeft} ${marginOnlyLeft}`}
+          className={`${className} ${className2}`}
         />
-      );
+      </>
+    );
+  }
+
+  renderPartSubtraction(className, className2) {
+    return (
+      <>
+        <LabeledTextSelect
+          labelText={this.totalReverbColon}
+          values={durations}
+          value={this.state[this.valueOne]}
+          className={className}
+          onChange={(e) => this.handleChange(this.valueOne, e)}
+        />
+        <p className={className2}>-</p>
+        <TextSelect
+          values={this.values}
+          value={this.state[this.subtractionTextColon]}
+          onChange={(e) => this.handleChange(this.subtractionTextColon, e)}
+          className={className2}
+        />
+        <TextSelect
+          values={durations}
+          value={this.state[this.valueTwo]}
+          onChange={(e) => this.handleChange(this.valueTwo, e)}
+          className={className2}
+        />
+      </>
+    );
+  }
+
+  render() {
+    const child1MarginOnlyLeft = "child-1-margin-only-left-1";
+    const marginOnlyLeft = "margin-only-left-1";
+
+    let subtractionText = reverb.preDelay;
+    let htmlPart = null;
+
+    if (this.state.durationResult === arithmeticOperation.addition) {
+      htmlPart = this.renderPartAddition(child1MarginOnlyLeft, marginOnlyLeft);
     } else {
       if (this.state[this.subtractionTextColon] === this.decayColon) {
         subtractionText = reverb.decay;
       }
 
-      elementOne = (
-        <LabeledTextSelect
-          labelText={this.totalReverbColon}
-          values={durations}
-          value={this.state[this.valueOne]}
-          className={child1MarginOnlyLeft}
-          onChange={(e) => this.handleChange(this.valueOne, e)}
-        />
-      );
-      elementTwo = <p className={marginOnlyLeft}>-</p>;
-
-      elementThree = (
-        <TextSelect
-          values={this.values}
-          value={this.state[this.subtractionTextColon]}
-          onChange={(e) => this.handleChange(this.subtractionTextColon, e)}
-          className={marginOnlyLeft}
-        />
-      );
-
-      elementFour = (
-        <TextSelect
-          values={durations}
-          value={this.state[this.valueTwo]}
-          onChange={(e) => this.handleChange(this.valueTwo, e)}
-          className={marginOnlyLeft}
-        />
+      htmlPart = this.renderPartSubtraction(
+        child1MarginOnlyLeft,
+        marginOnlyLeft
       );
     }
 
@@ -140,10 +142,7 @@ class ReverbCalculatorApp extends React.Component {
           onChange={(e) => this.handleChange(this.durationResult, e)}
         />
         <div className="display-flex align-items-center padding border-bottom">
-          {elementOne}
-          {elementTwo}
-          {elementThree}
-          {elementFour}
+          {htmlPart}
         </div>
         <ReverbCalculator
           calculatorOperation={this.state[this.durationResult]}

@@ -3,7 +3,7 @@ import React from "react";
 import arithmeticOperation from "../constants/arithmeticOperation.constants.js";
 import reverb from "../constants/reverb.constants.js";
 
-import Calculator from "./Calculator.js";
+import MusicCalculator from "./MusicCalculator.js";
 
 class ReverbCalculator extends React.Component {
   constructor(props) {
@@ -41,7 +41,10 @@ class ReverbCalculator extends React.Component {
     }
 
     return (
-      <Calculator tempo={this.props.tempo} labeledFormula={labeledFormula} />
+      <MusicCalculator
+        tempo={this.props.tempo}
+        labeledFormula={labeledFormula}
+      />
     );
   }
 }

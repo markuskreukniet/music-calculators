@@ -1,9 +1,8 @@
 import React from "react";
-
 import app from "../constants/app.constants.js";
 import arithmeticOperation from "../constants/arithmeticOperation.constants.js";
 
-class Calculator extends React.Component {
+class MusicCalculator extends React.Component {
   determineNoteInMs(tempo) {
     const minInMs = 60000; // 1 minute = 60000 milliseconds
     const beatInMs = minInMs / tempo; // tempo is in BPM (beats per minute)
@@ -125,4 +124,4 @@ class Calculator extends React.Component {
   }
 }
 
-export default Calculator;
+export default MusicCalculator;

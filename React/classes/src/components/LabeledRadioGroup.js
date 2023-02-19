@@ -1,5 +1,4 @@
 import React from "react";
-
 import RadioGroup from "./RadioGroup.js";
 
 class LabeledRadioGroup extends React.Component {

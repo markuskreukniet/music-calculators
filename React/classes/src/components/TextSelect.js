@@ -1,13 +1,10 @@
 import React from "react";
 
-import app from "../constants/app.constants.js";
-
 class TextSelect extends React.Component {
   constructor(props) {
     super(props);
 
-    // TODO: check if it makes more sense to remove this line
-    this.value = this.props.value ? this.props.value : app.emptyString;
+    this.className = "select";
 
     this.handleChange = this.handleChange.bind(this);
   }
@@ -15,14 +12,13 @@ class TextSelect extends React.Component {
   handleChange(e) {
     e.preventDefault();
 
-    this.value = e.target.value;
-    this.props.onChange(this.value);
+    this.props.onChange(e.target.value);
   }
 
   render() {
-    let className = "select"; // TODO: move to constructor?
+    let selectClassName = this.className;
     if (this.props.className) {
-      className += ` ${this.props.className}`;
+      selectClassName += ` ${this.props.className}`;
     }
 
     const options = this.props.values.map((x) => (
@@ -33,9 +29,9 @@ class TextSelect extends React.Component {
 
     return (
       <select
-        value={this.value}
+        value={this.props.value}
         onChange={this.handleChange}
-        className={className}
+        className={selectClassName}
       >
         {options}
       </select>

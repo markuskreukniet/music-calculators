@@ -27,9 +27,9 @@ class TextSelect extends LitElement {
   }
 
   render() {
-    let selectClassName = this._className;
+    let selectClass = this._className;
     if (this.className) {
-      selectClassName += ` ${this.className}`;
+      selectClass += ` ${this.className}`;
     }
 
     // ?selected is needed in Lit
@@ -41,7 +41,7 @@ class TextSelect extends LitElement {
       <select
         .value=${this.value}
         @change=${this.handleChange}
-        class=${selectClassName}
+        class=${selectClass}
       >
         ${options}
       </select>

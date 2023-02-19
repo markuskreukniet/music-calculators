@@ -4,17 +4,13 @@ class LabeledNumberInput extends React.Component {
   constructor(props) {
     super(props);
 
-    // TODO: remove check
-    this.value = this.props.value ? this.props.value : 0;
-
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e) {
     e.preventDefault();
 
-    this.value = e.target.value;
-    this.props.onChange(this.value);
+    this.props.onChange(e.target.value);
   }
 
   render() {
@@ -23,7 +19,7 @@ class LabeledNumberInput extends React.Component {
         {this.props.labelText}
         <input
           type="number"
-          value={this.value}
+          value={this.props.value}
           onChange={this.handleChange}
           className="margin-only-left-1 input-number"
         />

@@ -161,11 +161,9 @@ export class ReverbCalculatorApp extends LitElement {
         @value=${this._handleChangeDurationResult}
         class="display-block padding border-bottom"
       ></labeled-radio-group>
-
       <div class="display-flex align-items-center padding border-bottom">
         ${htmlPart}
       </div>
-
       <reverb-calculator
         .calculatorOperation=${this._durationResult}
         .tempo=${this._tempo}

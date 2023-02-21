@@ -1,8 +1,13 @@
 import React from "react";
-import app from "../constants/app.constants.js";
 import arithmeticOperation from "../constants/arithmeticOperation.constants.js";
 
 class MusicCalculator extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.emptyString = "";
+  }
+
   determineNoteInMs(tempo) {
     const minInMs = 60000; // 1 minute = 60000 milliseconds
     const beatInMs = minInMs / tempo; // tempo is in BPM (beats per minute)
@@ -16,7 +21,7 @@ class MusicCalculator extends React.Component {
     const fractionString = "1/";
     if (value.includes(fractionString)) {
       noteValue =
-        note / parseInt(value.replace(fractionString, app.emptyString), 10);
+        note / parseInt(value.replace(fractionString, this.emptyString), 10);
     } else if (value.includes("note")) {
       noteValue = note * parseInt(value, 10);
     }
@@ -75,7 +80,7 @@ class MusicCalculator extends React.Component {
     );
 
     let resultValue = -1;
-    let arithmeticOperationSign = app.emptyString;
+    let arithmeticOperationSign = this.emptyString;
 
     switch (labeledFormula.operator) {
       case arithmeticOperation.addition:

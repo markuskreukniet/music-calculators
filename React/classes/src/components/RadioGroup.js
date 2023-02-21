@@ -4,15 +4,17 @@ class RadioGroup extends React.Component {
   constructor(props) {
     super(props);
 
-    this.combinations = this.props.textValueCombinations;
+    this.handleChange = this.handleChange.bind(this);
+  }
 
-    this.name = this.combinations?.[0]?.value;
+  getName() {
+    let name = this.props.textValueCombinations?.[0]?.value;
 
-    for (let i = 1; i < this.combinations?.length; i++) {
-      this.name += `, ${this.combinations[i].value}`;
+    for (let i = 1; i < this.props.textValueCombinations?.length; i++) {
+      name += `, ${this.props.textValueCombinations[i].value}`;
     }
 
-    this.handleChange = this.handleChange.bind(this);
+    return name;
   }
 
   handleChange(e) {
@@ -22,11 +24,11 @@ class RadioGroup extends React.Component {
   }
 
   render() {
-    const labeledRadioInputs = this.combinations.map((x, i) => (
+    const labeledRadioInputs = this.props.textValueCombinations.map((x, i) => (
       <label className="display-block" key={i}>
         <input
           type="radio"
-          name={this.name}
+          name={this.getName()}
           value={x.value}
           onChange={this.handleChange}
           defaultChecked={x.value === this.props.value} // the attribute defaultChecked should be used and not the attribute checked

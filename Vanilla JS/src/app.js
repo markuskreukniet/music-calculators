@@ -6,7 +6,6 @@
 
 "use strict";
 
-let app = {};
 let arithmeticOperation = {};
 let durations = {};
 let reverb = {};
@@ -60,7 +59,6 @@ function App(parent) {
     ];
 
     try {
-      const importApp = importDefaultModule("./constants/app.constants.js");
       const importArithmeticOperation = importDefaultModule(
         "./constants/arithmeticOperation.constants.js"
       );
@@ -72,7 +70,6 @@ function App(parent) {
       );
       const importStyle = importDefaultModule("./style.js");
 
-      app = await importApp;
       arithmeticOperation = await importArithmeticOperation;
       durations = await importDurations;
       reverb = await importReverb;

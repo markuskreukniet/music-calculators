@@ -3,6 +3,8 @@ function MusicCalculator(parent) {
   this.parent = parent;
 
   this.create = function () {
+    that.emptyString = "";
+
     const div = createElementAppendChildWithClassName(
       "div",
       that.parent,
@@ -34,7 +36,7 @@ function MusicCalculator(parent) {
       const fractionString = "1/";
       if (value.includes(fractionString)) {
         noteValue =
-          note / parseInt(value.replace(fractionString, app.emptyString), 10);
+          note / parseInt(value.replace(fractionString, that.emptyString), 10);
       } else if (value.includes("note")) {
         noteValue = note * parseInt(value, 10);
       }
@@ -92,7 +94,7 @@ function MusicCalculator(parent) {
       );
 
       let resultValue = -1;
-      let arithmeticOperationSign = app.emptyString;
+      let arithmeticOperationSign = that.emptyString;
 
       switch (labeledFormula.operator) {
         case arithmeticOperation.addition:

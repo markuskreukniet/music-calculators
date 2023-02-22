@@ -1,7 +1,6 @@
-// TODO: example code component logic in readme
 // TODO: shorten code where possible
 // TODO: try to make custom element of this app, maybe with giving style tag an id and adding styles to it
-
+// TODO: use render function instead of making element again? For example, TextSelect does not have a render function
 // TODO: refactor
 
 "use strict";

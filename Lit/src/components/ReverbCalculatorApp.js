@@ -82,7 +82,6 @@ export class ReverbCalculatorApp extends LitElement {
     this._subtractionTextColon = e.detail;
   }
 
-  // TODO: o.a. react ook zo render?
   _renderPartAddition(className, className2) {
     return html`
       <labeled-text-select

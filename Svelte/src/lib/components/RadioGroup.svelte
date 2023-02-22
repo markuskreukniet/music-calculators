@@ -2,10 +2,16 @@
   export let textValueCombinations;
   export let value;
 
-  let name = textValueCombinations?.[0]?.value;
+  $: name = getName(textValueCombinations);
 
-  for (let i = 1; i < textValueCombinations?.length; i++) {
-    name += `, ${textValueCombinations[i].value}`;
+  function getName(textValueCombinations) {
+    let name = textValueCombinations?.[0]?.value;
+
+    for (let i = 1; i < textValueCombinations?.length; i++) {
+      name += `, ${textValueCombinations[i].value}`;
+    }
+
+    return name;
   }
 </script>
 

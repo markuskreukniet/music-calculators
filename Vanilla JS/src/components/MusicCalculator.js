@@ -1,4 +1,4 @@
-function Calculator(parent) {
+function MusicCalculator(parent) {
   let that = this;
   this.parent = parent;
 

@@ -11,7 +11,7 @@ function ReverbCalculator(parent) {
     that.decay = addParentheses(reverb.decay);
     that.totalReverb = addParentheses(reverb.totalReverb);
 
-    that.calculator = new Calculator(that.parent);
+    that.calculator = new MusicCalculator(that.parent);
   };
 
   this.render = function (

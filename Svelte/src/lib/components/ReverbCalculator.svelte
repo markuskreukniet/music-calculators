@@ -1,7 +1,6 @@
 <script>
   import arithmeticOperation from "../constants/arithmeticOperation.constants.js";
   import reverb from "../constants/reverb.constants.js";
-
   import MusicCalculator from "./MusicCalculator.svelte";
 
   export let calculatorOperation;
@@ -14,22 +13,20 @@
   const decay = addParentheses(reverb.decay);
   const totalReverb = addParentheses(reverb.totalReverb);
 
-  let labeledFormula = {};
-
-  $: setCalculatorValues(
+  $: labeledFormula = getLabeledFormula(
     calculatorOperation,
     valueOne,
     valueTwo,
     subtractionText
   );
 
-  function setCalculatorValues(
+  function getLabeledFormula(
     calculatorOperation,
     valueOne,
     valueTwo,
     subtractionText
   ) {
-    labeledFormula = {
+    const labeledFormula = {
       operator: calculatorOperation,
       operandLabelCombinations: [
         { operand: valueOne, label: preDelay },
@@ -49,6 +46,8 @@
         labeledFormula.label = preDelay;
       }
     }
+
+    return labeledFormula;
   }
 
   function addParentheses(string) {

@@ -2,7 +2,6 @@ import {LitElement, html} from 'lit';
 import arithmeticOperation from '../constants/arithmeticOperation.constants.js';
 import style from '../style.js';
 
-// TODO: same naming other projects, such as React
 export class MusicCalculator extends LitElement {
   static styles = [style];
 
@@ -13,7 +12,7 @@ export class MusicCalculator extends LitElement {
     };
   }
 
-  _emptyString = ''; // TODO: also remove app.emptyString from other projects
+  _emptyString = '';
 
   _determineNoteInMs(tempo) {
     const minInMs = 60000; // 1 minute = 60000 milliseconds

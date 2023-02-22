@@ -2,7 +2,7 @@
   import arithmeticOperation from "../constants/arithmeticOperation.constants.js";
   import reverb from "../constants/reverb.constants.js";
 
-  import Calculator from "./Calculator.svelte";
+  import MusicCalculator from "./MusicCalculator.svelte";
 
   export let calculatorOperation;
   export let tempo;
@@ -56,4 +56,4 @@
   }
 </script>
 
-<Calculator {tempo} {labeledFormula} />
+<MusicCalculator {tempo} {labeledFormula} />

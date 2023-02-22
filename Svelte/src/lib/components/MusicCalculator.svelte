@@ -1,11 +1,12 @@
 <script>
-  import app from "../constants/app.constants.js";
   import arithmeticOperation from "../constants/arithmeticOperation.constants.js";
 
   export let tempo;
   export let labeledFormula;
 
   $: resultText = determineResultText(tempo, labeledFormula);
+
+  const emptyString = "";
 
   function determineNoteInMs(tempo) {
     const minInMs = 60000; // 1 minute = 60000 milliseconds
@@ -20,7 +21,7 @@
     const fractionString = "1/";
     if (value.includes(fractionString)) {
       noteValue =
-        note / parseInt(value.replace(fractionString, app.emptyString), 10);
+        note / parseInt(value.replace(fractionString, emptyString), 10);
     } else if (value.includes("note")) {
       noteValue = note * parseInt(value, 10);
     }
@@ -78,7 +79,7 @@
     );
 
     let resultValue = -1;
-    let arithmeticOperationSign = app.emptyString;
+    let arithmeticOperationSign = emptyString;
 
     switch (labeledFormula.operator) {
       case arithmeticOperation.addition:

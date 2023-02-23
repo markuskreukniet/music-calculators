@@ -25,6 +25,8 @@ export class RadioGroup extends LitElement {
   }
 
   _handleChange(e) {
+    // e.preventDefault(); is not needed
+
     dispatchEventValue(this, e.target.value);
   }
 

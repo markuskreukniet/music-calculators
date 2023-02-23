@@ -22,7 +22,7 @@ class TextSelect extends LitElement {
   }
 
   handleChange(e) {
-    e.preventDefault(); // is needed?
+    e.preventDefault();
 
     dispatchEventValue(this, e.target.value);
   }

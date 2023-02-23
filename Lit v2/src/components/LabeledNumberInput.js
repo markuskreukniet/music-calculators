@@ -13,7 +13,7 @@ export class LabeledNumberInput extends LitElement {
   }
 
   _handleChange(e) {
-    e.preventDefault(); // is needed?
+    e.preventDefault();
 
     dispatchEventValue(this, e.target.value);
   }

@@ -14,7 +14,15 @@ defineProps({
   }
 })
 
-const className = "select";
+const selectClassName = computed(() => {
+  const result = "select";
+
+  if (className) {
+    result += ` ${className}`;
+  }
+
+  return result;
+})
 
 function handleChange(e) {
   value = e.target.value
@@ -22,7 +30,8 @@ function handleChange(e) {
 </script>
 
 <template>
-  <select :value="value" @change.self.prevent="handleChange">
-    <option v-for="value in values" :key="value"></option>
+  <select :value="value" :class="selectClassName" @change.self.prevent="handleChange">
+    <!-- TODO: check if option can be shortened -->
+    <option v-for="value in values" :key="value"></option> 
   </select>
 </template>

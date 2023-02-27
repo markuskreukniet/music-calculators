@@ -1,4 +1,6 @@
 <script setup>
+import { computed } from 'vue'
+
 defineProps({
   value: {
     type: String,
@@ -14,15 +16,16 @@ defineProps({
   }
 })
 
-const selectClassName = computed(() => {
-  const result = "select";
+// TODO: needs to be a watcher?
+// const selectClassName = computed(() => {
+//   const result = "select";
 
-  if (className) {
-    result += ` ${className}`;
-  }
+//   if (className) {
+//     result += ` ${className}`;
+//   }
 
-  return result;
-})
+//   return result;
+// })
 
 function handleChange(e) {
   value = e.target.value
@@ -31,7 +34,6 @@ function handleChange(e) {
 
 <template>
   <select :value="value" :class="selectClassName" @change.self.prevent="handleChange">
-    <!-- TODO: check if option can be shortened -->
     <option v-for="value in values" :key="value"></option> 
   </select>
 </template>

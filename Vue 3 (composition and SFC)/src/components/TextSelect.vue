@@ -1,7 +1,5 @@
 <script setup>
-import { computed } from 'vue'
-
-defineProps({
+const props = defineProps({
   value: {
     type: String,
     required: true
@@ -33,7 +31,7 @@ function handleChange(e) {
 </script>
 
 <template>
-  <select :value="value" :class="selectClassName" @change.self.prevent="handleChange">
-    <option v-for="value in values" :key="value"></option> 
+  <select :value="value" @change.self.prevent="handleChange">
+    <option v-for="value in values" :key="value">{{value}}</option> 
   </select>
 </template>

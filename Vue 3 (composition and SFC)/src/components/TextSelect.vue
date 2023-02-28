@@ -1,4 +1,6 @@
 <script setup>
+const emit = defineEmits(['value'])
+
 const props = defineProps({
   value: {
     type: String,
@@ -26,12 +28,12 @@ const props = defineProps({
 // })
 
 function handleChange(e) {
-  value = e.target.value
+  emit('value', e.target.value)
 }
 </script>
 
 <template>
   <select :value="value" @change.self.prevent="handleChange">
-    <option v-for="value in values" :key="value">{{value}}</option> 
+    <option v-for="value in values" :key="value">{{value}}</option>
   </select>
 </template>

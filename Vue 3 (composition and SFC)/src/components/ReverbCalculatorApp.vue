@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from 'vue'
 import TextSelect from './TextSelect.vue'
 
 const values = ["value 1", "value 2"];

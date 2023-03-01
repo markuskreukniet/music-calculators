@@ -28,6 +28,7 @@ function handleChange(e) {
 </script>
 
 <template>
+  <!-- TODO: empty className shows class attribute, maybe it is not a problem -->
   <label :class="className">
     {{ labelText }}
     <TextSelect :values="values" :value="value" @value="handleChange" />

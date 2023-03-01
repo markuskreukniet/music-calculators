@@ -1,5 +1,5 @@
 <script setup>
-const emit = defineEmits(['value'])
+const emit = defineEmits(['value']);
 
 const props = defineProps({
   value: {
@@ -18,22 +18,22 @@ const props = defineProps({
 
 // TODO: needs to be a watcher?
 // const selectClassName = computed(() => {
-//   const result = "select";
+//   let result = "select";
 
 //   if (className) {
 //     result += ` ${className}`;
 //   }
 
 //   return result;
-// })
+// });
 
 function handleChange(e) {
-  emit('value', e.target.value)
+  emit('value', e.target.value);
 }
 </script>
 
 <template>
   <select :value="value" @change.self.prevent="handleChange">
-    <option v-for="value in values" :key="value">{{value}}</option>
+    <option v-for="value in values" :key="value">{{ value }}</option>
   </select>
 </template>

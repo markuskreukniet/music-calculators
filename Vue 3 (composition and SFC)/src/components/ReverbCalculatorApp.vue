@@ -3,7 +3,9 @@ import { ref } from 'vue'
 import TextSelect from './TextSelect.vue'
 
 const values = ["value 1", "value 2"];
-const value = ref("value 1");
+const value = "value 2";
+
+const className = "testClass";
 
 function handleChange(e) {
   console.log(e);
@@ -11,5 +13,5 @@ function handleChange(e) {
 </script>
 
 <template>
-  <TextSelect :values="values" :value="value" @value="handleChange" />
+  <TextSelect :values="values" :value="value" @value="handleChange" :className="className" />
 </template>

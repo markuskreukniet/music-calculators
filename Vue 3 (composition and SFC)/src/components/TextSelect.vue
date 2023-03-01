@@ -1,4 +1,6 @@
 <script setup>
+import { computed } from 'vue';
+
 const emit = defineEmits(['value']);
 
 const props = defineProps({
@@ -14,18 +16,18 @@ const props = defineProps({
     type: String,
     required: false
   }
-})
+});
 
-// TODO: needs to be a watcher?
-// const selectClassName = computed(() => {
-//   let result = "select";
+// TODO: test when props.className changes if selectClassName updates
+const selectClassName = computed(() => {
+  let result = "select";
 
-//   if (className) {
-//     result += ` ${className}`;
-//   }
+  if (props.className) {
+    result += ` ${props.className}`;
+  }
 
-//   return result;
-// });
+  return result;
+});
 
 function handleChange(e) {
   emit('value', e.target.value);
@@ -33,7 +35,7 @@ function handleChange(e) {
 </script>
 
 <template>
-  <select :value="value" @change.self.prevent="handleChange">
+  <select :value="value" @change.self.prevent="handleChange" :class="selectClassName">
     <option v-for="value in values" :key="value">{{ value }}</option>
   </select>
 </template>

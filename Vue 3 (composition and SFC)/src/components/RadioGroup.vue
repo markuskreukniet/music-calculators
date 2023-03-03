@@ -1,6 +1,8 @@
 <script setup>
 import { computed } from 'vue';
 
+const emit = defineEmits(['value']);
+
 const props = defineProps({
   textValueCombinations: {
     type: Array,
@@ -22,12 +24,15 @@ const name = computed(() => {
   return name;
 });
 
+function handleChange(e) {
+  emit('value', e.target.value);
+}
 </script>
 
-<!-- TODO: whole component is not completed -->
 <template>
   <label v-for="combination in textValueCombinations" :key="combination.value" class="display-block">
-    <input type="radio" :name="name" :value="combination.value" class="input-radio" />
+    <input type="radio" :name="name" :value="combination.value" :checked="combination.value === value"
+      @change.self="handleChange" class="input-radio" />
     {{ combination.value }}
   </label>
 </template>

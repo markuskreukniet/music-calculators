@@ -18,7 +18,6 @@ const props = defineProps({
   }
 });
 
-// TODO: test when props.className changes if selectClassName updates
 const selectClassName = computed(() => {
   let result = "select";
 

@@ -19,6 +19,7 @@ class LabeledTextSelect extends LitElement {
     dispatchEventValue(this, e.detail);
   }
 
+  // TODO: label around text-select is probably invalid HTML. Same solution as Svelte project?
   render() {
     return html`
       <label class=${this.className}>

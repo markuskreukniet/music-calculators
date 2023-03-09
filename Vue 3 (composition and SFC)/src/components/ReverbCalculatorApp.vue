@@ -16,6 +16,8 @@ function handleChange(e) {
 }
 </script>
 
+<!-- TODO: two way bind is not needed on many places -->
+
 <template>
   <LabeledTextSelect :labelText="labelText" :values="values" :value="value" @value="handleChange"
     :className="className" />

@@ -3,9 +3,9 @@ import arithmeticOperation from '../constants/arithmeticOperation.constants.js';
 import durations from '../constants/durations.constants.js';
 import reverb from '../constants/reverb.constants.js';
 import style from '../style.js';
+import './OptionalLabeledTextSelect.js';
 import './LabeledNumberInput.js';
 import './LabeledRadioGroup.js';
-import './LabeledTextSelect.js';
 import './ReverbCalculator.js';
 import './TextSelect.js';
 
@@ -84,33 +84,33 @@ export class ReverbCalculatorApp extends LitElement {
 
   _renderPartAddition(className, className2) {
     return html`
-      <labeled-text-select
+      <optional-labeled-text-select
         labelText=${this._preDelayColon}
         .values=${durations}
         .value=${this._valueOne}
         @value=${this._handleChangeValueOne}
         className=${className}
-      ></labeled-text-select>
+      ></optional-labeled-text-select>
       <p class=${className2}>+</p>
-      <labeled-text-select
+      <optional-labeled-text-select
         labelText=${this._decayColon}
         .values=${durations}
         .value=${this._valueTwo}
         @value=${this._handleChangeValueTwo}
         className=${`${className} ${className2}`}
-      ></labeled-text-select>
+      ></optional-labeled-text-select>
     `;
   }
 
   _renderPartSubtraction(className, className2) {
     return html`
-      <labeled-text-select
+      <optional-labeled-text-select
         labelText=${this._totalReverbColon}
         .values=${durations}
         .value=${this._valueOne}
         @value=${this._handleChangeValueOne}
         className=${className}
-      ></labeled-text-select>
+      ></optional-labeled-text-select>
       <p class=${className2}>-</p>
       <text-select
         .values=${this._values}
@@ -128,21 +128,21 @@ export class ReverbCalculatorApp extends LitElement {
   }
 
   render() {
-    const child1MarginOnlyLeft = 'child-1-margin-only-left-1';
+    const child2MarginOnlyLeft = 'child-2-margin-only-left-1';
     const marginOnlyLeft = 'margin-only-left-1';
 
     let subtractionText = reverb.preDelay;
     let htmlPart = null;
 
     if (this._durationResult === arithmeticOperation.addition) {
-      htmlPart = this._renderPartAddition(child1MarginOnlyLeft, marginOnlyLeft);
+      htmlPart = this._renderPartAddition(child2MarginOnlyLeft, marginOnlyLeft);
     } else {
       if (this._subtractionTextColon === this._decayColon) {
         subtractionText = reverb.decay;
       }
 
       htmlPart = this._renderPartSubtraction(
-        child1MarginOnlyLeft,
+        child2MarginOnlyLeft,
         marginOnlyLeft
       );
     }

@@ -1,8 +1,8 @@
 import {LitElement, html, nothing} from 'lit';
 import dispatchEventValue from '../helpers/customEvent.helpers.js';
 import style from '../style.js';
-import './TextSelect.js';
 
+// Label around TextSelect component is probably invalid HTML, which is the purpose of this component.
 class OptionalLabeledTextSelect extends LitElement {
   static styles = [style];
 
@@ -21,7 +21,6 @@ class OptionalLabeledTextSelect extends LitElement {
     dispatchEventValue(this, e.target.value);
   }
 
-  // TODO: label around text-select is probably invalid HTML. Same solution as Svelte project?
   render() {
     const name = this.values.toString();
     let labelPart = nothing;

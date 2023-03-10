@@ -7,7 +7,6 @@ import './OptionalLabeledTextSelect.js';
 import './LabeledNumberInput.js';
 import './LabeledRadioGroup.js';
 import './ReverbCalculator.js';
-import './TextSelect.js';
 
 export class ReverbCalculatorApp extends LitElement {
   static styles = [style];
@@ -112,18 +111,18 @@ export class ReverbCalculatorApp extends LitElement {
         className=${className}
       ></optional-labeled-text-select>
       <p class=${className2}>-</p>
-      <text-select
+      <optional-labeled-text-select
         .values=${this._values}
         .value=${this._subtractionTextColon}
         @value=${this.handleChangeSubtractionTextColon}
         className=${className2}
-      ></text-select>
-      <text-select
+      ></optional-labeled-text-select>
+      <optional-labeled-text-select
         .values=${durations}
         .value=${this._valueTwo}
         @value=${this._handleChangeValueTwo}
         className=${className2}
-      ></text-select>
+      ></optional-labeled-text-select>
     `;
   }
 

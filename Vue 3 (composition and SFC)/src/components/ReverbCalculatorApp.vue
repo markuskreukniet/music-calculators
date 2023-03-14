@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import arithmeticOperation from '../constants/arithmeticOperation.constants.js';
 import durations from '../constants/durations.constants.js';
 import reverb from '../constants/reverb.constants.js';
+import LabeledNumberInput from './LabeledNumberInput.vue';
 import LabeledTextSelect from './LabeledTextSelect.vue';
 import TextSelect from './TextSelect.vue';
 
@@ -25,8 +26,18 @@ const textValueCombinations = [
 
 const defaultValueSelect = '1/64 note';
 
+const subtractionTextColon = preDelayColon;
+const valueOne = defaultValueSelect;
+const valueTwo = defaultValueSelect;
+const durationResult = this._textValueCombinations[0].value;
+const tempo = 128;
+
 function addColon(string) {
   return `${string}:`;
+}
+
+function handleChangeTempo(e) {
+  tempo = e;
 }
 //
 
@@ -45,6 +56,10 @@ function handleChange(e) {
 <!-- TODO: two way bind is not needed on many places -->
 
 <template>
+  <LabeledNumberInput @value="handleChangeTempo" />
+
+  <!-- -->
+
   <LabeledTextSelect :labelText="labelText" :values="values" :value="value" @value="handleChange"
     :className="className" />
   <TextSelect :values="values" :value="value" @value="handleChange" :className="className" />

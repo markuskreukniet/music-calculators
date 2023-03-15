@@ -4,6 +4,7 @@ import arithmeticOperation from '../constants/arithmeticOperation.constants.js';
 import durations from '../constants/durations.constants.js';
 import reverb from '../constants/reverb.constants.js';
 import LabeledNumberInput from './LabeledNumberInput.vue';
+import LabeledRadioGroup from './LabeledRadioGroup.vue';
 import LabeledTextSelect from './LabeledTextSelect.vue';
 import TextSelect from './TextSelect.vue';
 
@@ -29,7 +30,7 @@ const defaultValueSelect = '1/64 note';
 const subtractionTextColon = preDelayColon;
 const valueOne = defaultValueSelect;
 const valueTwo = defaultValueSelect;
-const durationResult = this._textValueCombinations[0].value;
+const durationResult = textValueCombinations[0].value;
 const tempo = 128;
 
 function addColon(string) {
@@ -38,6 +39,10 @@ function addColon(string) {
 
 function handleChangeTempo(e) {
   tempo = e;
+}
+
+function handleChangeDurationResult(e) {
+  durationResult = e;
 }
 //
 
@@ -56,8 +61,17 @@ function handleChange(e) {
 <!-- TODO: two way bind is not needed on many places -->
 
 <template>
-  <LabeledNumberInput @value="handleChangeTempo" />
+  <LabeledNumberInput labelText="Tempo in BPM:" :value="tempo" @value="handleChangeTempo" />
+  <LabeledRadioGroup labelText="Calculate in ms:" :textValueCombinations="textValueCombinations" :value="durationResult"
+    @value="handleChangeDurationResult" class="display-block padding border-bottom" />
+  <div class="display-flex align-items-center padding border-bottom">
+    <template v-if="durationResult === arithmeticOperation.addition">
 
+    </template>
+    <template v-else>
+
+    </template>
+  </div>
   <!-- -->
 
   <LabeledTextSelect :labelText="labelText" :values="values" :value="value" @value="handleChange"

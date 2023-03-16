@@ -16,7 +16,7 @@ function valueToMs(value, note) {
   const fractionString = "1/";
   if (value.includes(fractionString)) {
     noteValue =
-      note / parseInt(value.replace(fractionString, this.emptyString), 10);
+      note / parseInt(value.replace(fractionString, emptyString), 10);
   } else if (value.includes("note")) {
     noteValue = note * parseInt(value, 10);
   }
@@ -44,7 +44,7 @@ function hasMoreThanTwoDecimals(value) {
 }
 
 function toMaxTwoDecimals(value) {
-  if (this.hasMoreThanTwoDecimals(value)) {
+  if (hasMoreThanTwoDecimals(value)) {
     const stringResult = value.toFixed(2); // to string with two decimals
     return parseFloat(stringResult); // return float
   } else {
@@ -53,8 +53,8 @@ function toMaxTwoDecimals(value) {
 }
 
 function valueToMsWithMaxTwoDecimals(value, noteInMs) {
-  const ms = this.valueToMs(value, noteInMs);
-  return this.toMaxTwoDecimals(ms);
+  const ms = valueToMs(value, noteInMs);
+  return toMaxTwoDecimals(ms);
 }
 
 function toValueMsTextString(value, text) {
@@ -62,20 +62,20 @@ function toValueMsTextString(value, text) {
 }
 
 function determineResultText() {
-  const noteInMs = this.determineNoteInMs(this.props.tempo);
-  const labeledFormula = this.props.labeledFormula;
+  const noteInMs = determineNoteInMs(props.tempo);
+  const labeledFormula = props.labeledFormula;
 
-  const valueOneInMs = this.valueToMsWithMaxTwoDecimals(
+  const valueOneInMs = valueToMsWithMaxTwoDecimals(
     labeledFormula.operandLabelCombinations[0].operand,
     noteInMs
   );
-  const valueTwoInMs = this.valueToMsWithMaxTwoDecimals(
+  const valueTwoInMs = valueToMsWithMaxTwoDecimals(
     labeledFormula.operandLabelCombinations[1].operand,
     noteInMs
   );
 
   let resultValue = -1;
-  let arithmeticOperationSign = this.emptyString;
+  let arithmeticOperationSign = emptyString;
 
   switch (labeledFormula.operator) {
     case arithmeticOperation.addition:
@@ -93,19 +93,19 @@ function determineResultText() {
   }
 
   // toMaxTwoDecimals is needed for the floating-point problem. For example, the result can go wrong with 0.1 ms as a value.
-  resultValue = this.toMaxTwoDecimals(resultValue);
+  resultValue = toMaxTwoDecimals(resultValue);
 
-  let result = `${this.toValueMsTextString(
+  let result = `${toValueMsTextString(
     valueOneInMs,
     labeledFormula.operandLabelCombinations[0].label
   )}
     ${arithmeticOperationSign}
-    ${this.toValueMsTextString(
+    ${toValueMsTextString(
     valueTwoInMs,
     labeledFormula.operandLabelCombinations[1].label
   )}
     =
-    ${this.toValueMsTextString(resultValue, labeledFormula.label)}`;
+    ${toValueMsTextString(resultValue, labeledFormula.label)}`;
 
   if (resultValue <= 0) {
     result = `${result}. A result with a negative or 0 value is invalid.`;
@@ -115,4 +115,9 @@ function determineResultText() {
 }
 </script>
 
-<template></template>
+<template>
+  <div class="display-flex padding">
+    <p class="margin-0">Result:</p>
+    <p class="margin-only-left-1">{{ determineResultText() }}</p>
+  </div>
+</template>

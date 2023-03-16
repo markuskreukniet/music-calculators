@@ -24,11 +24,12 @@ class RadioGroup extends React.Component {
   }
 
   render() {
+    const name = this.getName();
     const labeledRadioInputs = this.props.textValueCombinations.map((x, i) => (
       <label className="display-block" key={i}>
         <input
           type="radio"
-          name={this.getName()}
+          name={name}
           value={x.value}
           onChange={this.handleChange}
           defaultChecked={x.value === this.props.value} // the attribute defaultChecked should be used and not the attribute checked

@@ -30,6 +30,8 @@ export class RadioGroup extends LitElement {
   }
 
   render() {
+    const name = this._getName();
+
     return html`
       ${map(
         this.textValueCombinations,
@@ -37,7 +39,7 @@ export class RadioGroup extends LitElement {
           <label class="display-block">
             <input
               type="radio"
-              name=${this._getName()}
+              name=${name}
               value=${combination.value}
               @input=${this._handleChange}
               ?checked=${combination.value === this.value}

@@ -49,6 +49,7 @@ function addColon(string) {
   return `${string}:`;
 }
 
+// TODO: handleChange same as React and explain why
 function handleChangeTempo(e) {
   state.tempo = e;
 }

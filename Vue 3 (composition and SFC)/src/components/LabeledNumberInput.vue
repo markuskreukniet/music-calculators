@@ -13,7 +13,8 @@ const props = defineProps({
 });
 
 function handleChange(e) {
-  emit('value', e.target.value);
+  const valueNumber = Number(e.target.value); // string to number // TODO: check if this conversion is also needed in other projects
+  emit('value', valueNumber);
 }
 </script>
 

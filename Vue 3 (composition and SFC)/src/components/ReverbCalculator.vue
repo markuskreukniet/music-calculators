@@ -59,5 +59,5 @@ function getLabeledFormula() {
 </script>
 
 <template>
-  <MusicCalculator :tempo="tempo" />
+  <MusicCalculator :tempo="tempo" :labeledFormula="getLabeledFormula()" />
 </template>

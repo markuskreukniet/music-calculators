@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from 'vue'
 import arithmeticOperation from '../constants/arithmeticOperation.constants.js';
 import durations from '../constants/durations.constants.js';
 import reverb from '../constants/reverb.constants.js';
@@ -54,18 +53,6 @@ function handleChangeValueOne(e) {
 function handleChangeValueTwo(e) {
   valueTwo = e.detail;
 }
-//
-
-const labelText = "labelText";
-const value = "value 2";
-
-const className = ref('testClass');
-
-function handleChange(e) {
-  console.log(e);
-
-  className.value = "testClass testClass2";
-}
 </script>
 
 <template>
@@ -84,9 +71,4 @@ function handleChange(e) {
       <p :class="marginOnlyLeft">-</p>
     </template>
   </div>
-  <!-- -->
-
-  <LabeledTextSelect :labelText="labelText" :values="values" :value="value" @value="handleChange"
-    :className="className" />
-  <TextSelect :values="values" :value="value" @value="handleChange" :className="className" />
 </template>

@@ -1,6 +1,17 @@
 <script setup>
 import arithmeticOperation from "../constants/arithmeticOperation.constants.js";
 
+const props = defineProps({
+  tempo: {
+    type: String,
+    required: true
+  },
+  labeledFormula: {
+    type: Object,
+    required: true
+  }
+});
+
 const emptyString = "";
 
 function determineNoteInMs(tempo) {

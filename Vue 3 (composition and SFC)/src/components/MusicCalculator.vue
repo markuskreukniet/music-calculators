@@ -3,7 +3,7 @@ import arithmeticOperation from "../constants/arithmeticOperation.constants.js";
 
 const props = defineProps({
   tempo: {
-    type: String,
+    type: Number,
     required: true
   },
   labeledFormula: {

@@ -1,13 +1,15 @@
 <script setup>
+import arithmeticOperation from '../constants/arithmeticOperation.constants.js';
+import reverb from '../constants/reverb.constants.js';
 import MusicCalculator from './MusicCalculator.vue';
 
 const props = defineProps({
   calculatorOperation: {
-    type: Array,
+    type: String,
     required: true
   },
   tempo: {
-    type: String,
+    type: Number,
     required: true
   },
   valueOne: {

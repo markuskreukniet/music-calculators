@@ -15,7 +15,8 @@ export class LabeledNumberInput extends LitElement {
   _handleChange(e) {
     e.preventDefault();
 
-    dispatchEventValue(this, e.target.value);
+    const valueNumber = Number(e.target.value); // string to number
+    dispatchEventValue(this, valueNumber);
   }
 
   render() {

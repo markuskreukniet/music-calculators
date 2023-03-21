@@ -31,18 +31,11 @@
   let valueTwo = defaultValueSelect;
   let subtractionTextColon = preDelayColon;
 
-  $: subtractionText = setSubtractionText(subtractionTextColon);
+  $: subtractionText =
+    subtractionTextColon === preDelayColon ? reverb.preDelay : reverb.decay;
 
   const child2MarginOnlyLeft = "child-2-margin-only-left-1";
   const marginOnlyLeft = "margin-only-left-1";
-
-  function setSubtractionText(subtractionTextColon) {
-    if (subtractionTextColon === preDelayColon) {
-      return reverb.preDelay;
-    } else {
-      return reverb.decay;
-    }
-  }
 
   function addColon(string) {
     return `${string}:`;

@@ -10,7 +10,8 @@ class LabeledNumberInput extends React.Component {
   handleChange(e) {
     e.preventDefault();
 
-    this.props.onChange(e.target.value);
+    const valueNumber = Number(e.target.value); // string to number
+    this.props.onChange(valueNumber);
   }
 
   render() {

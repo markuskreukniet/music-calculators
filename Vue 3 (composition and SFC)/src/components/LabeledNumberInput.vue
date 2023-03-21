@@ -13,7 +13,7 @@ const props = defineProps({
 });
 
 function handleChange(e) {
-  const valueNumber = Number(e.target.value); // string to number 
+  const valueNumber = Number(e.target.value); // string to number
   emit('value', valueNumber);
 }
 </script>

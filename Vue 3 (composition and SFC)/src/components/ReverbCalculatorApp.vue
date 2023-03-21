@@ -27,8 +27,8 @@ const textValueCombinations = [
 
 const defaultValueSelect = '1/64 note';
 
-// TODO: explain why reactive and not ref
-
+// I choose one reactive object instead of multiple refs since the calculator needs the whole reactive object to calculate an answer.
+// https://vuejs.org/guide/essentials/reactivity-fundamentals.html
 const state = reactive({
   subtractionTextColon: preDelayColon,
   valueOne: defaultValueSelect,
@@ -37,11 +37,6 @@ const state = reactive({
   tempo: 128
 });
 
-// let valueOne = defaultValueSelect;
-// let valueTwo = defaultValueSelect;
-// let durationResult = textValueCombinations[0].value;
-// let tempo = 128;
-
 const child1MarginOnlyLeft = "child-1-margin-only-left-1";
 const marginOnlyLeft = "margin-only-left-1";
 
@@ -49,7 +44,6 @@ function addColon(string) {
   return `${string}:`;
 }
 
-// TODO: handleChange same as React and explain why
 function handleChangeTempo(e) {
   state.tempo = e;
 }

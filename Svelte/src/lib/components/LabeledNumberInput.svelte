@@ -3,6 +3,7 @@
   export let value;
 </script>
 
+<!-- We don't need to convert an event value from string to number in Svelte. https://svelte.dev/tutorial/numeric-inputs -->
 <label class="display-block padding border-bottom">
   {labelText}
   <input

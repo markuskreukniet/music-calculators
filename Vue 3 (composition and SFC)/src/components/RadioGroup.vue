@@ -33,6 +33,6 @@ function handleChange(e) {
   <label v-for="combination in textValueCombinations" :key="combination.value" class="display-block">
     <input type="radio" :name="name" :value="combination.value" :checked="combination.value === value"
       @change.self="handleChange" class="input-radio" />
-    {{ combination.value }}
+    {{ combination.text }}
   </label>
 </template>

@@ -1,5 +1,5 @@
 <script setup>
-import { computed, reactive } from 'vue'
+import { computed, reactive } from 'vue';
 import arithmeticOperation from '../constants/arithmeticOperation.constants.js';
 import durations from '../constants/durations.constants.js';
 import reverb from '../constants/reverb.constants.js';

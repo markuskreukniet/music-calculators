@@ -1,17 +1,24 @@
 <script setup>
 // import HelloWorld from './components/HelloWorld.vue'
 // import TheWelcome from './components/TheWelcome.vue'
+import style from "./style.js";
+
 import ReverbCalculatorApp from './components/ReverbCalculatorApp.vue'
+
+// If there is a shadow dom, the style element gets appended outside of it.
+var element = document.createElement("style");
+element.innerHTML = style;
+document.body.appendChild(element);
 </script>
 
 <template>
-  <!-- <header>
-      <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <!-- <header> -->
+  <!-- <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" /> -->
 
-      <div class="wrapper">
-        <HelloWorld msg="You did it!" />
-      </div>
-    </header> -->
+  <!-- <div class="wrapper"> -->
+  <!-- <HelloWorld msg="You did it!" /> -->
+  <!-- </div> -->
+  <!-- </header> -->
 
   <main>
     <!-- <TheWelcome /> -->

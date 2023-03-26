@@ -1,6 +1,8 @@
 import logo from './logo.svg';
 import styles from './App.module.css';
 
+import LabeledNumberInput from "./components/LabeledNumberInput";
+
 function App() {
   return (
     <div class={styles.App}>
@@ -18,6 +20,8 @@ function App() {
           Learn Solid
         </a>
       </header>
+
+      <LabeledNumberInput value="testValue" />
     </div>
   );
 }

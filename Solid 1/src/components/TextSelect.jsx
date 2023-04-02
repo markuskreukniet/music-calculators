@@ -3,7 +3,7 @@ export default function TextSelect(props) {
   if (props.className) {
     selectClassName += ` ${props.className}`;
   }
-  
+
   return (
     <select value={props.value} class={selectClassName} onChange={e => props.onChange(e.target.value)}>
       <For each={props.values}>{value =>

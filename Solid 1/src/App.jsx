@@ -18,6 +18,7 @@ function App() {
   ];
 
   // TODO: onChange instead of onValue, also in other projects
+  // TODO: inline arrow functions also in other projects
 
   return (
     <div class={styles.App}>

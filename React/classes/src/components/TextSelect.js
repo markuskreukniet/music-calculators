@@ -4,8 +4,6 @@ class TextSelect extends React.Component {
   constructor(props) {
     super(props);
 
-    this.className = "select";
-
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -16,7 +14,7 @@ class TextSelect extends React.Component {
   }
 
   render() {
-    let selectClassName = this.className;
+    let selectClassName = "select";
     if (this.props.className) {
       selectClassName += ` ${this.props.className}`;
     }

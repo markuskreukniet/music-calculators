@@ -17,7 +17,8 @@ function App() {
     "30 ms",
   ];
 
-  // onChange instead of onValue, also in other projects
+  // TODO: onChange instead of onValue, also in other projects
+  // TODO: fix default value TextSelect
 
   return (
     <div class={styles.App}>
@@ -38,7 +39,7 @@ function App() {
 
       <LabeledNumberInput value="testValue" />
 
-      <TextSelect values={durations} value={value()} />
+      <TextSelect values={durations} value={value()} onChange={value => {console.log("value", value); setValue(value)}} />
     </div>
   );
 }

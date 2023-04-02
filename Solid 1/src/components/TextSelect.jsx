@@ -6,8 +6,8 @@ export default function TextSelect(props) {
   }
   
   return (
-    <select value={props.value} class={selectClassName} onChange={props.onValue}>
-      <For each={props.values}>{(value, i) =>
+    <select value={props.value} class={selectClassName} onChange={e => props.onChange(e.target.value)}>
+      <For each={props.values}>{value =>
         <option value={value}>
           {value}
         </option>

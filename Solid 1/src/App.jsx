@@ -38,7 +38,7 @@ function App() {
 
       <LabeledNumberInput value="testValue" />
 
-      <TextSelect values={durations} value={value()} onChange={value => {console.log("value", value); setValue(value)}} />
+      <TextSelect values={durations} value={value()} onChange={value => setValue(value)} />
     </div>
   );
 }

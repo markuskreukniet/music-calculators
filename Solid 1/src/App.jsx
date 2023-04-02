@@ -7,7 +7,7 @@ import LabeledNumberInput from "./components/LabeledNumberInput";
 import TextSelect from "./components/TextSelect";
 
 function App() {
-  const [value, setValue] = createSignal("1/64 note");
+  const [value, setValue] = createSignal("0 ms");
 
   const durations = [
     "0 ms",
@@ -18,7 +18,6 @@ function App() {
   ];
 
   // TODO: onChange instead of onValue, also in other projects
-  // TODO: fix default value TextSelect
 
   return (
     <div class={styles.App}>

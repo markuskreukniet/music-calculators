@@ -1,3 +1,5 @@
+import { For } from 'solid-js';
+
 export default function TextSelect(props) {
   let selectClassName = "select";
   if (props.className) {
